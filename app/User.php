@@ -12,6 +12,7 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -35,6 +36,6 @@ class User extends Authenticatable
     }
 
     public function pedidos () {
-        return $this->hasMany('App\Pedido');
+        return $this->hasMany('App\Pedido', 'user_id', 'id');
     }
 }

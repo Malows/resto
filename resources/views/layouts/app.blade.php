@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+
     {{--<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>--}}
 </head>
 <body>

@@ -18,11 +18,11 @@ class PedidoController extends Controller
      */
     public function index()
     {
+        $platos_disponibles = Plato::where('habilitado', TRUE)->pluck('nombre', 'id')->toArray();
         $categorias = CategoriaPlato::with(['platos' => function ($query) {
             $query->select('nombre', 'categoria_plato_id', 'id')->where('habilitado', TRUE)->orderBy('categoria_plato_id');
         }])->select('nombre', 'id')->get();
         $pedidos_pendientes = Auth::user()->pedidos()->orderBy('created_at')->get();
-        $platos_disponibles = Plato::where('habilitado', TRUE)->pluck('nombre', 'id')->toArray();
         return view('pedidos.index', ['pedidos' => $pedidos_pendientes, 'categorias' => $categorias, 'platos' => $platos_disponibles]);
     }
 
@@ -102,11 +102,28 @@ class PedidoController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function api_index_mozo()
     {
-        //
+//        $pedido = Pedido::with(['mozo' => function($query){
+//            $query->select('id', 'name', 'tipo_usuario_id');
+//        }])->where('id', Auth::user()->id)->get();
+//
+//        return $pedido;
+
+        $platos_disponibles = Plato::where('habilitado', TRUE)->pluck('nombre', 'id')->toArray();
+        $categorias = CategoriaPlato::with(['platos' => function ($query) {
+            $query->select('nombre', 'categoria_plato_id', 'id')->where('habilitado', TRUE)->orderBy('categoria_plato_id');
+        }])->select('nombre', 'id')->get();
+
+        $pedidos_pendientes = Auth::user()->pedidos()->orderBy('created_at')->get()->each( function($pedido) {
+            unset($pedido->user_id);
+            $pedido->url = route('api.pedidos.show', $pedido->id);
+        });
+//        return ['pedidos' => $pedidos_pendientes, 'categorias' => $categorias, 'platos' => $platos_disponibles];
+        return $pedidos_pendientes;
     }
 
     /**

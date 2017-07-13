@@ -25,6 +25,8 @@ Route::get('/personal/{id}', ['uses' => 'api\PersonalController@show', 'as' => '
 
 Route::get('/pedidos', ['uses' => 'api\PedidoController@index', 'as' => 'api.pedidos.index']);
 Route::get('/pedidos/{id}', ['uses' => 'api\PedidoController@show', 'as' => 'api.pedidos.show']);
+Route::get('/digest/pedidos', ['uses' => 'api\PedidoController@index_digest', 'as' => 'api.pedidos.digest']);
+Route::get('/digest/pedidos/{id}', ['uses' => 'api\PedidoController@index_digest_target', 'as' => 'api.pedidos.digest_target']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

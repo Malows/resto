@@ -11,7 +11,7 @@ class Pedido extends Model
 
     protected $table = "pedidos";
 
-    protected $fillable = ['mesa', 'user_id', 'platos'];
+    protected $fillable = ['mesa', 'user_id', 'platos', 'user', 'mozo'];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
@@ -24,7 +24,7 @@ class Pedido extends Model
     }
 
     public function mozo () {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
 }

@@ -1,16 +1,16 @@
-webpackJsonp([2],{
+webpackJsonp([19],{
 
-/***/ 111:
+/***/ 105:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(70);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("c9458216", content, false);
+var update = __webpack_require__(43)("c9458216", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -27,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 36:
 /***/ (function(module, exports) {
 
 /*
@@ -84,18 +84,18 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 47:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(111)
+__webpack_require__(105)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(42)(
   /* script */
-  __webpack_require__(62),
+  __webpack_require__(56),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(89),
   /* scopeId */
   null,
   /* cssModules */
@@ -123,7 +123,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 48:
+/***/ 42:
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -181,7 +181,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 49:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -200,7 +200,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(50)
+var listToStyles = __webpack_require__(44)
 
 /*
 type StyleObject = {
@@ -403,7 +403,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 44:
 /***/ (function(module, exports) {
 
 /**
@@ -437,14 +437,16 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 62:
+/***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(11);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(125);
+//
+//
+//
+//
 //
 //
 //
@@ -471,52 +473,95 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'mesa': () => __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 89)),
-    'modal-acciones': () => __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 90)),
-    'modal-crear': () => __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 93)),
-    'modal-cobrar': () => __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 92)),
-    'modal-borrar': () => __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 91)),
-    'modal-editar': () => __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 94))
+    'mesa': function mesa() {
+      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 83));
+    },
+    'modal-acciones': function modalAcciones() {
+      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 84));
+    },
+    'modal-crear': function modalCrear() {
+      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 87));
+    },
+    'modal-cobrar': function modalCobrar() {
+      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 86));
+    },
+    'modal-borrar': function modalBorrar() {
+      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 85));
+    },
+    'modal-editar': function modalEditar() {
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 88));
+    }
   },
+  props: ['url'],
 
-  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])(['mesas', 'mesa_seleccionada'])),
+  computed: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])(['mesas']),
 
   methods: {
-    modalCrear() {
+    /*
+    * Metodos de los modals
+    */
+    modalAcciones: function modalAcciones() {
+      this.$store.dispatch('SHOW_MODAL_ACCIONES');
+    },
+    modalBorrar: function modalBorrar() {
+      this.$store.dispatch('SHOW_MODAL_BORRAR');
+    },
+    modalCrear: function modalCrear() {
       this.$store.dispatch('SHOW_MODAL_CREAR');
     },
+    modalCobrar: function modalCobrar() {
+      this.$store.dispatch('SHOW_MODAL_COBRAR');
+    },
+    modalEditar: function modalEditar() {
+      this.$store.dispatch('SHOW_MODAL_EDITAR');
+    },
+    hideModalAcciones: function hideModalAcciones() {
+      this.$store.dispatch('HIDE_MODAL_ACCIONES');
+    },
+    hideModalBorrar: function hideModalBorrar() {
+      this.$store.dispatch('HIDE_MODAL_BORRAR');
+    },
+    hideModalCrear: function hideModalCrear() {
+      this.$store.dispatch('HIDE_MODAL_CREAR');
+    },
+    hideModalCobrar: function hideModalCobrar() {
+      this.$store.dispatch('HIDE_MODAL_COBRAR');
+    },
+    hideModalEditar: function hideModalEditar() {
+      this.$store.dispatch('HIDE_MODAL_EDITAR');
+    },
+
 
     /*
     * Metodos para enviar peticiones a la API
     */
-    cobrarMesa() {
-      console.log('Cobrar mesa', mesa_seleccionada);
+    cobrarMesa: function cobrarMesa() {
+      console.log('Cobrar mesa', this.mesa_seleccionada);
     },
-    borrarMesa() {
-      console.log('borrar mesa', mesa_seleccionada);
+    borrarMesa: function borrarMesa() {
+      console.log('borrar mesa', this.mesa_seleccionada);
     },
-    editarMesa() {
-      console.log('editar mesa', mesa_seleccionada);
+    editarMesa: function editarMesa() {
+      console.log('editar mesa', this.mesa_seleccionada);
     }
   },
-  mounted() {
+  mounted: function mounted() {
     this.$store.dispatch('REFRESH_CATEGORIAS_WITH_PLATOS');
     this.$store.dispatch('REFRESH_MESAS');
-    this.$store.dispatch('REFRESH_PEDIDOS');
   }
 });
 
 /***/ }),
 
-/***/ 70:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports = module.exports = __webpack_require__(36)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 95:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -545,15 +590,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: mesa.id,
       attrs: {
         "data": mesa
+      },
+      on: {
+        "showAcccionesEvent": _vm.modalAcciones
       }
     })
   })) : _c('div', {
     staticStyle: {
       "padding": "20vh"
     }
-  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])]), _vm._v(" "), _c('modal-crear'), _vm._v(" "), _c('modal-acciones'), _vm._v(" "), _c('modal-cobrar'), _vm._v(" "), _c('modal-borrar'), _vm._v(" "), _c('modal-editar', {
+  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])]), _vm._v(" "), _c('modal-crear', {
+    on: {
+      "hideModalEvent": _vm.hideModalCrear
+    }
+  }), _vm._v(" "), _c('modal-acciones', {
+    on: {
+      "hideModalEvent": _vm.hideModalAcciones,
+      "clickBorrarEvent": _vm.modalBorrar,
+      "clickCobrarEvent": _vm.modalCobrar,
+      "clickEditarEvent": _vm.modalEditar
+    }
+  }), _vm._v(" "), _c('modal-cobrar', {
     attrs: {
-      "datos": _vm.mesa_seleccionada
+      "pedido": _vm.mesa_seleccionada
+    },
+    on: {
+      "hideModalEvent": _vm.hideModalCobrar
+    }
+  }), _vm._v(" "), _c('modal-borrar', {
+    on: {
+      "hideModalEvent": _vm.hideModalBorrar
+    }
+  }), _vm._v(" "), _c('modal-editar', {
+    attrs: {
+      "pedido": this.mesa_seleccionada
+    },
+    on: {
+      "hideModalEvent": _vm.hideModalEditar
     }
   })], 1)
 },staticRenderFns: []}

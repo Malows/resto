@@ -7,7 +7,7 @@
             <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left">
             @foreach($pedidos as $pedido)
                 <div class="well" data-id="{{$pedido->id}}" data-toggle="modal" data-target="#modal-completar" data-mozo="{{$mozos[$pedido->user_id]}}">
-                    {{--<p><strong>Mozo {{dd($mozos)}}</strong></p>--}}
+                    <p><strong>Mozo {{dd($mozos)}}</strong></p>
                     <p><strong>Mozo {{$mozos[$pedido->user_id]}}</strong> - {{count($pedido->platos)}} {{(count($pedido->platos)> 1 )? 'cosas' : ' cosa'}} </p>
                     <div class="row">
                         @foreach( array_unique( $pedido->platos ) as $plato)

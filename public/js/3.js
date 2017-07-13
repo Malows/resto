@@ -1,22 +1,45 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
-/***/ 111:
+/***/ 101:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', _vm._l((_vm.categorias), function(categoria) {
+    return _c('menu-platos', {
+      key: categoria.id,
+      attrs: {
+        "categoria": categoria
+      }
+    })
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-357c9fbc", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(70);
+var content = __webpack_require__(75);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("c9458216", content, false);
+var update = __webpack_require__(49)("4a5a483f", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-042f4f5f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ListaMesas.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-042f4f5f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ListaMesas.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-357c9fbc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Menu.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-357c9fbc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Menu.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -84,26 +107,26 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 47:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(111)
+__webpack_require__(116)
 
 var Component = __webpack_require__(48)(
   /* script */
-  __webpack_require__(62),
+  __webpack_require__(54),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(101),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ListaMesas.vue"
+Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/Menu.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ListaMesas.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Menu.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -112,9 +135,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-042f4f5f", Component.options)
+    hotAPI.createRecord("data-v-357c9fbc", Component.options)
   } else {
-    hotAPI.reload("data-v-042f4f5f", Component.options)
+    hotAPI.reload("data-v-357c9fbc", Component.options)
   }
 })()}
 
@@ -437,133 +460,42 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 62:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(11);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'mesa': () => __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 89)),
-    'modal-acciones': () => __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 90)),
-    'modal-crear': () => __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 93)),
-    'modal-cobrar': () => __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 92)),
-    'modal-borrar': () => __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 91)),
-    'modal-editar': () => __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 94))
+    'menu-platos': () => __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 84))
   },
-
-  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])(['mesas', 'mesa_seleccionada'])),
-
-  methods: {
-    modalCrear() {
-      this.$store.dispatch('SHOW_MODAL_CREAR');
-    },
-
-    /*
-    * Metodos para enviar peticiones a la API
-    */
-    cobrarMesa() {
-      console.log('Cobrar mesa', mesa_seleccionada);
-    },
-    borrarMesa() {
-      console.log('borrar mesa', mesa_seleccionada);
-    },
-    editarMesa() {
-      console.log('editar mesa', mesa_seleccionada);
-    }
+  props: ['url'],
+  data() {
+    return {
+      categorias: []
+    };
   },
-  mounted() {
-    this.$store.dispatch('REFRESH_CATEGORIAS_WITH_PLATOS');
-    this.$store.dispatch('REFRESH_MESAS');
-    this.$store.dispatch('REFRESH_PEDIDOS');
+  created() {
+    axios.get(this.url).then(response => {
+      this.categorias = response.data;
+    });
   }
 });
 
 /***/ }),
 
-/***/ 70:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-/***/ }),
-
-/***/ 95:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "text-center"
-  }, [_c('div', {
-    staticClass: "container-fluid"
-  }, [_c('div', {
-    staticClass: "row col-md-4 col-md-offset-4"
-  }, [_c('button', {
-    staticClass: "btn btn-primary btn-block btn-lg",
-    on: {
-      "click": _vm.modalCrear
-    }
-  }, [_vm._v("Agregar pedido")])])]), _vm._v(" "), _c('hr', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.mesas.length),
-      expression: "mesas.length"
-    }]
-  }), _vm._v(" "), (_vm.mesas.length) ? _c('div', {
-    staticClass: "col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left"
-  }, _vm._l((_vm.mesas), function(mesa) {
-    return _c('mesa', {
-      key: mesa.id,
-      attrs: {
-        "data": mesa
-      }
-    })
-  })) : _c('div', {
-    staticStyle: {
-      "padding": "20vh"
-    }
-  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])]), _vm._v(" "), _c('modal-crear'), _vm._v(" "), _c('modal-acciones'), _vm._v(" "), _c('modal-cobrar'), _vm._v(" "), _c('modal-borrar'), _vm._v(" "), _c('modal-editar', {
-    attrs: {
-      "datos": _vm.mesa_seleccionada
-    }
-  })], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-042f4f5f", module.exports)
-  }
-}
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ })
 

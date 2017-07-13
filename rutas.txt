@@ -1,49 +1,54 @@
-+--------+-----------+------------------------------------+------------------------+------------------------------------------------------------------------+------------------------+
-| Domain | Method    | URI                                | Name                   | Action                                                                 | Middleware             |
-+--------+-----------+------------------------------------+------------------------+------------------------------------------------------------------------+------------------------+
-|        | GET|HEAD  | /                                  |                        | Closure                                                                | web                    |
-|        | GET|HEAD  | _debugbar/assets/javascript        | debugbar.assets.js     | Barryvdh\Debugbar\Controllers\AssetController@js                       |                        |
-|        | GET|HEAD  | _debugbar/assets/stylesheets       | debugbar.assets.css    | Barryvdh\Debugbar\Controllers\AssetController@css                      |                        |
-|        | GET|HEAD  | _debugbar/clockwork/{id}           | debugbar.clockwork     | Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork          |                        |
-|        | GET|HEAD  | _debugbar/open                     | debugbar.openhandler   | Barryvdh\Debugbar\Controllers\OpenHandlerController@handle             |                        |
-|        | POST      | administracion/personal            | personal.store         | App\Http\Controllers\UserController@store                              | web,auth,role:1        |
-|        | GET|HEAD  | administracion/personal            | personal.index         | App\Http\Controllers\UserController@index                              | web,auth,role:1        |
-|        | PUT|PATCH | administracion/personal/{personal} | personal.update        | App\Http\Controllers\UserController@update                             | web,auth,role:1        |
-|        | DELETE    | administracion/personal/{personal} | personal.destroy       | App\Http\Controllers\UserController@destroy                            | web,auth,role:1        |
-|        | GET|HEAD  | administracion/platos              | platos.index           | App\Http\Controllers\PlatoController@index                             | web,auth,role:1        |
-|        | POST      | administracion/platos              | platos.store           | App\Http\Controllers\PlatoController@store                             | web,auth,role:1        |
-|        | DELETE    | administracion/platos/{plato}      | platos.destroy         | App\Http\Controllers\PlatoController@destroy                           | web,auth,role:1        |
-|        | PUT|PATCH | administracion/platos/{plato}      | platos.update          | App\Http\Controllers\PlatoController@update                            | web,auth,role:1        |
-|        | GET|HEAD  | api/categorias                     | api.categorias.index   | App\Http\Controllers\api\CategoriaPlatoController@index                | api                    |
-|        | GET|HEAD  | api/categorias/{id}                | api.categorias.show    | App\Http\Controllers\api\CategoriaPlatoController@show                 | api                    |
-|        | GET|HEAD  | api/pedidos                        | api.pedidos.index      | App\Http\Controllers\api\PedidoController@index                        | api                    |
-|        | GET|HEAD  | api/pedidos/{id}                   | api.pedidos.show       | App\Http\Controllers\api\PedidoController@show                         | api                    |
-|        | GET|HEAD  | api/personal                       | api.personal.index     | App\Http\Controllers\api\PersonalController@index                      | api                    |
-|        | GET|HEAD  | api/personal/{id}                  | api.personal.show      | App\Http\Controllers\api\PersonalController@show                       | api                    |
-|        | GET|HEAD  | api/platos                         | api.platos.index       | App\Http\Controllers\api\PlatoController@index                         | api                    |
-|        | GET|HEAD  | api/platos/categoria/{id}          | api.platos.category    | App\Http\Controllers\api\PlatoController@category                      | api                    |
-|        | GET|HEAD  | api/platos/{id}                    | api.platos.show        | App\Http\Controllers\api\PlatoController@show                          | api                    |
-|        | GET|HEAD  | api/user                           |                        | Closure                                                                | api,auth:api           |
-|        | POST      | broadcasting/auth                  |                        | Illuminate\Broadcasting\BroadcastController@authenticate               | web                    |
-|        | GET|HEAD  | disponibilidad/platos              | disponibilidad         | App\Http\Controllers\PlatoController@disponibilidad                    | web,auth,role:2        |
-|        | PUT       | disponibilidad/platos/guardar      | guardar_disponibilidad | App\Http\Controllers\PlatoController@actualizar_disponibilidad         | web,auth,role:2        |
-|        | GET|HEAD  | inicio                             | home                   | App\Http\Controllers\HomeController@index                              | web,auth               |
-|        | POST      | login                              |                        | App\Http\Controllers\Auth\LoginController@login                        | web,guest              |
-|        | GET|HEAD  | login                              | login                  | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest              |
-|        | POST      | logout                             | logout                 | App\Http\Controllers\Auth\LoginController@logout                       | web                    |
-|        | POST      | password/email                     | password.email         | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest              |
-|        | GET|HEAD  | password/reset                     | password.request       | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest              |
-|        | POST      | password/reset                     |                        | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest              |
-|        | GET|HEAD  | password/reset/{token}             | password.reset         | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest              |
-|        | GET|HEAD  | pedidos                            | pedidos.index          | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
-|        | PUT       | pedidos/despachar/{id}             | pedidos.dispatch       | App\Http\Controllers\PedidoController@despachar                        | web,auth,role:3,role:2 |
-|        | GET|HEAD  | pedidos/lista                      | pedidos.digest         | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
-|        | GET|HEAD  | pedidos/lista/{categoria}          | pedidos.target_digest  | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
-|        | GET|HEAD  | pedidos/mesas                      | mesas.index            | App\Http\Controllers\PedidoController@index                            | web,auth,role:3        |
-|        | POST      | pedidos/mesas                      | mesas.store            | App\Http\Controllers\PedidoController@store                            | web,auth,role:3        |
-|        | PUT       | pedidos/mesas/{id}/cobrar          | mesas.cobrar           | App\Http\Controllers\PedidoController@cobrar                           | web,auth,role:3        |
-|        | DELETE    | pedidos/mesas/{mesa}               | mesas.destroy          | App\Http\Controllers\PedidoController@destroy                          | web,auth,role:3        |
-|        | PUT|PATCH | pedidos/mesas/{mesa}               | mesas.update           | App\Http\Controllers\PedidoController@update                           | web,auth,role:3        |
-|        | POST      | register                           |                        | App\Http\Controllers\Auth\RegisterController@register                  | web,guest              |
-|        | GET|HEAD  | register                           | register               | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest              |
-+--------+-----------+------------------------------------+------------------------+------------------------------------------------------------------------+------------------------+
++--------+-----------+------------------------------------+---------------------------+------------------------------------------------------------------------+------------------------+
+| Domain | Method    | URI                                | Name                      | Action                                                                 | Middleware             |
++--------+-----------+------------------------------------+---------------------------+------------------------------------------------------------------------+------------------------+
+|        | GET|HEAD  | /                                  |                           | Closure                                                                | web                    |
+|        | GET|HEAD  | _debugbar/assets/javascript        | debugbar.assets.js        | Barryvdh\Debugbar\Controllers\AssetController@js                       |                        |
+|        | GET|HEAD  | _debugbar/assets/stylesheets       | debugbar.assets.css       | Barryvdh\Debugbar\Controllers\AssetController@css                      |                        |
+|        | GET|HEAD  | _debugbar/clockwork/{id}           | debugbar.clockwork        | Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork          |                        |
+|        | GET|HEAD  | _debugbar/open                     | debugbar.openhandler      | Barryvdh\Debugbar\Controllers\OpenHandlerController@handle             |                        |
+|        | POST      | administracion/personal            | personal.store            | App\Http\Controllers\UserController@store                              | web,auth,role:1        |
+|        | GET|HEAD  | administracion/personal            | personal.index            | App\Http\Controllers\UserController@index                              | web,auth,role:1        |
+|        | PUT|PATCH | administracion/personal/{personal} | personal.update           | App\Http\Controllers\UserController@update                             | web,auth,role:1        |
+|        | DELETE    | administracion/personal/{personal} | personal.destroy          | App\Http\Controllers\UserController@destroy                            | web,auth,role:1        |
+|        | GET|HEAD  | administracion/platos              | platos.index              | App\Http\Controllers\PlatoController@index                             | web,auth,role:1        |
+|        | POST      | administracion/platos              | platos.store              | App\Http\Controllers\PlatoController@store                             | web,auth,role:1        |
+|        | PUT|PATCH | administracion/platos/{plato}      | platos.update             | App\Http\Controllers\PlatoController@update                            | web,auth,role:1        |
+|        | DELETE    | administracion/platos/{plato}      | platos.destroy            | App\Http\Controllers\PlatoController@destroy                           | web,auth,role:1        |
+|        | GET|HEAD  | api/categorias                     | api.categorias.index      | App\Http\Controllers\api\CategoriaPlatoController@index                | api                    |
+|        | GET|HEAD  | api/categorias/{id}                | api.categorias.show       | App\Http\Controllers\api\CategoriaPlatoController@show                 | api                    |
+|        | GET|HEAD  | api/digest/pedidos                 | api.pedidos.digest        | App\Http\Controllers\api\PedidoController@index_digest                 | api                    |
+|        | GET|HEAD  | api/digest/pedidos/{id}            | api.pedidos.digest_target | App\Http\Controllers\api\PedidoController@index_digest_target          | api                    |
+|        | GET|HEAD  | api/mesas                          | api.mesas.own.index       | App\Http\Controllers\PedidoController@api_index_mozo                   | web,auth               |
+|        | GET|HEAD  | api/pedidos                        | api.pedidos.index         | App\Http\Controllers\api\PedidoController@index                        | api                    |
+|        | GET|HEAD  | api/pedidos/{id}                   | api.pedidos.show          | App\Http\Controllers\api\PedidoController@show                         | api                    |
+|        | GET|HEAD  | api/personal                       | api.personal.index        | App\Http\Controllers\api\PersonalController@index                      | api                    |
+|        | GET|HEAD  | api/personal/{id}                  | api.personal.show         | App\Http\Controllers\api\PersonalController@show                       | api                    |
+|        | GET|HEAD  | api/platos                         | api.platos.index          | App\Http\Controllers\api\PlatoController@index                         | api                    |
+|        | GET|HEAD  | api/platos/categoria/{id}          | api.platos.category       | App\Http\Controllers\api\PlatoController@category                      | api                    |
+|        | GET|HEAD  | api/platos/{id}                    | api.platos.show           | App\Http\Controllers\api\PlatoController@show                          | api                    |
+|        | GET|HEAD  | api/user                           |                           | Closure                                                                | api,auth:api           |
+|        | POST      | broadcasting/auth                  |                           | Illuminate\Broadcasting\BroadcastController@authenticate               | web                    |
+|        | GET|HEAD  | disponibilidad/platos              | disponibilidad            | App\Http\Controllers\PlatoController@disponibilidad                    | web,auth,role:2        |
+|        | PUT       | disponibilidad/platos/guardar      | guardar_disponibilidad    | App\Http\Controllers\PlatoController@actualizar_disponibilidad         | web,auth,role:2        |
+|        | GET|HEAD  | home                               |                           | Closure                                                                | web                    |
+|        | GET|HEAD  | inicio                             | home                      | App\Http\Controllers\HomeController@index                              | web,auth               |
+|        | GET|HEAD  | login                              | login                     | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest              |
+|        | POST      | login                              |                           | App\Http\Controllers\Auth\LoginController@login                        | web,guest              |
+|        | POST      | logout                             | logout                    | App\Http\Controllers\Auth\LoginController@logout                       | web                    |
+|        | POST      | password/email                     | password.email            | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest              |
+|        | POST      | password/reset                     |                           | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest              |
+|        | GET|HEAD  | password/reset                     | password.request          | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest              |
+|        | GET|HEAD  | password/reset/{token}             | password.reset            | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest              |
+|        | GET|HEAD  | pedidos                            | pedidos.index             | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
+|        | PUT       | pedidos/despachar/{id}             | pedidos.dispatch          | App\Http\Controllers\PedidoController@despachar                        | web,auth,role:3,role:2 |
+|        | GET|HEAD  | pedidos/lista                      | pedidos.digest            | App\Http\Controllers\PedidoController@index_digest                     | web,auth,role:3,role:2 |
+|        | GET|HEAD  | pedidos/lista/{categoria}          | pedidos.target_digest     | App\Http\Controllers\PedidoController@index_target_digest              | web,auth,role:3,role:2 |
+|        | GET|HEAD  | pedidos/mesas                      | mesas.index               | App\Http\Controllers\PedidoController@index                            | web,auth,role:3        |
+|        | POST      | pedidos/mesas                      | mesas.store               | App\Http\Controllers\PedidoController@store                            | web,auth,role:3        |
+|        | PUT       | pedidos/mesas/{id}/cobrar          | mesas.cobrar              | App\Http\Controllers\PedidoController@cobrar                           | web,auth,role:3        |
+|        | DELETE    | pedidos/mesas/{mesa}               | mesas.destroy             | App\Http\Controllers\PedidoController@destroy                          | web,auth,role:3        |
+|        | PUT|PATCH | pedidos/mesas/{mesa}               | mesas.update              | App\Http\Controllers\PedidoController@update                           | web,auth,role:3        |
+|        | GET|HEAD  | prueba                             |                           | Closure                                                                | web                    |
+|        | POST      | register                           |                           | App\Http\Controllers\Auth\RegisterController@register                  | web,guest              |
+|        | GET|HEAD  | register                           | register                  | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest              |
++--------+-----------+------------------------------------+---------------------------+------------------------------------------------------------------------+------------------------+

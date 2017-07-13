@@ -7,35 +7,43 @@
         </div>
         <table class="table table-hover">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th class="text-center">Precio</th>
-                    <th class="text-center">Habilitado</th>
-                    <th class="text-center">Opciones</th>
-                </tr>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th class="hidden-xs">Descripcion</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Habilitado</th>
+                <th class="text-center">Opciones</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach($platos as $plato)
-                    <tr>
-                        <td>{{$plato->id}}</td>
-                        <td>{{$plato->nombre}}</td>
-                        <td>{{$plato->descripcion}}</td>
-                        <td class="text-center">${{$plato->precio}}</td>
-                        <td class="text-center"><span class="glyphicon glyphicon-{{($plato->habilitado) ? 'ok' : 'remove'}}"></span></td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar" data-id="{{$plato->id}}" data-action="{{Route('platos.update',$plato->id)}}">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </button>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-eliminar" data-nombre="{{$plato->nombre}}" data-action="{{Route('platos.destroy', $plato->id)}}">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
+            @foreach($platos as $plato)
+                <tr>
+                    <td>{{$plato->id}}</td>
+                    <td>{{$plato->nombre}}</td>
+                    <td class="hidden-xs">{{$plato->descripcion}}</td>
+                    <td class="text-center">${{$plato->precio}}</td>
+                    <td class="text-center"><span class="glyphicon glyphicon-{{($plato->habilitado) ? 'ok' : 'remove'}}"></span></td>
+                    <td class="text-center">
+                        <div class="btn-group hidden-xs hidden-sm">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar" data-id="{{$plato->id}}" data-action="{{Route('platos.update',$plato->id)}}">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-eliminar" data-nombre="{{$plato->nombre}}" data-action="{{Route('platos.destroy', $plato->id)}}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group-vertical visible-xs visible-sm">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar" data-id="{{$plato->id}}" data-action="{{Route('platos.update',$plato->id)}}">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-eliminar" data-nombre="{{$plato->nombre}}" data-action="{{Route('platos.destroy', $plato->id)}}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

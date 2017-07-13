@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('public');
 });
+Route::get('/prueba', function () {
+    return view('prueba');
+});
 
 Auth::routes();
 
@@ -23,6 +26,9 @@ Route::get('/home', function() {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/api/mesas', ['uses' => 'PedidoController@api_index_mozo', 'as' => 'api.mesas.own.index']);
+
 
     Route::group(['prefix' => 'pedidos', 'middleware' => 'role:3'], function (){
         Route::resource('/mesas', 'PedidoController',  ['except' => [ 'create', 'edit', 'show'] ] );

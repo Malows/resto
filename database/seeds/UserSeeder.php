@@ -30,6 +30,16 @@ class UserSeeder extends Seeder
             ]
         ];
 
+
+
+        $datos = array_map( function ($usuario) {
+            $usuario['QRpassword'] = bcrypt( $usuario['email'].$usuario['password']);
+            return $usuario;
+        }, $datos );
+
+//        foreach ($datos as $user) {
+//            QrCode::format('svg')->generate($user['QRpassword'], '/public/qrcodes/'.$user['name'].'__'.$user['email'].'.svg');
+//        }
         DB::table('users')->insert($datos);
     }
 }

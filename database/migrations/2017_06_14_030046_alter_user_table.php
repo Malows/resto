@@ -14,6 +14,7 @@ class AlterUserTable extends Migration
     public function up()
     {
         Schema::table('users', function ( Blueprint $table ) {
+            $table->string('QRpassword');
             $table->unsignedInteger('tipo_usuario_id');
             $table->foreign('tipo_usuario_id')
                 ->references('id')->on('tipos_usuarios')

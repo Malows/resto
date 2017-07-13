@@ -27,9 +27,10 @@
 |        | POST      | broadcasting/auth                  |                        | Illuminate\Broadcasting\BroadcastController@authenticate               | web                    |
 |        | GET|HEAD  | disponibilidad/platos              | disponibilidad         | App\Http\Controllers\PlatoController@disponibilidad                    | web,auth,role:2        |
 |        | PUT       | disponibilidad/platos/guardar      | guardar_disponibilidad | App\Http\Controllers\PlatoController@actualizar_disponibilidad         | web,auth,role:2        |
+|        | GET|HEAD  | home                               |                        | Closure                                                                | web                    |
 |        | GET|HEAD  | inicio                             | home                   | App\Http\Controllers\HomeController@index                              | web,auth               |
-|        | POST      | login                              |                        | App\Http\Controllers\Auth\LoginController@login                        | web,guest              |
 |        | GET|HEAD  | login                              | login                  | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest              |
+|        | POST      | login                              |                        | App\Http\Controllers\Auth\LoginController@login                        | web,guest              |
 |        | POST      | logout                             | logout                 | App\Http\Controllers\Auth\LoginController@logout                       | web                    |
 |        | POST      | password/email                     | password.email         | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest              |
 |        | GET|HEAD  | password/reset                     | password.request       | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest              |
@@ -37,13 +38,15 @@
 |        | GET|HEAD  | password/reset/{token}             | password.reset         | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest              |
 |        | GET|HEAD  | pedidos                            | pedidos.index          | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
 |        | PUT       | pedidos/despachar/{id}             | pedidos.dispatch       | App\Http\Controllers\PedidoController@despachar                        | web,auth,role:3,role:2 |
-|        | GET|HEAD  | pedidos/lista                      | pedidos.digest         | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
-|        | GET|HEAD  | pedidos/lista/{categoria}          | pedidos.target_digest  | App\Http\Controllers\PedidoController@index_cocina                     | web,auth,role:3,role:2 |
-|        | GET|HEAD  | pedidos/mesas                      | mesas.index            | App\Http\Controllers\PedidoController@index                            | web,auth,role:3        |
+|        | GET|HEAD  | pedidos/lista                      | pedidos.digest         | App\Http\Controllers\PedidoController@index_digest                     | web,auth,role:3,role:2 |
+|        | GET|HEAD  | pedidos/lista/{categoria}          | pedidos.target_digest  | App\Http\Controllers\PedidoController@index_target_digest              | web,auth,role:3,role:2 |
 |        | POST      | pedidos/mesas                      | mesas.store            | App\Http\Controllers\PedidoController@store                            | web,auth,role:3        |
+|        | GET|HEAD  | pedidos/mesas                      | mesas.index            | App\Http\Controllers\PedidoController@index                            | web,auth,role:3        |
 |        | PUT       | pedidos/mesas/{id}/cobrar          | mesas.cobrar           | App\Http\Controllers\PedidoController@cobrar                           | web,auth,role:3        |
 |        | DELETE    | pedidos/mesas/{mesa}               | mesas.destroy          | App\Http\Controllers\PedidoController@destroy                          | web,auth,role:3        |
 |        | PUT|PATCH | pedidos/mesas/{mesa}               | mesas.update           | App\Http\Controllers\PedidoController@update                           | web,auth,role:3        |
+|        | POST      | qr_login                           | attempt_qr_login       | App\Http\Controllers\Auth\QrLoginController@checkUser                  | web,guest              |
+|        | GET|HEAD  | qr_login                           | view_qr_login          | App\Http\Controllers\Auth\QrLoginController@index                      | web,guest              |
 |        | POST      | register                           |                        | App\Http\Controllers\Auth\RegisterController@register                  | web,guest              |
 |        | GET|HEAD  | register                           | register               | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest              |
 +--------+-----------+------------------------------------+------------------------+------------------------------------------------------------------------+------------------------+

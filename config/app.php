@@ -166,16 +166,30 @@ return [
         /*
          * Package Service Providers...
          */
+
+        // Tinker
         Laravel\Tinker\TinkerServiceProvider::class,
+
+        // Form y HTML
         Collective\Html\HtmlServiceProvider::class,
+
+        // Mensajes Flash
         Laracasts\Flash\FlashServiceProvider::class,
+
+        // Laravel Debug Bar
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        // QR Code
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+
+        // Broadcastear eventos
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -232,6 +246,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

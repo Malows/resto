@@ -42,6 +42,7 @@ class UserController extends Controller
     {
         $personal = new User( $request->all() );
         $personal->password = bcrypt($request->password);
+        $personal->QRpassword = bcrypt( $personal->email . $personal->password );
         $personal->save();
         flash('Personal creado correctamente')->success();
         return redirect()->route('personal.index');

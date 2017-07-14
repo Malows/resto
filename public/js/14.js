@@ -81,10 +81,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'plato': () => __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 85))
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 85));
+    }
   },
   props: ['categoria'],
-  data() {
+  data: function data() {
     return {
       // nombre: '',
       divisor: 1,
@@ -92,13 +94,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       platos: []
     };
   },
+
   computed: {
-    platosFiltrados() {
-      return this.platos.filter(el => el.habilitado);
+    platosFiltrados: function platosFiltrados() {
+      return this.platos.filter(function (el) {
+        return el.habilitado;
+      });
     },
-    platosDistribuidos() {
-      let filtrados = this.platos.filter(el => el.habilitado);
-      let arr = [];
+    platosDistribuidos: function platosDistribuidos() {
+      var filtrados = this.platos.filter(function (el) {
+        return el.habilitado;
+      });
+      var arr = [];
       while (filtrados.length) {
         arr.push(filtrados.splice(0, this.divisor));
       }
@@ -106,41 +113,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
-    handleResize() {
-      let ancho = window.innerWidth;
-      let chico = ancho < 768; // punto de quiebre a xs en bootstrap
+    handleResize: function handleResize() {
+      var ancho = window.innerWidth;
+      var chico = ancho < 768; // punto de quiebre a xs en bootstrap
       this.divisor = chico ? 3 : 4;
       this.resto = this.platos.length % this.divisor;
     }
   },
-  mounted() {
+  mounted: function mounted() {
 
-    let ancho = window.innerWidth;
-    let chico = ancho < 768; // punto de quiebre a xs en bootstrap
+    var ancho = window.innerWidth;
+    var chico = ancho < 768; // punto de quiebre a xs en bootstrap
     this.divisor = chico ? 3 : 4;
     this.resto = this.platos.length % this.divisor;
   },
-  created() {
-    this.platos = this.categoria.platos.map(el => el);
+  created: function created() {
+    var _this = this;
 
-    window.EventBus.$on('deshabilitarPlatos', payload => {
+    this.platos = this.categoria.platos.map(function (el) {
+      return el;
+    });
+
+    window.EventBus.$on('deshabilitarPlatos', function (payload) {
       if (typeof payload === 'number') {
-        let encontrado = this.platos.filter(elem => elem.id === payload)[0];
+        var encontrado = _this.platos.filter(function (elem) {
+          return elem.id === payload;
+        })[0];
         if (encontrado) encontrado.habilitado = false;
       } else if (Array.isArray(payload)) {
-        this.platos = this.platos.map(plato => {
+        _this.platos = _this.platos.map(function (plato) {
           if (payload.includes(plato.id)) plato.habilitado = false;
           return plato;
         });
       }
     });
 
-    window.EventBus.$on('habilitarPlatos', payload => {
+    window.EventBus.$on('habilitarPlatos', function (payload) {
       if (typeof payload === 'number') {
-        let encontrado = this.platos.filter(elem => elem.id === payload)[0];
+        var encontrado = _this.platos.filter(function (elem) {
+          return elem.id === payload;
+        })[0];
         if (encontrado) encontrado.habilitado = true;
       } else if (Array.isArray(payload)) {
-        this.platos = this.platos.map(plato => {
+        _this.platos = _this.platos.map(function (plato) {
           if (payload.includes(plato.id)) plato.habilitado = true;
           return plato;
         });

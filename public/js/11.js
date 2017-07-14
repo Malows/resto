@@ -75,10 +75,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'plato': () => __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 53))
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 53));
+    }
   },
   props: ['pedido'],
-  data() {
+  data: function data() {
     return {
       data: {
         mozo: {
@@ -88,19 +90,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     };
   },
+
   methods: {
-    clickOnPedido() {
+    clickOnPedido: function clickOnPedido() {
       this.$emit('clickEnPedido', this.data);
     }
   },
   computed: {
-    totalDeCosas() {
-      return this.data.platos.reduce((carry, current) => carry + current.cantidad, 0);
+    totalDeCosas: function totalDeCosas() {
+      return this.data.platos.reduce(function (carry, current) {
+        return carry + current.cantidad;
+      }, 0);
     }
   },
-  created() {
-    axios.get(this.pedido.url).then(({ data }) => {
-      this.data = data;
+  created: function created() {
+    var _this = this;
+
+    axios.get(this.pedido.url).then(function (_ref) {
+      var data = _ref.data;
+
+      _this.data = data;
     });
   }
 });

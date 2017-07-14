@@ -116,13 +116,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['showModal', 'pedido'],
   methods: {
-    hideModal() {
+    hideModal: function hideModal() {
       this.$emit('hideModal');
     }
   },
   computed: {
-    totalDeCosas() {
-      return this.pedido.platos.reduce((carry, current) => carry + current.cantidad, 0);
+    totalDeCosas: function totalDeCosas() {
+      return this.pedido.platos.reduce(function (carry, current) {
+        return carry + current.cantidad;
+      }, 0);
     }
   }
 });

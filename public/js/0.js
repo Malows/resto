@@ -771,17 +771,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'categoria': () => __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, 88))
+    'categoria': function categoria() {
+      return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, 88));
+    }
   },
   props: ['url'],
-  data() {
+  data: function data() {
     return {
       categorias: []
     };
   },
-  created() {
-    axios.get(this.url).then(({ data }) => {
-      this.categorias = Array.isArray(data) ? data : [data];
+  created: function created() {
+    var _this = this;
+
+    axios.get(this.url).then(function (_ref) {
+      var data = _ref.data;
+      _this.categorias = Array.isArray(data) ? data : [data];
     });
   }
 });

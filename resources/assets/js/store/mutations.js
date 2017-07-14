@@ -29,6 +29,18 @@ export default {
   SET_MODAL_EDITAR(state, value) {
     state.showModalEditar = value
   },
+  APPEND_PEDIDO(state, pedido) {
+    state.pedidos.push(pedido)
+  },
+  APPEND_MESA(state, mesa) {
+    state.mesas.push(mesa)
+  },
+  REPLACE_PEDIDO (state, pedido) {
+    state.pedidos.filter( elem => { elem.id === pedido.id })[0] = pedido
+  },
+  REPLACE_MESA (state, mesa) {
+    state.mesas.filter( elem => { elem.id === mesa.id })[0] = mesa
+  }
   // TOGGLE_LOADING (state) {
   //   state.callingAPI = !state.callingAPI
   // },

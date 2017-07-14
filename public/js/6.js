@@ -163,8 +163,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.hideModal
     }
   }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
-    staticClass: "button is-info is-large is-fullwidth"
-  }, [_vm._v("Editar")])])])])
+    staticClass: "button is-info is-large is-fullwidth",
+    style: ({
+      'is-loading': _vm.botonLoader
+    }),
+    on: {
+      "click": _vm.editarPedido
+    }
+  }, [_vm._v("Enviar")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('strong', [_vm._v("Platos")])])
 }]}
@@ -268,33 +274,45 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['datos'],
-  data() {
+  data: function data() {
     return {
       pusher_platos: [],
       model_plato: '',
-      old_value_mesa: ''
+      old_value_mesa: '',
+      botonLoader: false
     };
   },
+
   methods: {
-    hideModal() {
-      let aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(this.old_value_mesa) });
+    hideModal: function hideModal() {
+      var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(this.old_value_mesa) });
       this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
-      let aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(this.old_value_mesa) });
+      var aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(this.old_value_mesa) });
       this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido);
       this.$store.dispatch('HIDE_MODAL_EDITAR');
     },
-    quitarPlato(plato) {
+    quitarPlato: function quitarPlato(plato) {
       this.pusher_platos.splice(this.pusher_platos.indexOf(plato), 1);
     },
-    agregarPlato() {
+    agregarPlato: function agregarPlato() {
       this.pusher_platos.push(this.model_plato);
       this.model_plato = '';
     },
-    updateNumeroDeMesa(e) {
-      let aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(e.target.value) });
-      this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
-      let aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(e.target.value) });
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido);
+    editarPedido: function editarPedido() {
+      var _this = this;
+
+      this.boton_loader = true;
+      var payload = {
+        mesa: this.mesa,
+        platos: this.pusher_platos
+      };
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then(function (pedido) {
+        if (pedido.status === 200) {
+          _this.$store.dispatch('EDITAR_MESA_Y_LISTA', pedido.data);
+        }
+        _this.boton_loader = false;
+        _this.$store.dispatch('HIDE_MODAL_EDITAR');
+      });
     }
   },
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['platos', 'nombreDePlatos']), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
@@ -304,18 +322,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     pedido: 'pedido_mesa_seleccionada'
   }), {
     mesa: {
-      get() {
+      get: function get() {
         return this.mesa_seleccionada.mesa;
       },
-      set(value) {
-        let aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(value) });
+      set: function set(value) {
+        var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(value) });
         this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
-        let aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(value) });
+        var aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(value) });
         this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido);
       }
     }
   }),
-  beforeUpdate() {
+  beforeUpdate: function beforeUpdate() {
     this.pusher_platos = this.mesa_seleccionada.platos;
   }
 });

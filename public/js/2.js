@@ -471,35 +471,48 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'mesa': () => __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 89)),
-    'modal-acciones': () => __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 90)),
-    'modal-crear': () => __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 93)),
-    'modal-cobrar': () => __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 92)),
-    'modal-borrar': () => __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 91)),
-    'modal-editar': () => __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 94))
+    'mesa': function mesa() {
+      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 89));
+    },
+    'modal-acciones': function modalAcciones() {
+      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 90));
+    },
+    'modal-crear': function modalCrear() {
+      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 93));
+    },
+    'modal-cobrar': function modalCobrar() {
+      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 92));
+    },
+    'modal-borrar': function modalBorrar() {
+      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 91));
+    },
+    'modal-editar': function modalEditar() {
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 94));
+    }
   },
 
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])(['mesas', 'mesa_seleccionada'])),
 
   methods: {
-    modalCrear() {
+    modalCrear: function modalCrear() {
       this.$store.dispatch('SHOW_MODAL_CREAR');
     },
+
 
     /*
     * Metodos para enviar peticiones a la API
     */
-    cobrarMesa() {
+    cobrarMesa: function cobrarMesa() {
       console.log('Cobrar mesa', mesa_seleccionada);
     },
-    borrarMesa() {
+    borrarMesa: function borrarMesa() {
       console.log('borrar mesa', mesa_seleccionada);
     },
-    editarMesa() {
+    editarMesa: function editarMesa() {
       console.log('editar mesa', mesa_seleccionada);
     }
   },
-  mounted() {
+  mounted: function mounted() {
     this.$store.dispatch('REFRESH_CATEGORIAS_WITH_PLATOS');
     this.$store.dispatch('REFRESH_MESAS');
     this.$store.dispatch('REFRESH_PEDIDOS');

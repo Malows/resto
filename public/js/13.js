@@ -86,13 +86,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['elem'],
-  data() {
+  data: function data() {
     return {
       displayPicture: true
     };
   },
+
   methods: {
-    toggleImageVisibility() {
+    toggleImageVisibility: function toggleImageVisibility() {
       if (this.displayPicture) {
         window.EventBus.$emit('toggleVisibility', this.elem.id);
       } else {
@@ -100,12 +101,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     }
   },
-  mounted() {
-    window.EventBus.$on('toggleVisibility', id => {
-      if (this.elem.id === id) {
-        this.displayPicture = false;
+  mounted: function mounted() {
+    var _this = this;
+
+    window.EventBus.$on('toggleVisibility', function (id) {
+      if (_this.elem.id === id) {
+        _this.displayPicture = false;
       } else {
-        this.displayPicture = true;
+        _this.displayPicture = true;
       }
     });
   }

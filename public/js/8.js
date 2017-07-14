@@ -130,7 +130,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     pedido: 'pedido_mesa_seleccionada'
   })),
   methods: {
-    hideModal() {
+    hideModal: function hideModal() {
       this.$store.dispatch('HIDE_MODAL_COBRAR');
     }
   }

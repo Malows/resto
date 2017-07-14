@@ -10565,10 +10565,18 @@ window.EventBus = new window.Vue();
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('menu-resto', () => __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 44)));
-Vue.component('mesas', () => __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 47)));
-Vue.component('lista-pedidos', () => __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 45)));
-Vue.component('lista-pedidos-categoria', () => __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 46)));
+Vue.component('menu-resto', function () {
+  return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 44));
+});
+Vue.component('mesas', function () {
+  return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 47));
+});
+Vue.component('lista-pedidos', function () {
+  return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 45));
+});
+Vue.component('lista-pedidos-categoria', function () {
+  return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 46));
+});
 // Vue.component('menu-platos', require('./components/MenuPlatos.vue'));
 // Vue.component('plato', require('./components/Plato.vue'));
 
@@ -12304,62 +12312,175 @@ if (token) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-  SET_MESA_SELECCIONADA({ commit }, mesa) {
+  SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(_ref, mesa) {
+    var commit = _ref.commit;
+
     commit('SET_MESA_SELECCIONADA', mesa);
   },
-  SET_PEDIDO_MESA_SELECCIONADA({ commit }, pedido) {
+  SET_PEDIDO_MESA_SELECCIONADA: function SET_PEDIDO_MESA_SELECCIONADA(_ref2, pedido) {
+    var commit = _ref2.commit;
+
     commit('SET_PEDIDO_MESA_SELECCIONADA', pedido);
   },
-  REFRESH_CATEGORIAS_WITH_PLATOS({ commit }) {
-    axios.get('http://localhost:8000/api/categorias').then(({ data }) => {
+  REFRESH_CATEGORIAS_WITH_PLATOS: function REFRESH_CATEGORIAS_WITH_PLATOS(_ref3) {
+    var commit = _ref3.commit;
+
+    axios.get('http://localhost:8000/api/categorias').then(function (_ref4) {
+      var data = _ref4.data;
+
       commit('SET_CATEGORIAS_WITH_PLATOS', data);
     });
   },
-  REFRESH_MESAS({ commit }) {
-    axios.get('http://localhost:8000/api/mesas').then(({ data }) => {
+  REFRESH_MESAS: function REFRESH_MESAS(_ref5) {
+    var commit = _ref5.commit;
+
+    axios.get('http://localhost:8000/api/mesas').then(function (_ref6) {
+      var data = _ref6.data;
+
       commit('SET_MESAS', data);
     });
   },
-  REFRESH_PEDIDOS({ commit }) {
-    axios.get('http://localhost:8000/api/pedidos').then(({ data }) => {
+  REFRESH_PEDIDOS: function REFRESH_PEDIDOS(_ref7) {
+    var commit = _ref7.commit;
+
+    axios.get('http://localhost:8000/api/pedidos').then(function (_ref8) {
+      var data = _ref8.data;
+
       commit('SET_PEDIDOS', data);
     });
   },
+  SHOW_MODAL_ACCIONES: function SHOW_MODAL_ACCIONES(_ref9) {
+    var dispatch = _ref9.dispatch,
+        commit = _ref9.commit;
 
-  SHOW_MODAL_ACCIONES({ dispatch, commit }) {
     commit('SET_MODAL_ACCIONES', true);
   },
-  SHOW_MODAL_BORRAR({ dispatch, commit }) {
+  SHOW_MODAL_BORRAR: function SHOW_MODAL_BORRAR(_ref10) {
+    var dispatch = _ref10.dispatch,
+        commit = _ref10.commit;
+
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_BORRAR', true);
   },
-  SHOW_MODAL_COBRAR({ dispatch, commit }) {
+  SHOW_MODAL_COBRAR: function SHOW_MODAL_COBRAR(_ref11) {
+    var dispatch = _ref11.dispatch,
+        commit = _ref11.commit;
+
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_COBRAR', true);
   },
-  SHOW_MODAL_CREAR({ dispatch, commit }) {
+  SHOW_MODAL_CREAR: function SHOW_MODAL_CREAR(_ref12) {
+    var dispatch = _ref12.dispatch,
+        commit = _ref12.commit;
+
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_CREAR', true);
   },
-  SHOW_MODAL_EDITAR({ dispatch, commit }) {
+  SHOW_MODAL_EDITAR: function SHOW_MODAL_EDITAR(_ref13) {
+    var dispatch = _ref13.dispatch,
+        commit = _ref13.commit;
+
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_EDITAR', true);
   },
-  HIDE_MODAL_ACCIONES({ commit }) {
+  HIDE_MODAL_ACCIONES: function HIDE_MODAL_ACCIONES(_ref14) {
+    var commit = _ref14.commit;
+
     commit('SET_MODAL_ACCIONES', false);
   },
-  HIDE_MODAL_BORRAR({ commit }) {
+  HIDE_MODAL_BORRAR: function HIDE_MODAL_BORRAR(_ref15) {
+    var commit = _ref15.commit;
+
     commit('SET_MODAL_BORRAR', false);
   },
-  HIDE_MODAL_COBRAR({ commit }) {
+  HIDE_MODAL_COBRAR: function HIDE_MODAL_COBRAR(_ref16) {
+    var commit = _ref16.commit;
+
     commit('SET_MODAL_COBRAR', false);
   },
-  HIDE_MODAL_CREAR({ commit }) {
+  HIDE_MODAL_CREAR: function HIDE_MODAL_CREAR(_ref17) {
+    var commit = _ref17.commit;
+
     commit('SET_MODAL_CREAR', false);
   },
-  HIDE_MODAL_EDITAR({ commit }) {
+  HIDE_MODAL_EDITAR: function HIDE_MODAL_EDITAR(_ref18) {
+    var commit = _ref18.commit;
+
     commit('SET_MODAL_EDITAR', false);
+  },
+  ENVIAR_NUEVO_PEDIDO: function ENVIAR_NUEVO_PEDIDO(_ref19, pedido) {
+    var commit = _ref19.commit;
+
+    return new Promise(function (resolve, reject) {
+      axios.post('http://localhost:8000/pedidos/mesas', pedido).then(function (response) {
+        if (response.status === 200) {
+          commit('APPEND_PEDIDO', response.data);
+        }
+        resolve(response);
+      });
+    });
+  },
+  AGREGAR_NUEVA_MESA: function AGREGAR_NUEVA_MESA(_ref20, mesa) {
+    var commit = _ref20.commit;
+
+    commit('APPEND_MESA', mesa);
+  },
+  EDITAR_PEDIDO: function EDITAR_PEDIDO(_ref21, pedido) {
+    var commit = _ref21.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.put('http://localhost:8000/pedido/mesas/' + pedido.id).then(function (response) {
+        if (response.status === 200) {
+          commit('REPLACE_PEDIDO', pedido);
+          reolve(response);
+        }
+      });
+    });
+  },
+  EDITAR_MESA_Y_LISTA: function EDITAR_MESA_Y_LISTA(_ref22, mesa) {
+    var commit = _ref22.commit;
+
+    axios.get('http://localhost:8000/api/pedidos/' + mesa.id).then(function (response) {
+      if (response.status === 200) {
+        commit('SET_MESA_SELECCIONADA', mesa);
+        commit('SET_PEDIDO_MESA_SELECCIONADA', response.data);
+        commit('REPLACE_MESA', mesa);
+      }
+    });
   }
+  // LOGOUT_USER ({ commit }) {
+  //   window.localStorage.clear()
+  //   commit('LOGOUT_USER')
+  // },
+  // SET_USER ({ commit }, user) {
+  //   var aux = fillUser(user)
+  //   commit('SET_USER', aux)
+  // },
+  // CHECK_CREDENTIALS ({ commit, state }) {
+  //   // Check local storage to handle refreshes
+  //   if (window.localStorage) {
+  //     let token = window.localStorage.getItem('token')
+  //     let header = {
+  //       'Accept': 'application/json',
+  //       'Authorization': token
+  //     }
+  //     axios.get(URL + '/api/user', {headers: header})
+  //     .then(response => {
+  //       var user = fillUser(response.data)
+  //       window.localStorage.setItem('user', JSON.stringify(user))
+  //       if (user && state.user !== user) {
+  //         commit('SET_USER', user)
+  //         commit('SET_TOKEN', token)
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       if (err.message === 'Network Error') {
+  //         console.error('Revise su conexión de internet, si el error persiste, consulte a los administradores del sistema')
+  //       }
+  //     })
+  //   }
+  // }
+
 });
 
 /***/ }),
@@ -12369,20 +12490,22 @@ if (token) {
 "use strict";
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  categorias(state) {
-    return state.categorias_with_platos.map(categoria => {
+  categorias: function categorias(state) {
+    return state.categorias_with_platos.map(function (categoria) {
       return {
         id: categoria.id,
         nombre: categoria.nombre
       };
     });
   },
-  platos(state) {
-    return state.categorias_with_platos.reduce((acc, curr) => acc.concat(curr.platos), []);
+  platos: function platos(state) {
+    return state.categorias_with_platos.reduce(function (acc, curr) {
+      return acc.concat(curr.platos);
+    }, []);
   },
-  nombreDePlatos(state, getters) {
-    let aux = [];
-    getters.platos.forEach(plato => {
+  nombreDePlatos: function nombreDePlatos(state, getters) {
+    var aux = [];
+    getters.platos.forEach(function (plato) {
       aux[plato.id] = plato.nombre;
     });
     return aux;
@@ -12424,36 +12547,69 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-  SET_MESA_SELECCIONADA(state, mesa) {
+  SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(state, mesa) {
     state.mesa_seleccionada = mesa;
   },
-  SET_PEDIDO_MESA_SELECCIONADA(state, pedido) {
+  SET_PEDIDO_MESA_SELECCIONADA: function SET_PEDIDO_MESA_SELECCIONADA(state, pedido) {
     state.pedido_mesa_seleccionada = pedido;
   },
-  SET_CATEGORIAS_WITH_PLATOS(state, categorias) {
+  SET_CATEGORIAS_WITH_PLATOS: function SET_CATEGORIAS_WITH_PLATOS(state, categorias) {
     state.categorias_with_platos = categorias;
   },
-  SET_MESAS(state, mesas) {
+  SET_MESAS: function SET_MESAS(state, mesas) {
     state.mesas = mesas;
   },
-  SET_PEDIDOS(state, pedidos) {
+  SET_PEDIDOS: function SET_PEDIDOS(state, pedidos) {
     state.pedidos = pedidos;
   },
-  SET_MODAL_ACCIONES(state, value) {
+  SET_MODAL_ACCIONES: function SET_MODAL_ACCIONES(state, value) {
     state.showModalAcciones = value;
   },
-  SET_MODAL_BORRAR(state, value) {
+  SET_MODAL_BORRAR: function SET_MODAL_BORRAR(state, value) {
     state.showModalBorrar = value;
   },
-  SET_MODAL_COBRAR(state, value) {
+  SET_MODAL_COBRAR: function SET_MODAL_COBRAR(state, value) {
     state.showModalCobrar = value;
   },
-  SET_MODAL_CREAR(state, value) {
+  SET_MODAL_CREAR: function SET_MODAL_CREAR(state, value) {
     state.showModalCrear = value;
   },
-  SET_MODAL_EDITAR(state, value) {
+  SET_MODAL_EDITAR: function SET_MODAL_EDITAR(state, value) {
     state.showModalEditar = value;
+  },
+  APPEND_PEDIDO: function APPEND_PEDIDO(state, pedido) {
+    state.pedidos.push(pedido);
+  },
+  APPEND_MESA: function APPEND_MESA(state, mesa) {
+    state.mesas.push(mesa);
+  },
+  REPLACE_PEDIDO: function REPLACE_PEDIDO(state, pedido) {
+    state.pedidos.filter(function (elem) {
+      elem.id === pedido.id;
+    })[0] = pedido;
+  },
+  REPLACE_MESA: function REPLACE_MESA(state, mesa) {
+    state.mesas.filter(function (elem) {
+      elem.id === mesa.id;
+    })[0] = mesa;
   }
+  // TOGGLE_LOADING (state) {
+  //   state.callingAPI = !state.callingAPI
+  // },
+  // TOGGLE_SEARCHING (state) {
+  //   state.searching = (state.searching === '') ? 'loading' : ''
+  // },
+  // SET_USER (state, user) {
+  //   state.user = user
+  // },
+  // SET_TOKEN (state, token) {
+  //   state.token = token
+  // },
+  // LOGOUT_USER (state) {
+  //   state.token = null
+  //   state.user = null
+  // }
+
 });
 
 /***/ }),

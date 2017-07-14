@@ -54,15 +54,86 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      mesa: '',
+      model_plato: '',
+      pusher_platos: [],
+      botonLoader: false
+    };
+  },
+
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: 'showModalCrear'
+    showModal: 'showModalCrear',
+    categorias: 'categorias_with_platos'
+  }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
+    platos: 'nombreDePlatos'
   })),
   methods: {
-    hideModal() {
+    hideModal: function hideModal() {
+      this.mesa = '';
+      this.model_plato = '';
+      this.pusher_platos = [];
       this.$store.dispatch('HIDE_MODAL_CREAR');
+    },
+    quitarPlato: function quitarPlato(plato) {
+      this.pusher_platos.splice(this.pusher_platos.indexOf(plato), 1);
+    },
+    agregarPlato: function agregarPlato() {
+      this.pusher_platos.push(this.model_plato);
+      this.pusher_platos = this.pusher_platos.sort();
+      this.model_plato = '';
+    },
+    enviarNuevoPedido: function enviarNuevoPedido() {
+      var _this = this;
+
+      this.boton_loader = true;
+      var payload = {
+        mesa: this.mesa,
+        platos: this.pusher_platos
+      };
+      this.$store.dispatch('ENVIAR_NUEVO_PEDIDO', payload).then(function (response) {
+        if (response.status === 200) {
+          _this.$store.dispatch('AGREGAR_NUEVA_MESA', response.data);
+        }
+        _this.boton_loader = false;
+        _this.$store.dispatch('HIDE_MODAL_CREAR');
+      });
     }
   }
 });
@@ -73,7 +144,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
@@ -136,30 +207,163 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-card-head"
   }, [_c('p', {
     staticClass: "modal-card-title"
-  }, [_vm._v("Crear pedido")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Editar pedido")]), _vm._v(" "), _c('button', {
     staticClass: "delete",
     on: {
       "click": _vm.hideModal
     }
-  })]), _vm._v(" "), _vm._m(0)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
+  })]), _vm._v(" "), _c('section', {
     staticClass: "modal-card-body"
   }, [_c('div', {
-    staticClass: "btn-group btn-block"
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "mesa"
+    }
+  }, [_vm._v("Mesa")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: (_vm.mesa),
+      expression: "mesa",
+      modifiers: {
+        "number": true
+      }
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "placeholder": "Número de mesa"
+    },
+    domProps: {
+      "value": (_vm.mesa)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.mesa = _vm._n($event.target.value)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-xs-9"
+  }, [_c('label', {
+    attrs: {
+      "for": "select_platos"
+    }
+  }, [_vm._v("Platos")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: (_vm.model_plato),
+      expression: "model_plato",
+      modifiers: {
+        "number": true
+      }
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return _vm._n(val)
+        });
+        _vm.model_plato = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, _vm._l((_vm.categorias), function(categoria) {
+    return (categoria.platos.length) ? _c('optgroup', {
+      attrs: {
+        "label": categoria.nombre
+      }
+    }, _vm._l((categoria.platos), function(plato) {
+      return _c('option', {
+        domProps: {
+          "value": plato.id
+        }
+      }, [_vm._v(_vm._s(plato.nombre))])
+    })) : _vm._e()
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "col-xs-3"
+  }, [_c('label', {
+    attrs: {
+      "for": "id_plato"
+    }
+  }, [_vm._v("Código")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: (_vm.model_plato),
+      expression: "model_plato",
+      modifiers: {
+        "number": true
+      }
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "number",
+      "placeholder": "Código"
+    },
+    domProps: {
+      "value": (_vm.model_plato)
+    },
+    on: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.agregarPlato($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.model_plato = _vm._n($event.target.value)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
+      }
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
   }, [_c('button', {
-    staticClass: "btn btn-success btn-lg col-xs-4"
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-usd"
-  }), _vm._v("Cobrar")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary btn-lg col-xs-4"
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-edit"
-  }), _vm._v("Editar")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-danger btn-lg col-xs-4"
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-trash"
-  }), _vm._v("Cancelar")])])])
+    staticClass: "btn btn-default btn-block btn-lg",
+    on: {
+      "click": _vm.agregarPlato
+    }
+  }, [_vm._v("Añadir")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('ul', {
+    staticClass: "text-left"
+  }, _vm._l((_vm.pusher_platos), function(pusher) {
+    return _c('li', {
+      staticClass: "pedido-item",
+      on: {
+        "dblclick": function($event) {
+          _vm.quitarPlato(pusher)
+        }
+      }
+    }, [_vm._v(_vm._s(_vm.platos[pusher]))])
+  }))]), _vm._v(" "), _c('footer', {
+    staticClass: "modal-card-foot"
+  }, [_c('button', {
+    staticClass: "button is-large is-fullwidth",
+    on: {
+      "click": _vm.hideModal
+    }
+  }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
+    staticClass: "button is-info is-large is-fullwidth",
+    style: ({
+      'is-loading': _vm.botonLoader
+    }),
+    on: {
+      "click": _vm.enviarNuevoPedido
+    }
+  }, [_vm._v("Enviar")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('strong', [_vm._v("Platos")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

@@ -61,16 +61,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     showModal: 'showModalAcciones'
   })),
   methods: {
-    hideModal() {
+    hideModal: function hideModal() {
       this.$store.dispatch('HIDE_MODAL_ACCIONES');
     },
-    clickCobrar() {
+    clickCobrar: function clickCobrar() {
       this.$store.dispatch('SHOW_MODAL_COBRAR');
     },
-    clickEditar() {
+    clickEditar: function clickEditar() {
       this.$store.dispatch('SHOW_MODAL_EDITAR');
     },
-    clickBorrar() {
+    clickBorrar: function clickBorrar() {
       this.$store.dispatch('SHOW_MODAL_BORRAR');
     }
   }

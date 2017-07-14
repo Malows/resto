@@ -1,4 +1,4 @@
-@extends('layouts.app-without-login')
+@extends('layouts.app')
 @section('content')
     <mesas></mesas>
 @endsection

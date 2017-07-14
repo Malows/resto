@@ -335,25 +335,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'plato': () => __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 53))
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 53));
+    }
   },
   props: ['data'],
-  data() {
+  data: function data() {
     return {
       pedido: {}
     };
   },
+
   methods: {
-    clickEnMesa() {
+    clickEnMesa: function clickEnMesa() {
       // console.log(this.data);
       this.$store.dispatch('SET_MESA_SELECCIONADA', this.data);
       this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', this.pedido);
       this.$store.dispatch('SHOW_MODAL_ACCIONES');
     }
   },
-  created() {
-    axios.get(this.data.url).then(({ data }) => {
-      this.pedido = data;
+  created: function created() {
+    var _this = this;
+
+    axios.get(this.data.url).then(function (_ref) {
+      var data = _ref.data;
+      _this.pedido = data;
     });
   }
 });

@@ -111,7 +111,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     showModal: 'showModalBorrar'
   })),
   methods: {
-    hideModal() {
+    hideModal: function hideModal() {
       this.$store.dispatch('HIDE_MODAL_BORRAR');
     }
   }

@@ -55,6 +55,38 @@ export default {
   HIDE_MODAL_EDITAR ({ commit }) {
     commit('SET_MODAL_EDITAR', false)
   },
+  ENVIAR_NUEVO_PEDIDO({ commit }, pedido) {
+    return new Promise(function(resolve, reject) {
+      axios.post('http://localhost:8000/pedidos/mesas', pedido).then(response => {
+        if ( response.status === 200 ) {
+          commit('APPEND_PEDIDO', response.data)
+        }
+        resolve(response)
+      })
+    })
+  },
+  AGREGAR_NUEVA_MESA ({ commit }, mesa) {
+    commit('APPEND_MESA', mesa)
+  },
+  EDITAR_PEDIDO ({ commit }, pedido) {
+    new Promise(function(resolve, reject) {
+      axios.put(`http://localhost:8000/pedido/mesas/${pedido.id}`).then(response => {
+        if ( response.status === 200 ) {
+          commit('REPLACE_PEDIDO', pedido)
+          reolve(response)
+        }
+      })
+    });
+  },
+  EDITAR_MESA_Y_LISTA ({ commit }, mesa) {
+    axios.get(`http://localhost:8000/api/pedidos/${mesa.id}`).then(response => {
+      if ( response.status === 200 ) {
+        commit('SET_MESA_SELECCIONADA', mesa)
+        commit('SET_PEDIDO_MESA_SELECCIONADA', response.data)
+        commit('REPLACE_MESA', mesa)
+      }
+    })
+  }
   // LOGOUT_USER ({ commit }) {
   //   window.localStorage.clear()
   //   commit('LOGOUT_USER')

@@ -19,7 +19,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'plato': () => __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 53))
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 53));
+    }
   },
   props: ['categoria']
 });

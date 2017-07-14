@@ -783,35 +783,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'pedido': () => __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 87)),
-    'modal-despachar': () => __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, 86))
+    'pedido': function pedido() {
+      return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 87));
+    },
+    'modal-despachar': function modalDespachar() {
+      return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, 86));
+    }
   },
   props: ['url'],
-  data() {
+  data: function data() {
     return {
       pedidos: [],
       pedido_seleccionado: { mozo: { name: '' }, platos: [] },
       showModal: false
     };
   },
+
   methods: {
-    hideModal() {
+    hideModal: function hideModal() {
       this.showModal = false;
     },
-    handleClickEnPedido(pedido) {
+    handleClickEnPedido: function handleClickEnPedido(pedido) {
       this.pedido_seleccionado = pedido;
       this.showModal = true;
     }
   },
-  created() {
-    axios.get(this.url).then(response => {
-      this.pedidos = response.data;
+  created: function created() {
+    var _this = this;
+
+    axios.get(this.url).then(function (response) {
+      _this.pedidos = response.data;
     }
     // axios.get(this.url_personal).then(response => {this.personal = response.data})
     // axios.get(this.url_platos).then(response => {this.platos = response.data})
     );
   },
-  mounted() {}
+  mounted: function mounted() {}
 });
 
 /***/ }),

@@ -43,7 +43,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button is-large is-fullwidth" @click="hideModal">Cerrar</button>
-        <button class="button is-info is-large is-fullwidth">Editar</button>
+        <button class="button is-info is-large is-fullwidth" :style="{'is-loading': botonLoader}" @click="editarPedido">Enviar</button>
       </footer>
     </div>
   </div>
@@ -57,7 +57,8 @@ export default {
     return {
       pusher_platos: [],
       model_plato: '',
-      old_value_mesa: ''
+      old_value_mesa: '',
+      botonLoader: false,
     }
   },
   methods: {
@@ -75,11 +76,19 @@ export default {
       this.pusher_platos.push(this.model_plato)
       this.model_plato = ''
     },
-    updateNumeroDeMesa (e) {
-      let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: parseInt(e.target.value)} )
-      this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa)
-      let aux_pedido = Object.assign({}, this.pedido, {mesa: parseInt(e.target.value)} )
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido)
+    editarPedido () {
+      this.boton_loader = true
+      let payload = {
+        mesa: this.mesa,
+        platos: this.pusher_platos
+      }
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then( pedido => {
+        if (pedido.status === 200) {
+          this.$store.dispatch('EDITAR_MESA_Y_LISTA', pedido.data)
+        }
+        this.boton_loader = false
+        this.$store.dispatch('HIDE_MODAL_EDITAR')
+      })
     }
   },
   computed: {

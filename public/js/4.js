@@ -5,7 +5,7 @@ webpackJsonp([4],{
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "col-xs-6 col-sm-4 pedido-item"
+    class: _vm.estilos ? _vm.estilos : ['col-xs-6', 'col-sm-4', 'pedido-item']
   }, [_vm._v("\n  " + _vm._s(_vm.plato.nombre) + "\n  "), (_vm.plato.cantidad > 1) ? _c('strong', {
     staticClass: "text-danger"
   }, [_vm._v("X" + _vm._s(_vm.plato.cantidad))]) : _vm._e()])
@@ -69,7 +69,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['plato']
+  props: {
+    plato: {
+      type: Object,
+      required: true
+    },
+    estilos: {
+      type: Array,
+      required: false
+    }
+  }
 });
 
 /***/ })

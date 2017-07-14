@@ -9,17 +9,14 @@
       <section class="modal-card-body">
         <p><strong>Platos</strong></p>
         <div class="row">
-          <div class="col-xs-12 col-md-6 pedido-item" v-for="plato in pedido.platos">
-            {{plato.nombre}}
-            <strong class="text-danger" v-if="plato.cantidad > 1">X{{plato.cantidad}}</strong>
-          </div>
+          <plato v-for="plato in pedido.platos" :key=plato.id :plato="plato" :estilos="['col-xs-12', 'col-md-6', 'pedido-item']" />
         </div>
         <hr>
         <p>Total:<strong class="pull-right">${{pedido.total}}</strong></p>
       </section>
       <footer class="modal-card-foot">
         <button class="button is-large is-fullwidth" @click="hideModal">Cerrar</button>
-        <button class="button is-info is-large is-fullwidth">Completar</button>
+        <button class="button is-info is-large is-fullwidth" :style="{'is-loading': buttonLoading}">Completar</button>
     </footer>
     </div>
   </div>
@@ -28,6 +25,14 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  components: {
+    'plato': () => System.import('../partials/Plato.vue')
+  },
+  data () {
+    return {
+      buttonLoading: false
+    }
+  },
   computed: {
     ...mapState({
       showModal: 'showModalCobrar',
@@ -37,6 +42,13 @@ export default {
   methods: {
     hideModal () {
       this.$store.dispatch('HIDE_MODAL_COBRAR');
+    },
+    cobrarPedido () {
+      this.buttonLoading = true;
+      this.$store.dispatch('COBRAR_PEDIDO', this.pedido).then( () => {
+        this.hideModal();
+        this.buttonLoading = false;
+      })
     }
   }
 }

@@ -40,7 +40,13 @@ export default {
   },
   REPLACE_MESA (state, mesa) {
     state.mesas.filter( elem => { elem.id === mesa.id })[0] = mesa
-  }
+  },
+  REMOVE_PEDIDO (state, pedido) {
+    state.pedido.splice( state.pedido.indexOf( pedido ), 1 )
+  },
+  REMOVE_MESA (state, mesa) {
+    state.mesa.splice( state.mesa.indexOf( mesa ), 1 )
+  },
   // TOGGLE_LOADING (state) {
   //   state.callingAPI = !state.callingAPI
   // },

@@ -12447,6 +12447,20 @@ if (token) {
         commit('REPLACE_MESA', mesa);
       }
     });
+  },
+  COBRAR_PEDIDO: function COBRAR_PEDIDO(_ref23, pedido) {
+    var commit = _ref23.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.put('http://localhost:8000/pedido/mesas/' + pedido.id + '/cobrar').then(function (response) {
+        if (response.status === 200) {
+          commit('REMOVE_MESA', pedido);
+          commit('REMOVE_PEDIDO', pedido);
+          commit('SET_MESA_SELECCIONADA', undefined);
+          commit('SET_PEDIDO_MESA_SELECCIONADA', undefined);
+        }
+      });
+    });
   }
   // LOGOUT_USER ({ commit }) {
   //   window.localStorage.clear()
@@ -12592,24 +12606,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     state.mesas.filter(function (elem) {
       elem.id === mesa.id;
     })[0] = mesa;
+  },
+  REMOVE_PEDIDO: function REMOVE_PEDIDO(state, pedido) {
+    state.pedido.splice(state.pedido.indexOf(pedido), 1);
+  },
+  REMOVE_MESA: function REMOVE_MESA(state, mesa) {
+    state.mesa.splice(state.mesa.indexOf(mesa), 1);
   }
-  // TOGGLE_LOADING (state) {
-  //   state.callingAPI = !state.callingAPI
-  // },
-  // TOGGLE_SEARCHING (state) {
-  //   state.searching = (state.searching === '') ? 'loading' : ''
-  // },
-  // SET_USER (state, user) {
-  //   state.user = user
-  // },
-  // SET_TOKEN (state, token) {
-  //   state.token = token
-  // },
-  // LOGOUT_USER (state) {
-  //   state.token = null
-  //   state.user = null
-  // }
-
 });
 
 /***/ }),

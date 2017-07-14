@@ -30,11 +30,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.pedido.platos), function(plato) {
-    return _c('div', {
-      staticClass: "col-xs-12 col-md-6 pedido-item"
-    }, [_vm._v("\n          " + _vm._s(plato.nombre) + "\n          "), (plato.cantidad > 1) ? _c('strong', {
-      staticClass: "text-danger"
-    }, [_vm._v("X" + _vm._s(plato.cantidad))]) : _vm._e()])
+    return _c('plato', {
+      key: plato.id,
+      attrs: {
+        "plato": plato,
+        "estilos": ['col-xs-12', 'col-md-6', 'pedido-item']
+      }
+    })
   })), _vm._v(" "), _c('hr'), _vm._v(" "), _c('p', [_vm._v("Total:"), _c('strong', {
     staticClass: "pull-right"
   }, [_vm._v("$" + _vm._s(_vm.pedido.total))])])]), _vm._v(" "), _c('footer', {
@@ -45,7 +47,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.hideModal
     }
   }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
-    staticClass: "button is-info is-large is-fullwidth"
+    staticClass: "button is-info is-large is-fullwidth",
+    style: ({
+      'is-loading': _vm.buttonLoading
+    })
   }, [_vm._v("Completar")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('strong', [_vm._v("Platos")])])
@@ -119,12 +124,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 53));
+    }
+  },
+  data: function data() {
+    return {
+      buttonLoading: false
+    };
+  },
+
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
     showModal: 'showModalCobrar',
     pedido: 'pedido_mesa_seleccionada'
@@ -132,6 +145,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   methods: {
     hideModal: function hideModal() {
       this.$store.dispatch('HIDE_MODAL_COBRAR');
+    },
+    cobrarPedido: function cobrarPedido() {
+      var _this = this;
+
+      this.buttonLoading = true;
+      this.$store.dispatch('COBRAR_PEDIDO', this.pedido).then(function () {
+        _this.hideModal();
+        _this.buttonLoading = false;
+      });
     }
   }
 });
@@ -142,7 +164,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

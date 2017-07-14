@@ -86,6 +86,18 @@ export default {
         commit('REPLACE_MESA', mesa)
       }
     })
+  },
+  COBRAR_PEDIDO ({ commit }, pedido) {
+    new Promise(function(resolve, reject) {
+      axios.put(`http://localhost:8000/pedido/mesas/${pedido.id}/cobrar`).then( response => {
+        if ( response.status === 200 ) {
+          commit('REMOVE_MESA', pedido)
+          commit('REMOVE_PEDIDO', pedido)
+          commit('SET_MESA_SELECCIONADA', undefined)
+          commit('SET_PEDIDO_MESA_SELECCIONADA', undefined)
+        }
+      })
+    });
   }
   // LOGOUT_USER ({ commit }) {
   //   window.localStorage.clear()

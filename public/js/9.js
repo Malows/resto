@@ -33,7 +33,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.hideModal
     }
   }, [_vm._v("No")]), _vm._v(" "), _c('button', {
-    staticClass: "button is-danger is-large is-fullwidth"
+    staticClass: "button is-danger is-large is-fullwidth",
+    style: ({
+      'is-loading': _vm.buttonLoading
+    }),
+    on: {
+      "click": _vm.borrarPedido
+    }
   }, [_vm._v("Sí")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
@@ -107,12 +113,28 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      buttonLoading: false
+    };
+  },
+
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: 'showModalBorrar'
+    showModal: 'showModalBorrar',
+    pedido: 'pedido_mesa_seleccionada'
   })),
   methods: {
     hideModal: function hideModal() {
       this.$store.dispatch('HIDE_MODAL_BORRAR');
+    },
+    borrarPedido: function borrarPedido() {
+      var _this = this;
+
+      this.buttonLoading = true;
+      this.$store.dispatch('BORRAR_PEDIDO', this.pedido).then(function (response) {
+        _this.hideModal();
+        _this.buttonLoading = false;
+      });
     }
   }
 });
@@ -123,7 +145,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

@@ -3,7 +3,7 @@
     <div class="modal-background" @click="hideModal"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Editar pedido</p>
+        <p class="modal-card-title">Crear pedido</p>
         <button class="delete" @click="hideModal"></button>
       </header>
       <section class="modal-card-body">

@@ -1,8 +1,8 @@
 <template lang="html">
-  <div class="box" @click="clickEnMesa" v-show="pedido">
-      <p><strong>Mesa {{data.mesa}}</strong> - {{data.platos.length}} {{ data.platos.length> 1 ? 'cosas' : ' cosa'}}</p>
+  <div class="box" @click="clickEnMesa">
+      <p><strong>Mesa {{data.mesa}}</strong> - {{data.total_cosas}} {{ data.total_cosas > 1 ? 'cosas' : ' cosa'}}</p>
       <div class="row">
-        <plato v-for="plato in pedido.platos" :plato="plato" :key="plato.id"></plato>
+        <plato v-for="plato in data.platos" :plato="plato" :key="plato.id"></plato>
       </div>
   </div>
 </template>
@@ -14,22 +14,14 @@ export default {
     'plato': () => System.import('../partials/Plato.vue')
   },
   props: ['data'],
-  data () {
-    return {
-      pedido: {},
-    }
-  },
   methods: {
     clickEnMesa () {
       // console.log(this.data);
       this.$store.dispatch('SET_MESA_SELECCIONADA', this.data )
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', this.pedido )
+      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', this.data )
       this.$store.dispatch('SHOW_MODAL_ACCIONES')
     }
   },
-  created () {
-    axios.get(this.data.url).then( ({ data }) => { this.pedido = data } )
-  }
 }
 </script>
 

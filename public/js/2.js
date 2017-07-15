@@ -535,7 +535,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "text-center"
-  }, [_c('div', {
+  }, [_c('modal-crear'), _vm._v(" "), _c('modal-acciones'), _vm._v(" "), _c('modal-cobrar'), _vm._v(" "), _c('modal-borrar'), _vm._v(" "), _c('modal-editar', {
+    attrs: {
+      "datos": _vm.mesa_seleccionada
+    }
+  }), _vm._v(" "), _c('div', {
     staticClass: "container-fluid"
   }, [_c('div', {
     staticClass: "row col-md-4 col-md-offset-4"
@@ -564,11 +568,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "padding": "20vh"
     }
-  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])]), _vm._v(" "), _c('modal-crear'), _vm._v(" "), _c('modal-acciones'), _vm._v(" "), _c('modal-cobrar'), _vm._v(" "), _c('modal-borrar'), _vm._v(" "), _c('modal-editar', {
-    attrs: {
-      "datos": _vm.mesa_seleccionada
-    }
-  })], 1)
+  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

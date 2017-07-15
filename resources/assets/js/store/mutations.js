@@ -2,9 +2,6 @@ export default {
   SET_MESA_SELECCIONADA (state, mesa) {
     state.mesa_seleccionada = mesa
   },
-  SET_PEDIDO_MESA_SELECCIONADA (state, pedido) {
-    state.pedido_mesa_seleccionada = pedido
-  },
   SET_CATEGORIAS_WITH_PLATOS (state, categorias) {
     state.categorias_with_platos = categorias
   },

@@ -9,14 +9,14 @@
       <section class="modal-card-body">
         <p><strong>Platos</strong></p>
         <div class="row">
-          <plato v-for="plato in pedido.platos" :key=plato.id :plato="plato" :estilos="['col-xs-12', 'col-md-6', 'pedido-item']" />
+          <plato v-for="plato in mesa.platos" :key=plato.id :plato="plato" :estilos="['col-xs-12', 'col-md-6', 'pedido-item']" />
         </div>
         <hr>
-        <p>Total:<strong class="pull-right">${{pedido.total}}</strong></p>
+        <p>Total:<strong class="pull-right">${{mesa.total_cobrar}}</strong></p>
       </section>
       <footer class="modal-card-foot">
         <button class="button is-large is-fullwidth" @click="hideModal">Cerrar</button>
-        <button class="button is-info is-large is-fullwidth" :style="{'is-loading': buttonLoading}">Completar</button>
+        <button class="button is-info is-large is-fullwidth" :style="{'is-loading': buttonLoading}" @click="cobrarPedido">Cobrar</button>
     </footer>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
   computed: {
     ...mapState({
       showModal: 'showModalCobrar',
-      pedido: 'pedido_mesa_seleccionada'
+      mesa: 'mesa_seleccionada'
     })
   },
   methods: {
@@ -45,7 +45,8 @@ export default {
     },
     cobrarPedido () {
       this.buttonLoading = true;
-      this.$store.dispatch('COBRAR_PEDIDO', this.pedido).then( () => {
+      console.log('cobrar');
+      this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then( () => {
         this.hideModal();
         this.buttonLoading = false;
       })

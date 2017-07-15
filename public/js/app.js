@@ -12317,99 +12317,94 @@ if (token) {
 
     commit('SET_MESA_SELECCIONADA', mesa);
   },
-  SET_PEDIDO_MESA_SELECCIONADA: function SET_PEDIDO_MESA_SELECCIONADA(_ref2, pedido) {
+  REFRESH_CATEGORIAS_WITH_PLATOS: function REFRESH_CATEGORIAS_WITH_PLATOS(_ref2) {
     var commit = _ref2.commit;
 
-    commit('SET_PEDIDO_MESA_SELECCIONADA', pedido);
-  },
-  REFRESH_CATEGORIAS_WITH_PLATOS: function REFRESH_CATEGORIAS_WITH_PLATOS(_ref3) {
-    var commit = _ref3.commit;
-
-    axios.get('http://localhost:8000/api/categorias').then(function (_ref4) {
-      var data = _ref4.data;
+    axios.get('http://localhost:8000/api/categorias').then(function (_ref3) {
+      var data = _ref3.data;
 
       commit('SET_CATEGORIAS_WITH_PLATOS', data);
     });
   },
-  REFRESH_MESAS: function REFRESH_MESAS(_ref5) {
-    var commit = _ref5.commit;
+  REFRESH_MESAS: function REFRESH_MESAS(_ref4) {
+    var commit = _ref4.commit;
 
-    axios.get('http://localhost:8000/api/mesas').then(function (_ref6) {
-      var data = _ref6.data;
+    axios.get('http://localhost:8000/api/mesas').then(function (_ref5) {
+      var data = _ref5.data;
 
       commit('SET_MESAS', data);
     });
   },
-  REFRESH_PEDIDOS: function REFRESH_PEDIDOS(_ref7) {
-    var commit = _ref7.commit;
+  REFRESH_PEDIDOS: function REFRESH_PEDIDOS(_ref6) {
+    var commit = _ref6.commit;
 
-    axios.get('http://localhost:8000/api/pedidos').then(function (_ref8) {
-      var data = _ref8.data;
+    axios.get('http://localhost:8000/api/pedidos').then(function (_ref7) {
+      var data = _ref7.data;
 
       commit('SET_PEDIDOS', data);
     });
   },
-  SHOW_MODAL_ACCIONES: function SHOW_MODAL_ACCIONES(_ref9) {
-    var dispatch = _ref9.dispatch,
-        commit = _ref9.commit;
+  SHOW_MODAL_ACCIONES: function SHOW_MODAL_ACCIONES(_ref8) {
+    var dispatch = _ref8.dispatch,
+        commit = _ref8.commit;
 
     commit('SET_MODAL_ACCIONES', true);
   },
-  SHOW_MODAL_BORRAR: function SHOW_MODAL_BORRAR(_ref10) {
-    var dispatch = _ref10.dispatch,
-        commit = _ref10.commit;
+  SHOW_MODAL_BORRAR: function SHOW_MODAL_BORRAR(_ref9) {
+    var dispatch = _ref9.dispatch,
+        commit = _ref9.commit;
 
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_BORRAR', true);
   },
-  SHOW_MODAL_COBRAR: function SHOW_MODAL_COBRAR(_ref11) {
-    var dispatch = _ref11.dispatch,
-        commit = _ref11.commit;
+  SHOW_MODAL_COBRAR: function SHOW_MODAL_COBRAR(_ref10) {
+    var dispatch = _ref10.dispatch,
+        commit = _ref10.commit;
 
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_COBRAR', true);
   },
-  SHOW_MODAL_CREAR: function SHOW_MODAL_CREAR(_ref12) {
-    var dispatch = _ref12.dispatch,
-        commit = _ref12.commit;
+  SHOW_MODAL_CREAR: function SHOW_MODAL_CREAR(_ref11) {
+    var dispatch = _ref11.dispatch,
+        commit = _ref11.commit;
 
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_CREAR', true);
   },
-  SHOW_MODAL_EDITAR: function SHOW_MODAL_EDITAR(_ref13) {
-    var dispatch = _ref13.dispatch,
-        commit = _ref13.commit;
+  SHOW_MODAL_EDITAR: function SHOW_MODAL_EDITAR(_ref12) {
+    var dispatch = _ref12.dispatch,
+        commit = _ref12.commit;
 
     commit('SET_MODAL_ACCIONES', false);
     commit('SET_MODAL_EDITAR', true);
   },
-  HIDE_MODAL_ACCIONES: function HIDE_MODAL_ACCIONES(_ref14) {
-    var commit = _ref14.commit;
+  HIDE_MODAL_ACCIONES: function HIDE_MODAL_ACCIONES(_ref13) {
+    var commit = _ref13.commit;
 
     commit('SET_MODAL_ACCIONES', false);
   },
-  HIDE_MODAL_BORRAR: function HIDE_MODAL_BORRAR(_ref15) {
-    var commit = _ref15.commit;
+  HIDE_MODAL_BORRAR: function HIDE_MODAL_BORRAR(_ref14) {
+    var commit = _ref14.commit;
 
     commit('SET_MODAL_BORRAR', false);
   },
-  HIDE_MODAL_COBRAR: function HIDE_MODAL_COBRAR(_ref16) {
-    var commit = _ref16.commit;
+  HIDE_MODAL_COBRAR: function HIDE_MODAL_COBRAR(_ref15) {
+    var commit = _ref15.commit;
 
     commit('SET_MODAL_COBRAR', false);
   },
-  HIDE_MODAL_CREAR: function HIDE_MODAL_CREAR(_ref17) {
-    var commit = _ref17.commit;
+  HIDE_MODAL_CREAR: function HIDE_MODAL_CREAR(_ref16) {
+    var commit = _ref16.commit;
 
     commit('SET_MODAL_CREAR', false);
   },
-  HIDE_MODAL_EDITAR: function HIDE_MODAL_EDITAR(_ref18) {
-    var commit = _ref18.commit;
+  HIDE_MODAL_EDITAR: function HIDE_MODAL_EDITAR(_ref17) {
+    var commit = _ref17.commit;
 
     commit('SET_MODAL_EDITAR', false);
   },
-  ENVIAR_NUEVO_PEDIDO: function ENVIAR_NUEVO_PEDIDO(_ref19, pedido) {
-    var commit = _ref19.commit;
+  ENVIAR_NUEVO_PEDIDO: function ENVIAR_NUEVO_PEDIDO(_ref18, pedido) {
+    var commit = _ref18.commit;
 
     return new Promise(function (resolve, reject) {
       axios.post('http://localhost:8000/pedidos/mesas', pedido).then(function (response) {
@@ -12420,16 +12415,16 @@ if (token) {
       });
     });
   },
-  AGREGAR_NUEVA_MESA: function AGREGAR_NUEVA_MESA(_ref20, mesa) {
-    var commit = _ref20.commit;
+  AGREGAR_NUEVA_MESA: function AGREGAR_NUEVA_MESA(_ref19, mesa) {
+    var commit = _ref19.commit;
 
     commit('APPEND_MESA', mesa);
   },
-  EDITAR_PEDIDO: function EDITAR_PEDIDO(_ref21, pedido) {
-    var commit = _ref21.commit;
+  EDITAR_PEDIDO: function EDITAR_PEDIDO(_ref20, pedido) {
+    var commit = _ref20.commit;
 
     new Promise(function (resolve, reject) {
-      axios.put('http://localhost:8000/pedido/mesas/' + pedido.id).then(function (response) {
+      axios.put(pedido.url_editar).then(function (response) {
         if (response.status === 200) {
           commit('REPLACE_PEDIDO', pedido);
           reolve(response);
@@ -12437,8 +12432,8 @@ if (token) {
       });
     });
   },
-  EDITAR_MESA_Y_LISTA: function EDITAR_MESA_Y_LISTA(_ref22, mesa) {
-    var commit = _ref22.commit;
+  EDITAR_MESA_Y_LISTA: function EDITAR_MESA_Y_LISTA(_ref21, mesa) {
+    var commit = _ref21.commit;
 
     axios.get('http://localhost:8000/api/pedidos/' + mesa.id).then(function (response) {
       if (response.status === 200) {
@@ -12448,16 +12443,28 @@ if (token) {
       }
     });
   },
-  COBRAR_PEDIDO: function COBRAR_PEDIDO(_ref23, pedido) {
-    var commit = _ref23.commit;
+  COBRAR_PEDIDO: function COBRAR_PEDIDO(_ref22, pedido) {
+    var commit = _ref22.commit;
 
     new Promise(function (resolve, reject) {
-      axios.put('http://localhost:8000/pedido/mesas/' + pedido.id + '/cobrar').then(function (response) {
+      axios.put(pedido.url_cobrar).then(function (response) {
         if (response.status === 200) {
           commit('REMOVE_MESA', pedido);
           commit('REMOVE_PEDIDO', pedido);
           commit('SET_MESA_SELECCIONADA', undefined);
-          commit('SET_PEDIDO_MESA_SELECCIONADA', undefined);
+        }
+      });
+    });
+  },
+  BORRAR_PEDIDO: function BORRAR_PEDIDO(_ref23, pedido) {
+    var commit = _ref23.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.delete(pedido.url_borrar).then(function (response) {
+        if (response.status === 200) {
+          commit('REMOVE_MESA', pedido);
+          commit('REMOVE_PEDIDO', pedido);
+          commit('SET_MESA_SELECCIONADA', undefined);
         }
       });
     });
@@ -12564,9 +12571,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(state, mesa) {
     state.mesa_seleccionada = mesa;
   },
-  SET_PEDIDO_MESA_SELECCIONADA: function SET_PEDIDO_MESA_SELECCIONADA(state, pedido) {
-    state.pedido_mesa_seleccionada = pedido;
-  },
   SET_CATEGORIAS_WITH_PLATOS: function SET_CATEGORIAS_WITH_PLATOS(state, categorias) {
     state.categorias_with_platos = categorias;
   },
@@ -12626,7 +12630,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
   */
   categorias_with_platos: [], // con platos habilidatos solamente
   mesa_seleccionada: {},
-  pedido_mesa_seleccionada: {},
   mesas: [], //mesas de mozo en particular
   pedidos: [], // todos los pedidos pendientes
 

@@ -11,6 +11,72 @@ use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
+
+    private function hidratar_muchos ($pedidos) {
+        $platos = Plato::select('id', 'nombre', 'precio')->get();
+        $user = Auth::user();
+        $pedidos->each( function( $pedido ) use( $platos, $user ) {
+
+            $pedido->mozo = $user;
+            unset($pedido->user_id);
+
+            $pedido->total_cosas = count( $pedido->platos );
+            $pedido->total_cobrar = 0;
+
+            $ids = $pedido->platos;
+            $aux = $platos->filter( function ( $plato ) use ( $ids ) { return  in_array($plato->id, $ids); } ); //platos en mi pedido
+            $aux->each( function ($elem) use ($ids) {
+                $elem->cantidad = array_reduce($ids, function($carry, $item) use ($elem) {if ($item == $elem->id) $carry += 1; return $carry; }, 0 );
+            });
+            $pedido->platos_ids = $ids;
+            $pedido->platos = $aux;
+
+            foreach ($pedido->platos as $plato) {
+                $pedido->total_cobrar += $plato->cantidad * $plato->precio;
+            }
+            $pedido->url = route('api.pedidos.show', $pedido->id);
+            $pedido->url_editar = route('mesas.update', $pedido->id);
+            $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
+            $pedido->url_borrar = route('mesas.destroy', $pedido->id);
+            $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
+        });
+
+        return $pedidos;
+    }
+
+    private function hidratar ($pedido) {
+
+        if ($pedido->count() === 1) {
+
+            $platos = Plato::select('id', 'nombre', 'precio')->whereIn('id',$pedido->platos)->get()
+                ->each( function ($plato) use($pedido) {
+                    $plato->cantidad = array_reduce($plato, function($carry, $item) use ($plato) {if ($item == $plato->id) $carry += 1; return $carry; }, 0 );
+                });
+
+            $pedido->total_cosas = count($pedido->platos);
+            $pedido->total_cobrar = 0;
+            $pedido->platos_ids = $pedido->platos;
+            $pedido->platos = $platos;
+
+            $pedido->mozo = Auth::user();
+            unset($pedido->user_id);
+
+            $pedido->url = route('api.pedidos.show', $pedido->id);
+            $pedido->url_editar = route('mesas.update', $pedido->id);
+            $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
+            $pedido->url_borrar = route('mesas.destroy', $pedido->id);
+            $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
+
+
+            foreach ($pedido->platos as $plato ){
+                $pedido->total_cobrar += $plato->cantidad * $plato->precio;
+            }
+
+            return $pedido;
+        } else {
+            return $this->hidratar_muchos($pedido);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -83,19 +149,18 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $pedido = new Pedido();
         $pedido->mesa = $request->mesa;
         $arreglo_aux = array_map(function($v) { return intval($v); }, $request->platos);
         sort( $arreglo_aux );
         $pedido->platos = $arreglo_aux;
-        $pedido->user_id = Auth::user()->id;
+        $pedido->user_id = $user->id;
         $pedido->save();
-        unset($arreglo_aux);
 
-        // avisar a la cocina
+        $pedido = $this->hidratar($pedido);
 
-        flash('Pedido registrado')->success();
-        return redirect()->route('mesas.index');
+        return $pedido;
     }
 
     /**
@@ -107,23 +172,8 @@ class PedidoController extends Controller
      */
     public function api_index_mozo()
     {
-//        $pedido = Pedido::with(['mozo' => function($query){
-//            $query->select('id', 'name', 'tipo_usuario_id');
-//        }])->where('id', Auth::user()->id)->get();
-//
-//        return $pedido;
-
-        $platos_disponibles = Plato::where('habilitado', TRUE)->pluck('nombre', 'id')->toArray();
-        $categorias = CategoriaPlato::with(['platos' => function ($query) {
-            $query->select('nombre', 'categoria_plato_id', 'id')->where('habilitado', TRUE)->orderBy('categoria_plato_id');
-        }])->select('nombre', 'id')->get();
-
-        $pedidos_pendientes = Auth::user()->pedidos()->orderBy('created_at')->get()->each( function($pedido) {
-            unset($pedido->user_id);
-            $pedido->url = route('api.pedidos.show', $pedido->id);
-        });
-//        return ['pedidos' => $pedidos_pendientes, 'categorias' => $categorias, 'platos' => $platos_disponibles];
-        return $pedidos_pendientes;
+        $pedidos = Auth::user()->pedidos()->whereNull('cobrado_at')->orderBy('created_at')->get();
+        return $this->hidratar($pedidos);
     }
 
     /**
@@ -162,8 +212,9 @@ class PedidoController extends Controller
 
         unset($array_filtrado, $array_intval, $array_ordenado);
         $pedido->save();
-        flash('Pedido modificado.')->success();
-        return redirect()->route('mesas.index');
+//        flash('Pedido modificado.')->success();
+//        return redirect()->route('mesas.index');
+        return $this->hidratar($pedido);
     }
 
     /**
@@ -174,12 +225,14 @@ class PedidoController extends Controller
      */
     public function destroy($id)
     {
-        Pedido::findOrFail($id)->delete();
+        $pedido = Pedido::findOrFail($id);
+        $pedido->delete();
 
 //        avisar en la cocina
 
-        flash('Pedido cancelado')->success();
-        return redirect()->route('mesas.index');
+//        flash('Pedido cancelado')->success();
+//        return redirect()->route('mesas.index');
+        return $this->hidratar($pedido);
     }
 
     /**
@@ -193,8 +246,9 @@ class PedidoController extends Controller
         $pedido->cobrado_at = \Carbon\Carbon::now();
         $pedido->save();
         $pedido->delete();
-        flash('Pedido cobrado')->success();
-        return redirect()->route('mesas.index');
+//        flash('Pedido cobrado')->success();
+//        return redirect()->route('mesas.index');
+        return $this->hidratas($pedido);
     }
 
 

@@ -1,5 +1,10 @@
 <template lang="html">
   <div class="text-center">
+    <modal-crear />
+    <modal-acciones/>
+    <modal-cobrar />
+    <modal-borrar />
+    <modal-editar :datos="mesa_seleccionada" />
     <div class="container-fluid">
       <div class="row col-md-4 col-md-offset-4">
         <button class="btn btn-primary btn-block btn-lg" @click="modalCrear">Agregar pedido</button>
@@ -12,11 +17,6 @@
     <div style="padding: 20vh;" v-else>
       <p>No quedan pedidos pendientes.</p>
     </div>
-    <modal-crear />
-    <modal-acciones/>
-    <modal-cobrar />
-    <modal-borrar />
-    <modal-editar :datos="mesa_seleccionada" />
   </div>
 </template>
 

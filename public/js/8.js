@@ -29,7 +29,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-card-body"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, _vm._l((_vm.pedido.platos), function(plato) {
+  }, _vm._l((_vm.mesa.platos), function(plato) {
     return _c('plato', {
       key: plato.id,
       attrs: {
@@ -39,7 +39,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   })), _vm._v(" "), _c('hr'), _vm._v(" "), _c('p', [_vm._v("Total:"), _c('strong', {
     staticClass: "pull-right"
-  }, [_vm._v("$" + _vm._s(_vm.pedido.total))])])]), _vm._v(" "), _c('footer', {
+  }, [_vm._v("$" + _vm._s(_vm.mesa.total_cobrar))])])]), _vm._v(" "), _c('footer', {
     staticClass: "modal-card-foot"
   }, [_c('button', {
     staticClass: "button is-large is-fullwidth",
@@ -50,8 +50,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "button is-info is-large is-fullwidth",
     style: ({
       'is-loading': _vm.buttonLoading
-    })
-  }, [_vm._v("Completar")])])])])
+    }),
+    on: {
+      "click": _vm.cobrarPedido
+    }
+  }, [_vm._v("Cobrar")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('strong', [_vm._v("Platos")])])
 }]}
@@ -140,7 +143,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
     showModal: 'showModalCobrar',
-    pedido: 'pedido_mesa_seleccionada'
+    mesa: 'mesa_seleccionada'
   })),
   methods: {
     hideModal: function hideModal() {
@@ -150,7 +153,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       var _this = this;
 
       this.buttonLoading = true;
-      this.$store.dispatch('COBRAR_PEDIDO', this.pedido).then(function () {
+      console.log('cobrar');
+      this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then(function () {
         _this.hideModal();
         _this.buttonLoading = false;
       });
@@ -164,7 +168,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

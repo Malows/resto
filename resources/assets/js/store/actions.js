@@ -2,9 +2,6 @@ export default {
   SET_MESA_SELECCIONADA ({ commit }, mesa) {
     commit('SET_MESA_SELECCIONADA', mesa)
   },
-  SET_PEDIDO_MESA_SELECCIONADA ({ commit }, pedido) {
-    commit('SET_PEDIDO_MESA_SELECCIONADA', pedido)
-  },
   REFRESH_CATEGORIAS_WITH_PLATOS ({ commit }) {
     axios.get('http://localhost:8000/api/categorias').then(({ data }) => {
       commit('SET_CATEGORIAS_WITH_PLATOS', data)
@@ -70,7 +67,7 @@ export default {
   },
   EDITAR_PEDIDO ({ commit }, pedido) {
     new Promise(function(resolve, reject) {
-      axios.put(`http://localhost:8000/pedido/mesas/${pedido.id}`).then(response => {
+      axios.put(pedido.url_editar).then(response => {
         if ( response.status === 200 ) {
           commit('REPLACE_PEDIDO', pedido)
           reolve(response)
@@ -89,12 +86,22 @@ export default {
   },
   COBRAR_PEDIDO ({ commit }, pedido) {
     new Promise(function(resolve, reject) {
-      axios.put(`http://localhost:8000/pedido/mesas/${pedido.id}/cobrar`).then( response => {
+      axios.put(pedido.url_cobrar).then( response => {
         if ( response.status === 200 ) {
           commit('REMOVE_MESA', pedido)
           commit('REMOVE_PEDIDO', pedido)
           commit('SET_MESA_SELECCIONADA', undefined)
-          commit('SET_PEDIDO_MESA_SELECCIONADA', undefined)
+        }
+      })
+    });
+  },
+  BORRAR_PEDIDO ({ commit }, pedido) {
+    new Promise(function(resolve, reject) {
+      axios.delete(pedido.url_borrar).then( response => {
+        if ( response.status === 200 ) {
+          commit('REMOVE_MESA', pedido)
+          commit('REMOVE_PEDIDO', pedido)
+          commit('SET_MESA_SELECCIONADA', undefined)
         }
       })
     });

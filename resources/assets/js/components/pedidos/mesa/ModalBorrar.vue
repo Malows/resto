@@ -11,7 +11,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button is-large is-fullwidth" @click="hideModal">No</button>
-        <button class="button is-danger is-large is-fullwidth">Sí</button>
+        <button class="button is-danger is-large is-fullwidth" :style="{'is-loading': buttonLoading}" @click="borrarPedido">Sí</button>
     </footer>
     </div>
   </div>
@@ -20,14 +20,27 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  data () {
+    return {
+      buttonLoading: false,
+    }
+  },
   computed: {
     ...mapState({
-      showModal: 'showModalBorrar'
+      showModal: 'showModalBorrar',
+      pedido: 'pedido_mesa_seleccionada'
     })
   },
   methods: {
     hideModal () {
       this.$store.dispatch('HIDE_MODAL_BORRAR')
+    },
+    borrarPedido () {
+      this.buttonLoading = true
+      this.$store.dispatch('BORRAR_PEDIDO', this.pedido).then( response => {
+        this.hideModal()
+        this.buttonLoading = false
+      })
     }
   },
 }

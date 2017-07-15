@@ -340,27 +340,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   props: ['data'],
-  data: function data() {
-    return {
-      pedido: {}
-    };
-  },
-
   methods: {
     clickEnMesa: function clickEnMesa() {
       // console.log(this.data);
       this.$store.dispatch('SET_MESA_SELECCIONADA', this.data);
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', this.pedido);
+      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', this.data);
       this.$store.dispatch('SHOW_MODAL_ACCIONES');
     }
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get(this.data.url).then(function (_ref) {
-      var data = _ref.data;
-      _this.pedido = data;
-    });
   }
 });
 
@@ -370,7 +356,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
@@ -418,19 +404,13 @@ module.exports = Component.exports
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.pedido),
-      expression: "pedido"
-    }],
     staticClass: "box",
     on: {
       "click": _vm.clickEnMesa
     }
-  }, [_c('p', [_c('strong', [_vm._v("Mesa " + _vm._s(_vm.data.mesa))]), _vm._v(" - " + _vm._s(_vm.data.platos.length) + " " + _vm._s(_vm.data.platos.length > 1 ? 'cosas' : ' cosa'))]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('strong', [_vm._v("Mesa " + _vm._s(_vm.data.mesa))]), _vm._v(" - " + _vm._s(_vm.data.total_cosas) + " " + _vm._s(_vm.data.total_cosas > 1 ? 'cosas' : ' cosa'))]), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, _vm._l((_vm.pedido.platos), function(plato) {
+  }, _vm._l((_vm.data.platos), function(plato) {
     return _c('plato', {
       key: plato.id,
       attrs: {

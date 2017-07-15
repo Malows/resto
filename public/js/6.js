@@ -165,7 +165,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
     staticClass: "button is-info is-large is-fullwidth",
     style: ({
-      'is-loading': _vm.botonLoader
+      'is-loading': _vm.buttonLoader
     }),
     on: {
       "click": _vm.editarPedido
@@ -273,13 +273,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['datos'],
   data: function data() {
     return {
       pusher_platos: [],
       model_plato: '',
       old_value_mesa: '',
-      botonLoader: false
+      buttonLoader: false
     };
   },
 
@@ -287,8 +286,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     hideModal: function hideModal() {
       var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(this.old_value_mesa) });
       this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
-      var aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(this.old_value_mesa) });
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido);
       this.$store.dispatch('HIDE_MODAL_EDITAR');
     },
     quitarPlato: function quitarPlato(plato) {
@@ -301,16 +298,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     editarPedido: function editarPedido() {
       var _this = this;
 
-      this.boton_loader = true;
+      this.buttonLoader = true;
       var payload = {
         mesa: this.mesa,
         platos: this.pusher_platos
       };
-      this.$store.dispatch('EDITAR_PEDIDO', payload).then(function (pedido) {
-        if (pedido.status === 200) {
-          _this.$store.dispatch('EDITAR_MESA_Y_LISTA', pedido.data);
-        }
-        _this.boton_loader = false;
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then(function (response) {
+        _this.buttonLoader = false;
         _this.$store.dispatch('HIDE_MODAL_EDITAR');
       });
     }
@@ -318,8 +312,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['platos', 'nombreDePlatos']), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
     showModal: 'showModalEditar',
     categorias: 'categorias_with_platos',
-    mesa_seleccionada: 'mesa_seleccionada',
-    pedido: 'pedido_mesa_seleccionada'
+    mesa_seleccionada: 'mesa_seleccionada'
   }), {
     mesa: {
       get: function get() {
@@ -328,13 +321,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       set: function set(value) {
         var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(value) });
         this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
-        var aux_pedido = Object.assign({}, this.pedido, { mesa: parseInt(value) });
-        this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido);
       }
     }
   }),
   beforeUpdate: function beforeUpdate() {
-    this.pusher_platos = this.mesa_seleccionada.platos;
+    this.pusher_platos = this.mesa_seleccionada.platos_ids;
   }
 });
 

@@ -43,7 +43,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button is-large is-fullwidth" @click="hideModal">Cerrar</button>
-        <button class="button is-info is-large is-fullwidth" :style="{'is-loading': botonLoader}" @click="editarPedido">Enviar</button>
+        <button class="button is-info is-large is-fullwidth" :style="{'is-loading': buttonLoader}" @click="editarPedido">Enviar</button>
       </footer>
     </div>
   </div>
@@ -52,21 +52,18 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 export default {
-  props: ['datos'],
   data () {
     return {
       pusher_platos: [],
       model_plato: '',
       old_value_mesa: '',
-      botonLoader: false,
+      buttonLoader: false,
     }
   },
   methods: {
     hideModal () {
       let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: parseInt(this.old_value_mesa)} )
       this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa)
-      let aux_pedido = Object.assign({}, this.pedido, {mesa: parseInt(this.old_value_mesa)} )
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido)
       this.$store.dispatch('HIDE_MODAL_EDITAR')
     },
     quitarPlato (plato) {
@@ -77,16 +74,13 @@ export default {
       this.model_plato = ''
     },
     editarPedido () {
-      this.boton_loader = true
+      this.buttonLoader = true
       let payload = {
         mesa: this.mesa,
         platos: this.pusher_platos
       }
-      this.$store.dispatch('EDITAR_PEDIDO', payload).then( pedido => {
-        if (pedido.status === 200) {
-          this.$store.dispatch('EDITAR_MESA_Y_LISTA', pedido.data)
-        }
-        this.boton_loader = false
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then( response => {
+        this.buttonLoader = false
         this.$store.dispatch('HIDE_MODAL_EDITAR')
       })
     }
@@ -97,7 +91,6 @@ export default {
       showModal: 'showModalEditar',
       categorias: 'categorias_with_platos',
       mesa_seleccionada: 'mesa_seleccionada',
-      pedido: 'pedido_mesa_seleccionada'
     }),
     mesa: {
       get () {
@@ -106,13 +99,11 @@ export default {
       set (value) {
         let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: parseInt(value)} )
         this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa)
-        let aux_pedido = Object.assign({}, this.pedido, {mesa: parseInt(value)} )
-        this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', aux_pedido)
       }
     }
   },
   beforeUpdate () {
-    this.pusher_platos = this.mesa_seleccionada.platos
+    this.pusher_platos = this.mesa_seleccionada.platos_ids
   }
 }
 </script>

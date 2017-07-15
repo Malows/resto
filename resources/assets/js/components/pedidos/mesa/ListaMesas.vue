@@ -55,7 +55,6 @@ export default {
   mounted () {
     this.$store.dispatch('REFRESH_CATEGORIAS_WITH_PLATOS')
     this.$store.dispatch('REFRESH_MESAS')
-    this.$store.dispatch('REFRESH_PEDIDOS')
 
   }
 }

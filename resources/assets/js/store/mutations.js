@@ -8,9 +8,6 @@ export default {
   SET_MESAS (state, mesas) {
     state.mesas = mesas
   },
-  SET_PEDIDOS (state, pedidos) {
-    state.pedidos = pedidos
-  },
   SET_MODAL_ACCIONES(state, value) {
     state.showModalAcciones = value
   },
@@ -26,20 +23,11 @@ export default {
   SET_MODAL_EDITAR(state, value) {
     state.showModalEditar = value
   },
-  APPEND_PEDIDO(state, pedido) {
-    state.pedidos.push(pedido)
-  },
   APPEND_MESA(state, mesa) {
     state.mesas.push(mesa)
   },
-  REPLACE_PEDIDO (state, pedido) {
-    state.pedidos.filter( elem => { elem.id === pedido.id })[0] = pedido
-  },
   REPLACE_MESA (state, mesa) {
     state.mesas.filter( elem => { elem.id === mesa.id })[0] = mesa
-  },
-  REMOVE_PEDIDO (state, pedido) {
-    state.pedido.splice( state.pedido.indexOf( pedido ), 1 )
   },
   REMOVE_MESA (state, mesa) {
     state.mesa.splice( state.mesa.indexOf( mesa ), 1 )

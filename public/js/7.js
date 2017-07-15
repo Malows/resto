@@ -127,12 +127,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         mesa: this.mesa,
         platos: this.pusher_platos
       };
-      this.$store.dispatch('ENVIAR_NUEVO_PEDIDO', payload).then(function (response) {
-        if (response.status === 200) {
-          _this.$store.dispatch('AGREGAR_NUEVA_MESA', response.data);
-        }
+      this.$store.dispatch('NUEVO_PEDIDO', payload).then(function (response) {
         _this.boton_loader = false;
-        _this.$store.dispatch('HIDE_MODAL_CREAR');
+        _this.hideModal();
       });
     }
   }
@@ -144,7 +141,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

@@ -28,7 +28,7 @@ export default {
   computed: {
     ...mapState({
       showModal: 'showModalBorrar',
-      pedido: 'pedido_mesa_seleccionada'
+      mesa: 'mesa_seleccionada'
     })
   },
   methods: {
@@ -37,7 +37,7 @@ export default {
     },
     borrarPedido () {
       this.buttonLoading = true
-      this.$store.dispatch('BORRAR_PEDIDO', this.pedido).then( response => {
+      this.$store.dispatch('BORRAR_PEDIDO', this.mesa).then( response => {
         this.hideModal()
         this.buttonLoading = false
       })

@@ -90,12 +90,9 @@ export default {
         mesa: this.mesa,
         platos: this.pusher_platos
       }
-      this.$store.dispatch('ENVIAR_NUEVO_PEDIDO', payload).then( response => {
-        if (response.status === 200) {
-          this.$store.dispatch('AGREGAR_NUEVA_MESA', response.data)
-        }
+      this.$store.dispatch('NUEVO_PEDIDO', payload).then( response => {
         this.boton_loader = false
-        this.$store.dispatch('HIDE_MODAL_CREAR')
+        this.hideModal();
       })
     }
   }

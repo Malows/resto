@@ -5,7 +5,7 @@ export default {
   categorias_with_platos: [], // con platos habilidatos solamente
   mesa_seleccionada: {},
   mesas: [], //mesas de mozo en particular
-  pedidos: [], // todos los pedidos pendientes
+  // pedidos: [], // todos los pedidos pendientes
 
   showModalAcciones: false,
   showModalBorrar: false,

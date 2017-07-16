@@ -292,8 +292,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$store.dispatch('QUITAR_PLATO_PEDIDO', plato);
     },
     agregarPlato: function agregarPlato() {
-      this.$store.dispatch('AGREGAR_PLATO_PEDIDO', this.model_plato);
-      this.model_plato = '';
+      if (this.model_plato) {
+        this.$store.dispatch('AGREGAR_PLATO_PEDIDO', this.model_plato);
+        this.model_plato = '';
+      }
     },
     editarPedido: function editarPedido() {
       var _this2 = this;
@@ -303,24 +305,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         mesa: this.mesa,
         platos: this.mesa_seleccionada.platos_ids
       };
-      this.$store.dispatch('EDITAR_PEDIDO', payload).then(function (response) {
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then(function () {
         _this2.buttonLoader = false;
         _this2.$store.dispatch('HIDE_MODAL_EDITAR');
       });
     }
   },
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['platos', 'nombreDePlatos']), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: function showModal(state) {
+    'showModal': function showModal(state) {
       return state.mozo.showModalEditar;
     },
-    categorias: function categorias(state) {
+    'categorias': function categorias(state) {
       return state.mozo.categorias_with_platos;
     },
-    mesa_seleccionada: function mesa_seleccionada(state) {
+    'mesa_seleccionada': function mesa_seleccionada(state) {
       return state.mozo.mesa_seleccionada;
-    },
-    rollback: function rollback(state) {
-      return state.mozo.rollback_mesa_seleccionada;
     }
   }), {
 

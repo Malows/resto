@@ -68,8 +68,10 @@ export default {
       this.$store.dispatch('QUITAR_PLATO_PEDIDO',plato)
     },
     agregarPlato () {
-      this.$store.dispatch('AGREGAR_PLATO_PEDIDO',this.model_plato)
-      this.model_plato = ''
+      if ( this.model_plato ) {
+        this.$store.dispatch('AGREGAR_PLATO_PEDIDO',this.model_plato)
+        this.model_plato = ''
+      }
     },
     editarPedido () {
       this.buttonLoader = true
@@ -77,7 +79,7 @@ export default {
         mesa: this.mesa,
         platos: this.mesa_seleccionada.platos_ids
       }
-      this.$store.dispatch('EDITAR_PEDIDO', payload).then( response => {
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then( () => {
         this.buttonLoader = false
         this.$store.dispatch('HIDE_MODAL_EDITAR')
       })
@@ -86,10 +88,9 @@ export default {
   computed: {
     ...mapGetters(['platos', 'nombreDePlatos']),
     ...mapState({
-      showModal: state => state.mozo.showModalEditar,
-      categorias: state => state.mozo.categorias_with_platos,
-      mesa_seleccionada: state => state.mozo.mesa_seleccionada,
-      rollback: state => state.mozo.rollback_mesa_seleccionada,
+      'showModal': state => state.mozo.showModalEditar,
+      'categorias': state => state.mozo.categorias_with_platos,
+      'mesa_seleccionada': state => state.mozo.mesa_seleccionada,
     }),
 
     mesa: {

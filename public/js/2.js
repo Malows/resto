@@ -505,20 +505,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   methods: {
     modalCrear: function modalCrear() {
       this.$store.dispatch('SHOW_MODAL_CREAR');
-    },
-
-
-    /*
-    * Metodos para enviar peticiones a la API
-    */
-    cobrarMesa: function cobrarMesa() {
-      console.log('Cobrar mesa', mesa_seleccionada);
-    },
-    borrarMesa: function borrarMesa() {
-      console.log('borrar mesa', mesa_seleccionada);
-    },
-    editarMesa: function editarMesa() {
-      console.log('editar mesa', mesa_seleccionada);
     }
   },
   mounted: function mounted() {
@@ -533,7 +519,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(39)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

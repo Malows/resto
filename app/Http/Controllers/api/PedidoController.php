@@ -76,25 +76,6 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $platos = Plato::where('habilitado',TRUE)->select('id', 'nombre', 'precio')->get()->toArray();
-//        return Pedido::with(['mozo' => function ($query) {
-//            $query->select('id','name');
-//        }])->whereNull('cobrado_at')->orderBy('created_at')->select('id', 'mesa','platos', 'user_id')->get()
-//        ->each( function($pedido) use($platos) {
-//            $total = count( $pedido->platos );
-//            $contados = array_count_values($pedido->platos);
-//            $purgado =  array_unique($pedido->platos);
-//            $pedido->platos = array_values( array_filter( array_map(
-//                function ( $elem ) use ( $purgado, $contados ) {
-//                    if ( in_array($elem['id'], $purgado) ) $elem['cantidad'] = $contados[ $elem['id'] ]; else return;
-//                    return $elem;
-//                }, $platos ),
-//                function( $elem ) { return boolval($elem); } ) );
-//            $pedido->total_cosas = $total;
-//            unset($pedido->user_id);
-//            $pedido->url = route('api.pedidos.show', $pedido->id);
-//        });
-
         $pedidos = Pedido::with(['mozo' => function ($query) { $query->select('id','name'); }])->whereNull('cobrado_at')
             ->orderBy('created_at')->select('id', 'mesa','platos', 'user_id')->get();
         return $this->hidratar_muchos($pedidos);

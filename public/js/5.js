@@ -342,7 +342,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['data'],
   methods: {
     clickEnMesa: function clickEnMesa() {
-      // console.log(this.data);
       this.$store.dispatch('SET_MESA_SELECCIONADA', this.data);
       this.$store.dispatch('SHOW_MODAL_ACCIONES');
     }
@@ -355,7 +354,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(39)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

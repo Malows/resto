@@ -42,19 +42,6 @@ export default {
 
   methods: {
     modalCrear () { this.$store.dispatch('SHOW_MODAL_CREAR') },
-
-    /*
-    * Metodos para enviar peticiones a la API
-    */
-    cobrarMesa () {
-      console.log('Cobrar mesa', mesa_seleccionada)
-    },
-    borrarMesa () {
-      console.log('borrar mesa', mesa_seleccionada)
-    },
-    editarMesa () {
-      console.log('editar mesa', mesa_seleccionada)
-    }
   },
   mounted () {
     this.$store.dispatch('REFRESH_CATEGORIAS_WITH_PLATOS')

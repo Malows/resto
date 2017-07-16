@@ -142,10 +142,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: function showModal(state) {
+    'showModal': function showModal(state) {
       return state.mozo.showModalCobrar;
     },
-    mesa: function mesa(state) {
+    'mesa': function mesa(state) {
       return state.mozo.mesa_seleccionada;
     }
   })),
@@ -157,7 +157,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       var _this = this;
 
       this.buttonLoading = true;
-      console.log('cobrar');
       this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then(function () {
         _this.hideModal();
         _this.buttonLoading = false;
@@ -172,7 +171,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(39)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

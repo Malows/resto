@@ -17,7 +17,6 @@ export default {
   ROLLBACK_MESA_SELECCIONADA ({ commit, state }) {
     new Promise(function(resolve, reject) {
       axios.get(state.mesa_seleccionada.url).then( ({ data }) => {
-        console.log(data.platos_ids);
         commit('SET_MESA_SELECCIONADA', data)
         // despues del hide, hace un rollback, no debería ser necesario el seteo
         // pero para evitar incosistencias de datos, la re seteo
@@ -74,9 +73,10 @@ export default {
       })
     })
   },
-  EDITAR_PEDIDO ({ commit }, pedido) {
+  EDITAR_PEDIDO ({ commit, state }, pedido) {
+
     new Promise(function(resolve, reject) {
-      axios.put(pedido.url_editar).then(response => {
+      axios.put(state.mesa_seleccionada.url_editar, pedido).then(response => {
         if ( response.status === 200 ) {
           commit('REPLACE_MESA', response.data)
           commit('SET_MESA_SELECCIONADA', response.data)
@@ -115,36 +115,4 @@ export default {
       })
     });
   },
-  // LOGOUT_USER ({ commit }) {
-  //   window.localStorage.clear()
-  //   commit('LOGOUT_USER')
-  // },
-  // SET_USER ({ commit }, user) {
-  //   var aux = fillUser(user)
-  //   commit('SET_USER', aux)
-  // },
-  // CHECK_CREDENTIALS ({ commit, state }) {
-  //   // Check local storage to handle refreshes
-  //   if (window.localStorage) {
-  //     let token = window.localStorage.getItem('token')
-  //     let header = {
-  //       'Accept': 'application/json',
-  //       'Authorization': token
-  //     }
-  //     axios.get(URL + '/api/user', {headers: header})
-  //     .then(response => {
-  //       var user = fillUser(response.data)
-  //       window.localStorage.setItem('user', JSON.stringify(user))
-  //       if (user && state.user !== user) {
-  //         commit('SET_USER', user)
-  //         commit('SET_TOKEN', token)
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       if (err.message === 'Network Error') {
-  //         console.error('Revise su conexión de internet, si el error persiste, consulte a los administradores del sistema')
-  //       }
-  //     })
-  //   }
-  // }
 }

@@ -42447,7 +42447,6 @@ module.exports = __webpack_require__(10);
       axios.get(state.mesa_seleccionada.url).then(function (_ref7) {
         var data = _ref7.data;
 
-        console.log(data.platos_ids);
         commit('SET_MESA_SELECCIONADA', data
         // despues del hide, hace un rollback, no debería ser necesario el seteo
         // pero para evitar incosistencias de datos, la re seteo
@@ -42529,10 +42528,12 @@ module.exports = __webpack_require__(10);
     });
   },
   EDITAR_PEDIDO: function EDITAR_PEDIDO(_ref19, pedido) {
-    var commit = _ref19.commit;
+    var commit = _ref19.commit,
+        state = _ref19.state;
+
 
     new Promise(function (resolve, reject) {
-      axios.put(pedido.url_editar).then(function (response) {
+      axios.put(state.mesa_seleccionada.url_editar, pedido).then(function (response) {
         if (response.status === 200) {
           commit('REPLACE_MESA', response.data);
           commit('SET_MESA_SELECCIONADA', response.data);
@@ -42660,7 +42661,10 @@ module.exports = __webpack_require__(10);
     });
   },
   REMOVE_MESA: function REMOVE_MESA(state, mesa) {
-    state.mesa.splice(state.mesa.indexOf(mesa), 1);
+    var elem = state.mesas.filter(function (el) {
+      return el.id === mesa.id;
+    })[0];
+    state.mesas.splice(state.mesas.indexOf(elem), 1);
   },
   QUITAR_PLATO_PEDIDO: function QUITAR_PLATO_PEDIDO(state, plato) {
     state.mesa_seleccionada.platos_ids.splice(state.mesa_seleccionada.platos_ids.indexOf(plato), 1);

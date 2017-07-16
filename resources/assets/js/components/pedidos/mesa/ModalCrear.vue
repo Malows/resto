@@ -80,9 +80,11 @@ export default {
       this.pusher_platos.splice( this.pusher_platos.indexOf(plato), 1 )
     },
     agregarPlato () {
-      this.pusher_platos.push(this.model_plato)
-      this.pusher_platos = this.pusher_platos.sort()
-      this.model_plato = ''
+      if (this.model_plato) {
+        this.pusher_platos.push(this.model_plato)
+        this.pusher_platos = this.pusher_platos.sort()
+        this.model_plato = ''
+      }
     },
     enviarNuevoPedido () {
       this.boton_loader = true

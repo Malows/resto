@@ -35,8 +35,8 @@ export default {
   },
   computed: {
     ...mapState({
-      showModal: state => state.mozo.showModalCobrar,
-      mesa: state => state.mozo.mesa_seleccionada,
+      'showModal': state => state.mozo.showModalCobrar,
+      'mesa': state => state.mozo.mesa_seleccionada,
     })
   },
   methods: {
@@ -45,7 +45,6 @@ export default {
     },
     cobrarPedido () {
       this.buttonLoading = true;
-      console.log('cobrar');
       this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then( () => {
         this.hideModal();
         this.buttonLoading = false;

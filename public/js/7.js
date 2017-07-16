@@ -119,9 +119,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.pusher_platos.splice(this.pusher_platos.indexOf(plato), 1);
     },
     agregarPlato: function agregarPlato() {
-      this.pusher_platos.push(this.model_plato);
-      this.pusher_platos = this.pusher_platos.sort();
-      this.model_plato = '';
+      if (this.model_plato) {
+        this.pusher_platos.push(this.model_plato);
+        this.pusher_platos = this.pusher_platos.sort();
+        this.model_plato = '';
+      }
     },
     enviarNuevoPedido: function enviarNuevoPedido() {
       var _this = this;
@@ -145,7 +147,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(39)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 

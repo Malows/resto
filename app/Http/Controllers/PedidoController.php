@@ -8,6 +8,7 @@ use App\User;
 use Auth;
 use App\Plato;
 use Illuminate\Http\Request;
+use function PHPSTORM_META\type;
 
 class PedidoController extends Controller
 {
@@ -44,38 +45,33 @@ class PedidoController extends Controller
         return $pedidos;
     }
 
-    private function hidratar ($pedido) {
+    private function hidratar ($pedido)
+    {
+        $platos = Plato::select('id', 'nombre', 'precio')->whereIn('id',$pedido->platos)->get()
+            ->each( function ($plato) use($pedido) {
+                $plato->cantidad = array_reduce($pedido->platos, function($carry, $item) use ($plato) {if ($item == $plato->id) $carry += 1; return $carry; }, 0 );
+            });
 
-        if ($pedido->count() === 1) {
+        $pedido->total_cosas = count($pedido->platos);
+        $pedido->total_cobrar = 0;
+        $pedido->platos_ids = $pedido->platos;
+        $pedido->platos = $platos;
 
-            $platos = Plato::select('id', 'nombre', 'precio')->whereIn('id',$pedido->platos)->get()
-                ->each( function ($plato) use($pedido) {
-                    $plato->cantidad = array_reduce($pedido->platos, function($carry, $item) use ($plato) {if ($item == $plato->id) $carry += 1; return $carry; }, 0 );
-                });
+        $pedido->mozo = Auth::user();
+        unset($pedido->user_id);
 
-            $pedido->total_cosas = count($pedido->platos);
-            $pedido->total_cobrar = 0;
-            $pedido->platos_ids = $pedido->platos;
-            $pedido->platos = $platos;
-
-            $pedido->mozo = Auth::user();
-            unset($pedido->user_id);
-
-            $pedido->url = route('api.pedidos.show', $pedido->id);
-            $pedido->url_editar = route('mesas.update', $pedido->id);
-            $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
-            $pedido->url_borrar = route('mesas.destroy', $pedido->id);
-            $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
+        $pedido->url = route('api.pedidos.show', $pedido->id);
+        $pedido->url_editar = route('mesas.update', $pedido->id);
+        $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
+        $pedido->url_borrar = route('mesas.destroy', $pedido->id);
+        $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
 
 
-            foreach ($pedido->platos as $plato ){
-                $pedido->total_cobrar += $plato->cantidad * $plato->precio;
-            }
-
-            return $pedido;
-        } else {
-            return $this->hidratar_muchos($pedido);
+        foreach ($pedido->platos as $plato ){
+            $pedido->total_cobrar += $plato->cantidad * $plato->precio;
         }
+
+        return $pedido;
     }
     /**
      * Display a listing of the resource.
@@ -149,14 +145,15 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
         $pedido = new Pedido();
         $pedido->mesa = $request->mesa;
         $arreglo_aux = array_map(function($v) { return intval($v); }, $request->platos);
         sort( $arreglo_aux );
         $pedido->platos = $arreglo_aux;
-        $pedido->user_id = $user->id;
+        $pedido->user_id = Auth::user()->id;
         $pedido->save();
+
+        // avisar a la cocina
 
         $pedido = $this->hidratar($pedido);
 
@@ -173,18 +170,8 @@ class PedidoController extends Controller
     public function api_index_mozo()
     {
         $pedidos = Auth::user()->pedidos()->whereNull('cobrado_at')->orderBy('created_at')->get();
-        return $this->hidratar($pedidos);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->hidratar_muchos($pedidos);
     }
 
     /**
@@ -198,7 +185,6 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::findOrFail($id);
         $pedido->mesa = $request->mesa;
-
         $array_filtrado = array_filter( $request->platos, function ($elem) { return $elem; } );
         $array_intval =  array_map( function ($elem) {return intval($elem); }, $array_filtrado );
         sort( $array_intval );
@@ -212,8 +198,6 @@ class PedidoController extends Controller
 
         unset($array_filtrado, $array_intval, $array_ordenado);
         $pedido->save();
-//        flash('Pedido modificado.')->success();
-//        return redirect()->route('mesas.index');
         return $this->hidratar($pedido);
     }
 
@@ -243,12 +227,13 @@ class PedidoController extends Controller
      */
     public function cobrar( $id ) {
         $pedido = Pedido::findOrFail($id);
-        $pedido->cobrado_at = \Carbon\Carbon::now();
+        $pedido->cobrado_at = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
         $pedido->save();
         $pedido->delete();
-//        flash('Pedido cobrado')->success();
-//        return redirect()->route('mesas.index');
-        return $this->hidratas($pedido);
+
+        $pedido = $this->hidratar($pedido);
+
+        return $pedido;
     }
 
 

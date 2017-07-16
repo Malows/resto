@@ -16,7 +16,6 @@ export default {
   props: ['data'],
   methods: {
     clickEnMesa () {
-      // console.log(this.data);
       this.$store.dispatch('SET_MESA_SELECCIONADA', this.data )
       this.$store.dispatch('SHOW_MODAL_ACCIONES')
     }

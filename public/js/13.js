@@ -1,6 +1,6 @@
 webpackJsonp([13],{
 
-/***/ 103:
+/***/ 107:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40,17 +40,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 117:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(76);
+var content = __webpack_require__(80);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(46)("16070c64", content, false);
+var update = __webpack_require__(50)("16070c64", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -67,7 +67,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 53:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -116,26 +116,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 76:
+/***/ 80:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(39)();
+exports = module.exports = __webpack_require__(43)();
 exports.push([module.i, "\n.plato {\n  padding: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-line-pack: stretch;\n      align-content: stretch;\n}\n.texto {\n  padding: 1em 0.75em 3em;\n  text-align: center;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 82:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(117)
+__webpack_require__(121)
 
-var Component = __webpack_require__(45)(
+var Component = __webpack_require__(49)(
   /* script */
-  __webpack_require__(53),
+  __webpack_require__(57),
   /* template */
-  __webpack_require__(103),
+  __webpack_require__(107),
   /* scopeId */
   null,
   /* cssModules */

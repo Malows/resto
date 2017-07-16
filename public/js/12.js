@@ -1,6 +1,6 @@
 webpackJsonp([12],{
 
-/***/ 106:
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -27,14 +27,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('section', {
     staticClass: "modal-card-body"
-  }, [_c('p', [_vm._v("Mozo: "), _c('strong', [_vm._v(_vm._s(_vm.pedido.mozo.name))]), _vm._v(" - " + _vm._s(_vm.totalDeCosas) + " " + _vm._s(_vm.totalDeCosas > 1 ? 'cosas' : 'cosa'))]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("Mozo: "), _c('strong', [_vm._v(_vm._s(_vm.pedido.mozo.name))]), _vm._v(" - " + _vm._s(_vm.pedido.total_cosas) + " " + _vm._s(_vm.pedido.total_cosas > 1 ? 'cosas' : 'cosa'))]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.pedido.platos), function(plato) {
-    return _c('div', {
-      staticClass: "col-sm-12 col-md-6 pedido-item"
-    }, [(plato.cantidad > 1) ? _c('strong', {
-      staticClass: "text-danger"
-    }, [_vm._v("X" + _vm._s(plato.cantidad))]) : _vm._e(), _vm._v(" " + _vm._s(plato.nombre) + "\n        ")])
+    return _c('plato', {
+      key: _vm.pedido.id,
+      attrs: {
+        "plato": plato,
+        "estilos": ['col-sm-12', 'col-md-6', 'pedido-item']
+      }
+    })
   }))]), _vm._v(" "), _c('footer', {
     staticClass: "modal-card-foot"
   }, [_c('a', {
@@ -43,7 +45,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.hideModal
     }
   }, [_vm._v("Cerrar")]), _vm._v(" "), _c('a', {
-    staticClass: "button is-info is-large is-fullwidth"
+    staticClass: "button is-info is-large is-fullwidth",
+    style: ({
+      'is-loading': _vm.buttonLoading
+    })
   }, [_vm._v("Completar")])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -56,17 +61,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 120:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(79);
+var content = __webpack_require__(83);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(46)("3ed40ab0", content, false);
+var update = __webpack_require__(50)("3ed40ab0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -83,11 +88,14 @@ if(false) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(11);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -110,47 +118,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['showModal', 'pedido'],
-  methods: {
-    hideModal: function hideModal() {
-      this.$emit('hideModal');
+  components: {
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 54));
     }
   },
-  computed: {
-    totalDeCosas: function totalDeCosas() {
-      return this.pedido.platos.reduce(function (carry, current) {
-        return carry + current.cantidad;
-      }, 0);
+  data: function data() {
+    return {
+      buttonLoading: false
+    };
+  },
+
+  methods: {
+    hideModal: function hideModal() {
+      this.$store.dispatch('HIDE_MODAL_DESPACHAR');
     }
-  }
+  },
+  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
+    'pedido': function pedido(state) {
+      return state.cocina.pedido_seleccionado;
+    },
+    'showModal': function showModal(state) {
+      return state.cocina.showModalDespachar;
+    }
+  }))
 });
-
-/***/ }),
-
-/***/ 79:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(39)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
 /***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(43)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+
+/***/ 87:
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /* styles */
-__webpack_require__(120)
+__webpack_require__(124)
 
-var Component = __webpack_require__(45)(
+var Component = __webpack_require__(49)(
   /* script */
-  __webpack_require__(55),
+  __webpack_require__(59),
   /* template */
-  __webpack_require__(106),
+  __webpack_require__(110),
   /* scopeId */
   null,
   /* cssModules */

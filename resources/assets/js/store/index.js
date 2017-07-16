@@ -5,12 +5,14 @@ import Vuex from 'vuex'
 // import mutations from './mutations'
 // import getters from './getters'
 import mozo from './mozo'
+import cocina from './cocina'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: 'true',
   modules: {
-    mozo
+    mozo,
+    cocina
   },
   // state,
   // actions,

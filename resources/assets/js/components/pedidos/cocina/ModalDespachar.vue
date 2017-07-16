@@ -7,33 +7,40 @@
         <button class="delete" @click="hideModal"></button>
       </header>
       <section class="modal-card-body">
-        <p>Mozo: <strong>{{pedido.mozo.name}}</strong> - {{totalDeCosas}} {{totalDeCosas > 1 ? 'cosas' : 'cosa'}}</p>
+        <p>Mozo: <strong>{{pedido.mozo.name}}</strong> - {{pedido.total_cosas}} {{pedido.total_cosas > 1 ? 'cosas' : 'cosa'}}</p>
         <div class="row">
-          <div class="col-sm-12 col-md-6 pedido-item" v-for="plato in pedido.platos">
-            <strong class="text-danger" v-if="plato.cantidad > 1">X{{plato.cantidad}}</strong> {{plato.nombre}}
-          </div>
+          <plato v-for="plato in pedido.platos" :key="pedido.id" :plato="plato" :estilos="['col-sm-12', 'col-md-6', 'pedido-item']" />
         </div>
       </section>
       <footer class="modal-card-foot">
         <a class="button is-large is-fullwidth" @click="hideModal">Cerrar</a>
-        <a class="button is-info is-large is-fullwidth">Completar</a>
+        <a class="button is-info is-large is-fullwidth" :style="{ 'is-loading': buttonLoading }">Completar</a>
     </footer>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  props: ['showModal', 'pedido'],
+  components: {
+    'plato': () => System.import('../partials/Plato.vue')
+  },
+  data () {
+    return {
+      buttonLoading: false
+    }
+  },
   methods: {
     hideModal () {
-      this.$emit('hideModal')
+      this.$store.dispatch('HIDE_MODAL_DESPACHAR')
     }
   },
   computed: {
-    totalDeCosas () {
-      return this.pedido.platos.reduce((carry, current) => carry + current.cantidad, 0)
-    }
+    ...mapState({
+      'pedido': (state) => state.cocina.pedido_seleccionado,
+      'showModal': (state) => state.cocina.showModalDespachar
+    }),
   },
 }
 </script>

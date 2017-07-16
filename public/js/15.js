@@ -1,6 +1,6 @@
 webpackJsonp([15],{
 
-/***/ 57:
+/***/ 61:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20,7 +20,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 50));
+      return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 54));
     }
   },
   props: ['categoria']
@@ -28,14 +28,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 85:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(45)(
+var Component = __webpack_require__(49)(
   /* script */
-  __webpack_require__(57),
+  __webpack_require__(61),
   /* template */
-  __webpack_require__(94),
+  __webpack_require__(98),
   /* scopeId */
   null,
   /* cssModules */
@@ -63,7 +63,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 94:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

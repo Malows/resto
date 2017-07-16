@@ -18,7 +18,6 @@ export default {
     clickEnMesa () {
       // console.log(this.data);
       this.$store.dispatch('SET_MESA_SELECCIONADA', this.data )
-      this.$store.dispatch('SET_PEDIDO_MESA_SELECCIONADA', this.data )
       this.$store.dispatch('SHOW_MODAL_ACCIONES')
     }
   },

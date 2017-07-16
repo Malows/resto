@@ -38,7 +38,7 @@
 
         <p><strong>Platos</strong></p>
         <ul class="text-left">
-          <li class="pedido-item" v-for="pusher in pusher_platos" @dblclick="quitarPlato(pusher)">{{nombreDePlatos[pusher]}}</li>
+          <li class="pedido-item" v-for="pusher in mesa_seleccionada.platos_ids" @dblclick="quitarPlato(pusher)">{{nombreDePlatos[pusher]}}</li>
         </ul>
       </section>
       <footer class="modal-card-foot">
@@ -54,30 +54,28 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      pusher_platos: [],
       model_plato: '',
-      old_value_mesa: '',
       buttonLoader: false,
     }
   },
   methods: {
     hideModal () {
-      let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: parseInt(this.old_value_mesa)} )
-      this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa)
-      this.$store.dispatch('HIDE_MODAL_EDITAR')
+      this.$store.dispatch('ROLLBACK_MESA_SELECCIONADA').then( () => {
+        this.$store.dispatch('HIDE_MODAL_EDITAR')
+      })
     },
     quitarPlato (plato) {
-      this.pusher_platos.splice( this.pusher_platos.indexOf(plato), 1 )
+      this.$store.dispatch('QUITAR_PLATO_PEDIDO',plato)
     },
     agregarPlato () {
-      this.pusher_platos.push(this.model_plato)
+      this.$store.dispatch('AGREGAR_PLATO_PEDIDO',this.model_plato)
       this.model_plato = ''
     },
     editarPedido () {
       this.buttonLoader = true
       let payload = {
         mesa: this.mesa,
-        platos: this.pusher_platos
+        platos: this.mesa_seleccionada.platos_ids
       }
       this.$store.dispatch('EDITAR_PEDIDO', payload).then( response => {
         this.buttonLoader = false
@@ -88,22 +86,21 @@ export default {
   computed: {
     ...mapGetters(['platos', 'nombreDePlatos']),
     ...mapState({
-      showModal: 'showModalEditar',
-      categorias: 'categorias_with_platos',
-      mesa_seleccionada: 'mesa_seleccionada',
+      showModal: state => state.mozo.showModalEditar,
+      categorias: state => state.mozo.categorias_with_platos,
+      mesa_seleccionada: state => state.mozo.mesa_seleccionada,
+      rollback: state => state.mozo.rollback_mesa_seleccionada,
     }),
+
     mesa: {
       get () {
         return this.mesa_seleccionada.mesa
       },
       set (value) {
-        let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: parseInt(value)} )
+        let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: value ? parseInt(value) : ''} )
         this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa)
       }
     }
-  },
-  beforeUpdate () {
-    this.pusher_platos = this.mesa_seleccionada.platos_ids
   }
 }
 </script>

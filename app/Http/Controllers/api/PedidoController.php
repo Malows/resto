@@ -11,6 +11,64 @@ use App\Http\Controllers\Controller;
 
 class PedidoController extends Controller
 {
+    private function hidratar( $pedido )
+    {
+        $platos = Plato::select('id', 'nombre', 'precio')->whereIn('id',$pedido->platos)->get();
+
+
+        $platos->each( function ($plato) use ($pedido) {
+                $plato->cantidad = array_reduce($pedido->platos, function($carry, $item) use ($plato) {if ($item == $plato->id) $carry += 1; return $carry; }, 0 );
+            });
+
+        $pedido->total_cosas = count($pedido->platos);
+        $pedido->total_cobrar = 0;
+        $pedido->platos_ids = $pedido->platos;
+        $pedido->platos = $platos;
+
+        unset($pedido->user_id);
+
+        $pedido->url = route('api.pedidos.show', $pedido->id);
+        $pedido->url_editar = route('mesas.update', $pedido->id);
+        $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
+        $pedido->url_borrar = route('mesas.destroy', $pedido->id);
+        $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
+
+
+        foreach ($pedido->platos as $plato ){
+            $pedido->total_cobrar += $plato->cantidad * $plato->precio;
+        }
+
+        return $pedido;
+    }
+
+    private function hidratar_muchos ($pedidos) {
+        $platos = Plato::select('id', 'nombre', 'precio')->get();
+        $pedidos->each( function( $pedido ) use( $platos ) {
+            unset($pedido->user_id);
+
+            $pedido->total_cosas = count( $pedido->platos );
+            $pedido->total_cobrar = 0;
+
+            $ids = $pedido->platos;
+            $aux = $platos->filter( function ( $plato ) use ( $ids ) { return  in_array($plato->id, $ids); } ); //platos en mi pedido
+            $aux->each( function ($elem) use ($ids) {
+                $elem->cantidad = array_reduce($ids, function($carry, $item) use ($elem) {if ($item == $elem->id) $carry += 1; return $carry; }, 0 );
+            });
+            $pedido->platos_ids = $ids;
+            $pedido->platos = $aux->values();
+
+            foreach ($pedido->platos as $plato) {
+                $pedido->total_cobrar += $plato->cantidad * $plato->precio;
+            }
+            $pedido->url = route('api.pedidos.show', $pedido->id);
+            $pedido->url_editar = route('mesas.update', $pedido->id);
+            $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
+            $pedido->url_borrar = route('mesas.destroy', $pedido->id);
+            $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
+        });
+
+        return $pedidos;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,12 +95,9 @@ class PedidoController extends Controller
 //            $pedido->url = route('api.pedidos.show', $pedido->id);
 //        });
 
-        return Pedido::with(['mozo' => function ($query) { $query->select('id','name'); }])
-            ->whereNull('cobrado_at')->orderBy('created_at')->select('id', 'mesa','platos', 'user_id')->get()
-            ->each( function($pedido) {
-                unset($pedido->user_id);
-                $pedido->url = route('api.pedidos.show', $pedido->id);
-            });
+        $pedidos = Pedido::with(['mozo' => function ($query) { $query->select('id','name'); }])->whereNull('cobrado_at')
+            ->orderBy('created_at')->select('id', 'mesa','platos', 'user_id')->get();
+        return $this->hidratar_muchos($pedidos);
     }
 
     /**
@@ -121,23 +176,8 @@ class PedidoController extends Controller
     public function show($id)
     {
         $pedido = Pedido::with(['mozo' => function ($query) {$query->select('id', 'name');}])->findOrFail($id);
-        unset($pedido->user_id);
 
-        $pedido->url_editar = route('mesas.update', $pedido->id);
-        $pedido->url_cobrar = route('mesas.cobrar', $pedido->id);
-        $pedido->url_borrar = route('mesas.destroy', $pedido->id);
-        $pedido->url_completar = route('pedidos.dispatch', $pedido->id);
-        $pedido->total = 0;
-        $platos = Plato::whereIn('id',array_unique($pedido->platos) )->select('id', 'nombre', 'precio')->get();
-        $aux = [];
-        foreach ( array_unique($pedido->platos) as $value ) {
-            $plato = $platos->filter(function($elem) use($value) { return $elem->id === $value; })->first();
-            $plato->cantidad = count( array_filter($pedido->platos, function ($elem) use($value) {return $elem === $value;}));
-            $aux[] = $plato;
-            $pedido->total += ($plato->precio * $plato->cantidad);
-        }
-        $pedido->platos = $aux;
-        return $pedido;
+        return $this->hidratar($pedido);
     }
 
     /**

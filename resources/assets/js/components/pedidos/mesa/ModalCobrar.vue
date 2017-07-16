@@ -35,8 +35,8 @@ export default {
   },
   computed: {
     ...mapState({
-      showModal: 'showModalCobrar',
-      mesa: 'mesa_seleccionada'
+      showModal: state => state.mozo.showModalCobrar,
+      mesa: state => state.mozo.mesa_seleccionada,
     })
   },
   methods: {

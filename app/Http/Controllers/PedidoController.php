@@ -29,7 +29,7 @@ class PedidoController extends Controller
                 $elem->cantidad = array_reduce($ids, function($carry, $item) use ($elem) {if ($item == $elem->id) $carry += 1; return $carry; }, 0 );
             });
             $pedido->platos_ids = $ids;
-            $pedido->platos = $aux;
+            $pedido->platos = $aux->values();
 
             foreach ($pedido->platos as $plato) {
                 $pedido->total_cobrar += $plato->cantidad * $plato->precio;
@@ -50,7 +50,7 @@ class PedidoController extends Controller
 
             $platos = Plato::select('id', 'nombre', 'precio')->whereIn('id',$pedido->platos)->get()
                 ->each( function ($plato) use($pedido) {
-                    $plato->cantidad = array_reduce($plato, function($carry, $item) use ($plato) {if ($item == $plato->id) $carry += 1; return $carry; }, 0 );
+                    $plato->cantidad = array_reduce($pedido->platos, function($carry, $item) use ($plato) {if ($item == $plato->id) $carry += 1; return $carry; }, 0 );
                 });
 
             $pedido->total_cosas = count($pedido->platos);

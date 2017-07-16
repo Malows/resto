@@ -12,22 +12,38 @@ export default {
       commit('SET_MESAS', data)
     })
   },
-  SHOW_MODAL_ACCIONES ({ dispatch, commit }) {
+
+  // actions de rollback de estados
+  ROLLBACK_MESA_SELECCIONADA ({ commit, state }) {
+    new Promise(function(resolve, reject) {
+      axios.get(state.mesa_seleccionada.url).then( ({ data }) => {
+        console.log(data.platos_ids);
+        commit('SET_MESA_SELECCIONADA', data)
+        // despues del hide, hace un rollback, no debería ser necesario el seteo
+        // pero para evitar incosistencias de datos, la re seteo
+        commit('REPLACE_MESA', data)
+        resolve()
+      })
+    });
+  },
+
+  // actions de modals
+  SHOW_MODAL_ACCIONES ({ commit }) {
     commit('SET_MODAL_ACCIONES', true)
   },
-  SHOW_MODAL_BORRAR ({ dispatch, commit }) {
+  SHOW_MODAL_BORRAR ({ commit }) {
     commit('SET_MODAL_ACCIONES', false)
     commit('SET_MODAL_BORRAR', true)
   },
-  SHOW_MODAL_COBRAR ({ dispatch, commit }) {
+  SHOW_MODAL_COBRAR ({ commit }) {
     commit('SET_MODAL_ACCIONES', false)
     commit('SET_MODAL_COBRAR', true)
   },
-  SHOW_MODAL_CREAR ({ dispatch, commit }) {
+  SHOW_MODAL_CREAR ({ commit }) {
     commit('SET_MODAL_ACCIONES', false)
     commit('SET_MODAL_CREAR', true)
   },
-  SHOW_MODAL_EDITAR ({ dispatch, commit }) {
+  SHOW_MODAL_EDITAR ({ commit, state }) {
     commit('SET_MODAL_ACCIONES', false)
     commit('SET_MODAL_EDITAR',true)
   },
@@ -70,6 +86,12 @@ export default {
         }
       })
     });
+  },
+  QUITAR_PLATO_PEDIDO ({ commit }, plato) {
+    commit('QUITAR_PLATO_PEDIDO', plato)
+  },
+  AGREGAR_PLATO_PEDIDO ({ commit }, plato) {
+    commit('AGREGAR_PLATO_PEDIDO', plato)
   },
   COBRAR_PEDIDO ({ commit }, pedido) {
     new Promise(function(resolve, reject) {

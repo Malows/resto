@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 105:
+/***/ 102:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -68,17 +68,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 119:
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(78);
+var content = __webpack_require__(75);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("080e847e", content, false);
+var update = __webpack_require__(46)("080e847e", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -95,7 +95,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 66:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -132,7 +132,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 53));
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 50));
     }
   },
   data: function data() {
@@ -142,8 +142,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: 'showModalCobrar',
-    mesa: 'mesa_seleccionada'
+    showModal: function showModal(state) {
+      return state.mozo.showModalCobrar;
+    },
+    mesa: function mesa(state) {
+      return state.mozo.mesa_seleccionada;
+    }
   })),
   methods: {
     hideModal: function hideModal() {
@@ -164,26 +168,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 78:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
+exports = module.exports = __webpack_require__(39)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 92:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(119)
+__webpack_require__(116)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(45)(
   /* script */
-  __webpack_require__(66),
+  __webpack_require__(63),
   /* template */
-  __webpack_require__(105),
+  __webpack_require__(102),
   /* scopeId */
   null,
   /* cssModules */

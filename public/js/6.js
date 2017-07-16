@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 108:
+/***/ 105:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -146,7 +146,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Añadir")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('ul', {
     staticClass: "text-left"
-  }, _vm._l((_vm.pusher_platos), function(pusher) {
+  }, _vm._l((_vm.mesa_seleccionada.platos_ids), function(pusher) {
     return _c('li', {
       staticClass: "pedido-item",
       on: {
@@ -184,17 +184,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 122:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("d620d8f0", content, false);
+var update = __webpack_require__(46)("d620d8f0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -211,7 +211,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 68:
+/***/ 65:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -275,82 +275,89 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      pusher_platos: [],
       model_plato: '',
-      old_value_mesa: '',
       buttonLoader: false
     };
   },
 
   methods: {
     hideModal: function hideModal() {
-      var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(this.old_value_mesa) });
-      this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
-      this.$store.dispatch('HIDE_MODAL_EDITAR');
+      var _this = this;
+
+      this.$store.dispatch('ROLLBACK_MESA_SELECCIONADA').then(function () {
+        _this.$store.dispatch('HIDE_MODAL_EDITAR');
+      });
     },
     quitarPlato: function quitarPlato(plato) {
-      this.pusher_platos.splice(this.pusher_platos.indexOf(plato), 1);
+      this.$store.dispatch('QUITAR_PLATO_PEDIDO', plato);
     },
     agregarPlato: function agregarPlato() {
-      this.pusher_platos.push(this.model_plato);
+      this.$store.dispatch('AGREGAR_PLATO_PEDIDO', this.model_plato);
       this.model_plato = '';
     },
     editarPedido: function editarPedido() {
-      var _this = this;
+      var _this2 = this;
 
       this.buttonLoader = true;
       var payload = {
         mesa: this.mesa,
-        platos: this.pusher_platos
+        platos: this.mesa_seleccionada.platos_ids
       };
       this.$store.dispatch('EDITAR_PEDIDO', payload).then(function (response) {
-        _this.buttonLoader = false;
-        _this.$store.dispatch('HIDE_MODAL_EDITAR');
+        _this2.buttonLoader = false;
+        _this2.$store.dispatch('HIDE_MODAL_EDITAR');
       });
     }
   },
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['platos', 'nombreDePlatos']), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: 'showModalEditar',
-    categorias: 'categorias_with_platos',
-    mesa_seleccionada: 'mesa_seleccionada'
+    showModal: function showModal(state) {
+      return state.mozo.showModalEditar;
+    },
+    categorias: function categorias(state) {
+      return state.mozo.categorias_with_platos;
+    },
+    mesa_seleccionada: function mesa_seleccionada(state) {
+      return state.mozo.mesa_seleccionada;
+    },
+    rollback: function rollback(state) {
+      return state.mozo.rollback_mesa_seleccionada;
+    }
   }), {
+
     mesa: {
       get: function get() {
         return this.mesa_seleccionada.mesa;
       },
       set: function set(value) {
-        var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: parseInt(value) });
+        var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: value ? parseInt(value) : '' });
         this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
       }
     }
-  }),
-  beforeUpdate: function beforeUpdate() {
-    this.pusher_platos = this.mesa_seleccionada.platos_ids;
-  }
+  })
 });
 
 /***/ }),
 
-/***/ 81:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
+exports = module.exports = __webpack_require__(39)();
 exports.push([module.i, "\n.pedido-item {\n  margin: 0.25em 0;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 94:
+/***/ 91:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(122)
+__webpack_require__(119)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(45)(
   /* script */
-  __webpack_require__(68),
+  __webpack_require__(65),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(105),
   /* scopeId */
   null,
   /* cssModules */

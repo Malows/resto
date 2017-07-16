@@ -62,8 +62,8 @@ export default {
   },
   computed: {
     ...mapState({
-      showModal: 'showModalCrear',
-      categorias: 'categorias_with_platos'
+      showModal: state => state.mozo.showModalCrear,
+      categorias: state => state.mozo.categorias_with_platos,
     }),
     ...mapGetters({
       platos: 'nombreDePlatos'

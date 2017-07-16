@@ -1,4 +1,5 @@
 export default {
+  // mutators setters
   SET_MESA_SELECCIONADA (state, mesa) {
     state.mesa_seleccionada = mesa
   },
@@ -8,6 +9,8 @@ export default {
   SET_MESAS (state, mesas) {
     state.mesas = mesas
   },
+
+  // mutators de los modals
   SET_MODAL_ACCIONES(state, value) {
     state.showModalAcciones = value
   },
@@ -23,14 +26,29 @@ export default {
   SET_MODAL_EDITAR(state, value) {
     state.showModalEditar = value
   },
+
+  // mutators de las mesas
   APPEND_MESA(state, mesa) {
     state.mesas.push(mesa)
   },
   REPLACE_MESA (state, mesa) {
-    state.mesas.filter( elem => { elem.id === mesa.id })[0] = mesa
+    state.mesas = state.mesas.map( elem => {
+      if ( elem.id === mesa.id ) {
+        return mesa
+      } else {
+        return elem
+      }
+    })
   },
   REMOVE_MESA (state, mesa) {
     state.mesa.splice( state.mesa.indexOf( mesa ), 1 )
+  },
+  QUITAR_PLATO_PEDIDO (state, plato) {
+    state.mesa_seleccionada.platos_ids.splice( state.mesa_seleccionada.platos_ids.indexOf(plato), 1)
+  },
+  AGREGAR_PLATO_PEDIDO (state, plato) {
+    state.mesa_seleccionada.platos_ids.push(plato)
+    state.mesa_seleccionada.platos_ids.sort((a,b) => a-b)
   },
   // TOGGLE_LOADING (state) {
   //   state.callingAPI = !state.callingAPI

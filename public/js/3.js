@@ -1,39 +1,16 @@
 webpackJsonp([3],{
 
-/***/ 101:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', _vm._l((_vm.categorias), function(categoria) {
-    return _c('menu-platos', {
-      key: categoria.id,
-      attrs: {
-        "categoria": categoria
-      }
-    })
-  }))
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-357c9fbc", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 116:
+/***/ 113:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(72);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("4a5a483f", content, false);
+var update = __webpack_require__(46)("4a5a483f", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -50,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 39:
 /***/ (function(module, exports) {
 
 /*
@@ -107,18 +84,18 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 44:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(116)
+__webpack_require__(113)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(45)(
   /* script */
-  __webpack_require__(54),
+  __webpack_require__(51),
   /* template */
-  __webpack_require__(101),
+  __webpack_require__(98),
   /* scopeId */
   null,
   /* cssModules */
@@ -146,7 +123,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 48:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -204,7 +181,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 49:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -223,7 +200,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(50)
+var listToStyles = __webpack_require__(47)
 
 /*
 type StyleObject = {
@@ -426,7 +403,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 47:
 /***/ (function(module, exports) {
 
 /**
@@ -460,7 +437,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -475,7 +452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'menu-platos': function menuPlatos() {
-      return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 84));
+      return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 81));
     }
   },
   props: ['url'],
@@ -495,11 +472,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 75:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
+exports = module.exports = __webpack_require__(39)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+
+/***/ 98:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', _vm._l((_vm.categorias), function(categoria) {
+    return _c('menu-platos', {
+      key: categoria.id,
+      attrs: {
+        "categoria": categoria
+      }
+    })
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-357c9fbc", module.exports)
+  }
+}
 
 /***/ })
 

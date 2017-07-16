@@ -1,16 +1,16 @@
 webpackJsonp([2],{
 
-/***/ 111:
+/***/ 108:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(70);
+var content = __webpack_require__(67);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("c9458216", content, false);
+var update = __webpack_require__(46)("c9458216", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -27,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 42:
+/***/ 39:
 /***/ (function(module, exports) {
 
 /*
@@ -84,18 +84,18 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 47:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(111)
+__webpack_require__(108)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(45)(
   /* script */
-  __webpack_require__(62),
+  __webpack_require__(59),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(92),
   /* scopeId */
   null,
   /* cssModules */
@@ -123,7 +123,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 48:
+/***/ 45:
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -181,7 +181,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 49:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -200,7 +200,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(50)
+var listToStyles = __webpack_require__(47)
 
 /*
 type StyleObject = {
@@ -403,7 +403,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 47:
 /***/ (function(module, exports) {
 
 /**
@@ -437,7 +437,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 62:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,26 +472,35 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'mesa': function mesa() {
-      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 89));
+      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 86));
     },
     'modal-acciones': function modalAcciones() {
-      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 90));
+      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 87));
     },
     'modal-crear': function modalCrear() {
-      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 93));
+      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 90));
     },
     'modal-cobrar': function modalCobrar() {
-      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 92));
+      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 89));
     },
     'modal-borrar': function modalBorrar() {
-      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 91));
+      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 88));
     },
     'modal-editar': function modalEditar() {
-      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 94));
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 91));
     }
   },
 
-  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])(['mesas', 'mesa_seleccionada'])),
+  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
+    'mesas': function mesas(state) {
+      return state.mozo.mesas;
+    },
+    'mesa_seleccionada': function mesa_seleccionada(state) {
+      return state.mozo.mesa_seleccionada;
+    }
+  }
+  // ...mapState('state/mozo',['mesas', 'mesa_seleccionada'])
+  )),
 
   methods: {
     modalCrear: function modalCrear() {
@@ -520,15 +529,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 70:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports = module.exports = __webpack_require__(39)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 95:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

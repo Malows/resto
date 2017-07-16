@@ -1,52 +1,16 @@
 webpackJsonp([14],{
 
-/***/ 100:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row text-center"
-  }, [_c('h2', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.platosFiltrados.length),
-      expression: "platosFiltrados.length"
-    }]
-  }, [_vm._v(_vm._s(this.categoria.nombre.toUpperCase()))]), _vm._v(" "), _vm._l((_vm.platosDistribuidos), function(fila) {
-    return _c('div', {
-      staticClass: "row col-lg-8 col-lg-offset-2"
-    }, _vm._l((fila), function(elem) {
-      return _c('plato', {
-        key: elem.id,
-        attrs: {
-          "elem": elem
-        }
-      })
-    }))
-  })], 2)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-32bd36d6", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 115:
+/***/ 112:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(74);
+var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("6f7f08dc", content, false);
+var update = __webpack_require__(46)("6f7f08dc", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -63,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82,7 +46,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 85));
+      return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 82));
     }
   },
   props: ['categoria'],
@@ -166,26 +130,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 74:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
+exports = module.exports = __webpack_require__(39)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 84:
+/***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(115)
+__webpack_require__(112)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(45)(
   /* script */
-  __webpack_require__(55),
+  __webpack_require__(52),
   /* template */
-  __webpack_require__(100),
+  __webpack_require__(97),
   /* scopeId */
   null,
   /* cssModules */
@@ -210,6 +174,42 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+
+/***/ 97:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row text-center"
+  }, [_c('h2', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.platosFiltrados.length),
+      expression: "platosFiltrados.length"
+    }]
+  }, [_vm._v(_vm._s(this.categoria.nombre.toUpperCase()))]), _vm._v(" "), _vm._l((_vm.platosDistribuidos), function(fila) {
+    return _c('div', {
+      staticClass: "row col-lg-8 col-lg-offset-2"
+    }, _vm._l((fila), function(elem) {
+      return _c('plato', {
+        key: elem.id,
+        attrs: {
+          "elem": elem
+        }
+      })
+    }))
+  })], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-32bd36d6", module.exports)
+  }
+}
 
 /***/ })
 

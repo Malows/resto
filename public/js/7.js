@@ -1,16 +1,16 @@
 webpackJsonp([7],{
 
-/***/ 113:
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(72);
+var content = __webpack_require__(69);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(49)("cfcd1832", content, false);
+var update = __webpack_require__(46)("cfcd1832", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -27,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,8 +99,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: 'showModalCrear',
-    categorias: 'categorias_with_platos'
+    showModal: function showModal(state) {
+      return state.mozo.showModalCrear;
+    },
+    categorias: function categorias(state) {
+      return state.mozo.categorias_with_platos;
+    }
   }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
     platos: 'nombreDePlatos'
   })),
@@ -137,26 +141,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 72:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(42)();
+exports = module.exports = __webpack_require__(39)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 93:
+/***/ 90:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(113)
+__webpack_require__(110)
 
-var Component = __webpack_require__(48)(
+var Component = __webpack_require__(45)(
   /* script */
-  __webpack_require__(67),
+  __webpack_require__(64),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(95),
   /* scopeId */
   null,
   /* cssModules */
@@ -184,7 +188,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 98:
+/***/ 95:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

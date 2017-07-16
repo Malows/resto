@@ -27,8 +27,8 @@ export default {
   },
   computed: {
     ...mapState({
-      showModal: 'showModalBorrar',
-      mesa: 'mesa_seleccionada'
+      showModal: state => state.mozo.showModalBorrar,
+      mesa: state => state.mozo.mesa_seleccionada,
     })
   },
   methods: {

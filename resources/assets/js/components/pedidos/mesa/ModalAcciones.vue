@@ -22,7 +22,7 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      showModal: 'showModalAcciones'
+      showModal: state => state.mozo.showModalAcciones
     })
   },
   methods: {

@@ -33,7 +33,11 @@ export default {
   },
 
   computed: {
-    ...mapState(['mesas', 'mesa_seleccionada'])
+    ...mapState({
+      'mesas': state => state.mozo.mesas,
+      'mesa_seleccionada': state => state.mozo.mesa_seleccionada
+    })
+    // ...mapState('state/mozo',['mesas', 'mesa_seleccionada'])
   },
 
   methods: {

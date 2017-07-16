@@ -139,7 +139,7 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -547,7 +547,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)))
 
 /***/ }),
 /* 2 */
@@ -10545,7 +10545,7 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_index_js__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_index_js__ = __webpack_require__(31);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -10566,16 +10566,16 @@ window.EventBus = new window.Vue();
  */
 
 Vue.component('menu-resto', function () {
-  return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 44));
+  return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 41));
 });
 Vue.component('mesas', function () {
-  return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 47));
+  return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 44));
 });
 Vue.component('lista-pedidos', function () {
-  return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 45));
+  return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 42));
 });
 Vue.component('lista-pedidos-categoria', function () {
-  return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 46));
+  return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 43));
 });
 // Vue.component('menu-platos', require('./components/MenuPlatos.vue'));
 // Vue.component('plato', require('./components/Plato.vue'));
@@ -12250,7 +12250,7 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(38);
+window._ = __webpack_require__(35);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12259,9 +12259,9 @@ window._ = __webpack_require__(38);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(37);
+  window.$ = window.jQuery = __webpack_require__(34);
 
-  __webpack_require__(36);
+  __webpack_require__(33);
 } catch (e) {}
 
 /**
@@ -12311,270 +12311,54 @@ if (token) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(_ref, mesa) {
-    var commit = _ref.commit;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mozo__ = __webpack_require__(32);
 
-    commit('SET_MESA_SELECCIONADA', mesa);
-  },
-  REFRESH_CATEGORIAS_WITH_PLATOS: function REFRESH_CATEGORIAS_WITH_PLATOS(_ref2) {
-    var commit = _ref2.commit;
 
-    axios.get('http://localhost:8000/api/categorias').then(function (_ref3) {
-      var data = _ref3.data;
+// import state from './state'
+// import actions from './actions'
+// import mutations from './mutations'
+// import getters from './getters'
 
-      commit('SET_CATEGORIAS_WITH_PLATOS', data);
-    });
-  },
-  REFRESH_MESAS: function REFRESH_MESAS(_ref4) {
-    var commit = _ref4.commit;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* default */]);
 
-    axios.get('http://localhost:8000/api/mesas').then(function (_ref5) {
-      var data = _ref5.data;
-
-      commit('SET_MESAS', data);
-    });
-  },
-  SHOW_MODAL_ACCIONES: function SHOW_MODAL_ACCIONES(_ref6) {
-    var dispatch = _ref6.dispatch,
-        commit = _ref6.commit;
-
-    commit('SET_MODAL_ACCIONES', true);
-  },
-  SHOW_MODAL_BORRAR: function SHOW_MODAL_BORRAR(_ref7) {
-    var dispatch = _ref7.dispatch,
-        commit = _ref7.commit;
-
-    commit('SET_MODAL_ACCIONES', false);
-    commit('SET_MODAL_BORRAR', true);
-  },
-  SHOW_MODAL_COBRAR: function SHOW_MODAL_COBRAR(_ref8) {
-    var dispatch = _ref8.dispatch,
-        commit = _ref8.commit;
-
-    commit('SET_MODAL_ACCIONES', false);
-    commit('SET_MODAL_COBRAR', true);
-  },
-  SHOW_MODAL_CREAR: function SHOW_MODAL_CREAR(_ref9) {
-    var dispatch = _ref9.dispatch,
-        commit = _ref9.commit;
-
-    commit('SET_MODAL_ACCIONES', false);
-    commit('SET_MODAL_CREAR', true);
-  },
-  SHOW_MODAL_EDITAR: function SHOW_MODAL_EDITAR(_ref10) {
-    var dispatch = _ref10.dispatch,
-        commit = _ref10.commit;
-
-    commit('SET_MODAL_ACCIONES', false);
-    commit('SET_MODAL_EDITAR', true);
-  },
-  HIDE_MODAL_ACCIONES: function HIDE_MODAL_ACCIONES(_ref11) {
-    var commit = _ref11.commit;
-
-    commit('SET_MODAL_ACCIONES', false);
-  },
-  HIDE_MODAL_BORRAR: function HIDE_MODAL_BORRAR(_ref12) {
-    var commit = _ref12.commit;
-
-    commit('SET_MODAL_BORRAR', false);
-  },
-  HIDE_MODAL_COBRAR: function HIDE_MODAL_COBRAR(_ref13) {
-    var commit = _ref13.commit;
-
-    commit('SET_MODAL_COBRAR', false);
-  },
-  HIDE_MODAL_CREAR: function HIDE_MODAL_CREAR(_ref14) {
-    var commit = _ref14.commit;
-
-    commit('SET_MODAL_CREAR', false);
-  },
-  HIDE_MODAL_EDITAR: function HIDE_MODAL_EDITAR(_ref15) {
-    var commit = _ref15.commit;
-
-    commit('SET_MODAL_EDITAR', false);
-  },
-  NUEVO_PEDIDO: function NUEVO_PEDIDO(_ref16, pedido) {
-    var commit = _ref16.commit;
-
-    return new Promise(function (resolve, reject) {
-      axios.post('http://localhost:8000/pedidos/mesas', pedido).then(function (response) {
-        if (response.status === 200) {
-          commit('APPEND_MESA', response.data);
-          resolve(response);
-        } else {
-          reject(response.error);
-        }
-      });
-    });
-  },
-  EDITAR_PEDIDO: function EDITAR_PEDIDO(_ref17, pedido) {
-    var commit = _ref17.commit;
-
-    new Promise(function (resolve, reject) {
-      axios.put(pedido.url_editar).then(function (response) {
-        if (response.status === 200) {
-          commit('REPLACE_MESA', response.data);
-          commit('SET_MESA_SELECCIONADA', response.data);
-          reolve(response);
-        } else {
-          reject(response.error);
-        }
-      });
-    });
-  },
-  COBRAR_PEDIDO: function COBRAR_PEDIDO(_ref18, pedido) {
-    var commit = _ref18.commit;
-
-    new Promise(function (resolve, reject) {
-      axios.put(pedido.url_cobrar).then(function (response) {
-        if (response.status === 200) {
-          commit('REMOVE_MESA', response.data);
-          commit('SET_MESA_SELECCIONADA', undefined);
-          resolve(response);
-        }
-      });
-    });
-  },
-  BORRAR_PEDIDO: function BORRAR_PEDIDO(_ref19, pedido) {
-    var commit = _ref19.commit;
-
-    new Promise(function (resolve, reject) {
-      axios.delete(pedido.url_borrar).then(function (response) {
-        if (response.status === 200) {
-          commit('REMOVE_MESA', response.data);
-          commit('SET_MESA_SELECCIONADA', undefined);
-          resolve(response);
-        }
-      });
-    });
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* default */].Store({
+  strict: 'true',
+  modules: {
+    mozo: __WEBPACK_IMPORTED_MODULE_2__mozo__["a" /* default */]
   }
-});
+  // state,
+  // actions,
+  // mutations,
+  // getters
+}));
 
 /***/ }),
 /* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__state__ = __webpack_require__(131);
+
+
+
+
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  categorias: function categorias(state) {
-    return state.categorias_with_platos.map(function (categoria) {
-      return {
-        id: categoria.id,
-        nombre: categoria.nombre
-      };
-    });
-  },
-  platos: function platos(state) {
-    return state.categorias_with_platos.reduce(function (acc, curr) {
-      return acc.concat(curr.platos);
-    }, []);
-  },
-  nombreDePlatos: function nombreDePlatos(state, getters) {
-    var aux = [];
-    getters.platos.forEach(function (plato) {
-      aux[plato.id] = plato.nombre;
-    });
-    return aux;
-  }
+  // namespaced: true,
+  state: __WEBPACK_IMPORTED_MODULE_3__state__["a" /* default */],
+  actions: __WEBPACK_IMPORTED_MODULE_0__actions__["a" /* default */],
+  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* default */],
+  getters: __WEBPACK_IMPORTED_MODULE_1__getters__["a" /* default */]
 });
 
 /***/ }),
 /* 33 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mutations__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__getters__ = __webpack_require__(32);
-
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* default */].Store({
-  strict: 'true',
-  state: __WEBPACK_IMPORTED_MODULE_2__state__["a" /* default */],
-  actions: __WEBPACK_IMPORTED_MODULE_3__actions__["a" /* default */],
-  mutations: __WEBPACK_IMPORTED_MODULE_4__mutations__["a" /* default */],
-  getters: __WEBPACK_IMPORTED_MODULE_5__getters__["a" /* default */]
-}));
-
-/***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(state, mesa) {
-    state.mesa_seleccionada = mesa;
-  },
-  SET_CATEGORIAS_WITH_PLATOS: function SET_CATEGORIAS_WITH_PLATOS(state, categorias) {
-    state.categorias_with_platos = categorias;
-  },
-  SET_MESAS: function SET_MESAS(state, mesas) {
-    state.mesas = mesas;
-  },
-  SET_MODAL_ACCIONES: function SET_MODAL_ACCIONES(state, value) {
-    state.showModalAcciones = value;
-  },
-  SET_MODAL_BORRAR: function SET_MODAL_BORRAR(state, value) {
-    state.showModalBorrar = value;
-  },
-  SET_MODAL_COBRAR: function SET_MODAL_COBRAR(state, value) {
-    state.showModalCobrar = value;
-  },
-  SET_MODAL_CREAR: function SET_MODAL_CREAR(state, value) {
-    state.showModalCrear = value;
-  },
-  SET_MODAL_EDITAR: function SET_MODAL_EDITAR(state, value) {
-    state.showModalEditar = value;
-  },
-  APPEND_MESA: function APPEND_MESA(state, mesa) {
-    state.mesas.push(mesa);
-  },
-  REPLACE_MESA: function REPLACE_MESA(state, mesa) {
-    state.mesas.filter(function (elem) {
-      elem.id === mesa.id;
-    })[0] = mesa;
-  },
-  REMOVE_MESA: function REMOVE_MESA(state, mesa) {
-    state.mesa.splice(state.mesa.indexOf(mesa), 1);
-  }
-});
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  /*
-  * Vista del mozo
-  */
-  categorias_with_platos: [], // con platos habilidatos solamente
-  mesa_seleccionada: {},
-  mesas: [], //mesas de mozo en particular
-  // pedidos: [], // todos los pedidos pendientes
-
-  showModalAcciones: false,
-  showModalBorrar: false,
-  showModalCobrar: false,
-  showModalCrear: false,
-  showModalEditar: false
-});
-
-/***/ }),
-/* 36 */
 /***/ (function(module, exports) {
 
 /*!
@@ -14957,7 +14741,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 37 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25217,7 +25001,7 @@ return jQuery;
 
 
 /***/ }),
-/* 38 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -42306,10 +42090,10 @@ return jQuery;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(40)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(37)(module)))
 
 /***/ }),
-/* 39 */
+/* 36 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -42499,7 +42283,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 40 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -42527,12 +42311,387 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 41 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(9);
 module.exports = __webpack_require__(10);
 
+
+/***/ }),
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(_ref, mesa) {
+    var commit = _ref.commit;
+
+    commit('SET_MESA_SELECCIONADA', mesa);
+  },
+  REFRESH_CATEGORIAS_WITH_PLATOS: function REFRESH_CATEGORIAS_WITH_PLATOS(_ref2) {
+    var commit = _ref2.commit;
+
+    axios.get('http://localhost:8000/api/categorias').then(function (_ref3) {
+      var data = _ref3.data;
+
+      commit('SET_CATEGORIAS_WITH_PLATOS', data);
+    });
+  },
+  REFRESH_MESAS: function REFRESH_MESAS(_ref4) {
+    var commit = _ref4.commit;
+
+    axios.get('http://localhost:8000/api/mesas').then(function (_ref5) {
+      var data = _ref5.data;
+
+      commit('SET_MESAS', data);
+    });
+  },
+
+
+  // actions de rollback de estados
+  ROLLBACK_MESA_SELECCIONADA: function ROLLBACK_MESA_SELECCIONADA(_ref6) {
+    var commit = _ref6.commit,
+        state = _ref6.state;
+
+    new Promise(function (resolve, reject) {
+      axios.get(state.mesa_seleccionada.url).then(function (_ref7) {
+        var data = _ref7.data;
+
+        console.log(data.platos_ids);
+        commit('SET_MESA_SELECCIONADA', data
+        // despues del hide, hace un rollback, no debería ser necesario el seteo
+        // pero para evitar incosistencias de datos, la re seteo
+        );commit('REPLACE_MESA', data);
+        resolve();
+      });
+    });
+  },
+
+
+  // actions de modals
+  SHOW_MODAL_ACCIONES: function SHOW_MODAL_ACCIONES(_ref8) {
+    var commit = _ref8.commit;
+
+    commit('SET_MODAL_ACCIONES', true);
+  },
+  SHOW_MODAL_BORRAR: function SHOW_MODAL_BORRAR(_ref9) {
+    var commit = _ref9.commit;
+
+    commit('SET_MODAL_ACCIONES', false);
+    commit('SET_MODAL_BORRAR', true);
+  },
+  SHOW_MODAL_COBRAR: function SHOW_MODAL_COBRAR(_ref10) {
+    var commit = _ref10.commit;
+
+    commit('SET_MODAL_ACCIONES', false);
+    commit('SET_MODAL_COBRAR', true);
+  },
+  SHOW_MODAL_CREAR: function SHOW_MODAL_CREAR(_ref11) {
+    var commit = _ref11.commit;
+
+    commit('SET_MODAL_ACCIONES', false);
+    commit('SET_MODAL_CREAR', true);
+  },
+  SHOW_MODAL_EDITAR: function SHOW_MODAL_EDITAR(_ref12) {
+    var commit = _ref12.commit,
+        state = _ref12.state;
+
+    commit('SET_MODAL_ACCIONES', false);
+    commit('SET_MODAL_EDITAR', true);
+  },
+  HIDE_MODAL_ACCIONES: function HIDE_MODAL_ACCIONES(_ref13) {
+    var commit = _ref13.commit;
+
+    commit('SET_MODAL_ACCIONES', false);
+  },
+  HIDE_MODAL_BORRAR: function HIDE_MODAL_BORRAR(_ref14) {
+    var commit = _ref14.commit;
+
+    commit('SET_MODAL_BORRAR', false);
+  },
+  HIDE_MODAL_COBRAR: function HIDE_MODAL_COBRAR(_ref15) {
+    var commit = _ref15.commit;
+
+    commit('SET_MODAL_COBRAR', false);
+  },
+  HIDE_MODAL_CREAR: function HIDE_MODAL_CREAR(_ref16) {
+    var commit = _ref16.commit;
+
+    commit('SET_MODAL_CREAR', false);
+  },
+  HIDE_MODAL_EDITAR: function HIDE_MODAL_EDITAR(_ref17) {
+    var commit = _ref17.commit;
+
+    commit('SET_MODAL_EDITAR', false);
+  },
+  NUEVO_PEDIDO: function NUEVO_PEDIDO(_ref18, pedido) {
+    var commit = _ref18.commit;
+
+    return new Promise(function (resolve, reject) {
+      axios.post('http://localhost:8000/pedidos/mesas', pedido).then(function (response) {
+        if (response.status === 200) {
+          commit('APPEND_MESA', response.data);
+          resolve(response);
+        } else {
+          reject(response.error);
+        }
+      });
+    });
+  },
+  EDITAR_PEDIDO: function EDITAR_PEDIDO(_ref19, pedido) {
+    var commit = _ref19.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.put(pedido.url_editar).then(function (response) {
+        if (response.status === 200) {
+          commit('REPLACE_MESA', response.data);
+          commit('SET_MESA_SELECCIONADA', response.data);
+          reolve(response);
+        } else {
+          reject(response.error);
+        }
+      });
+    });
+  },
+  QUITAR_PLATO_PEDIDO: function QUITAR_PLATO_PEDIDO(_ref20, plato) {
+    var commit = _ref20.commit;
+
+    commit('QUITAR_PLATO_PEDIDO', plato);
+  },
+  AGREGAR_PLATO_PEDIDO: function AGREGAR_PLATO_PEDIDO(_ref21, plato) {
+    var commit = _ref21.commit;
+
+    commit('AGREGAR_PLATO_PEDIDO', plato);
+  },
+  COBRAR_PEDIDO: function COBRAR_PEDIDO(_ref22, pedido) {
+    var commit = _ref22.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.put(pedido.url_cobrar).then(function (response) {
+        if (response.status === 200) {
+          commit('REMOVE_MESA', response.data);
+          commit('SET_MESA_SELECCIONADA', undefined);
+          resolve(response);
+        }
+      });
+    });
+  },
+  BORRAR_PEDIDO: function BORRAR_PEDIDO(_ref23, pedido) {
+    var commit = _ref23.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.delete(pedido.url_borrar).then(function (response) {
+        if (response.status === 200) {
+          commit('REMOVE_MESA', response.data);
+          commit('SET_MESA_SELECCIONADA', undefined);
+          resolve(response);
+        }
+      });
+    });
+  }
+});
+
+/***/ }),
+/* 129 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  categorias: function categorias(state) {
+    return state.categorias_with_platos.map(function (categoria) {
+      return {
+        id: categoria.id,
+        nombre: categoria.nombre
+      };
+    });
+  },
+  platos: function platos(state) {
+    return state.categorias_with_platos.reduce(function (acc, curr) {
+      return acc.concat(curr.platos);
+    }, []);
+  },
+  nombreDePlatos: function nombreDePlatos(state, getters) {
+    var aux = [];
+    getters.platos.forEach(function (plato) {
+      aux[plato.id] = plato.nombre;
+    });
+    return aux;
+  }
+});
+
+/***/ }),
+/* 130 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  // mutators setters
+  SET_MESA_SELECCIONADA: function SET_MESA_SELECCIONADA(state, mesa) {
+    state.mesa_seleccionada = mesa;
+  },
+  SET_CATEGORIAS_WITH_PLATOS: function SET_CATEGORIAS_WITH_PLATOS(state, categorias) {
+    state.categorias_with_platos = categorias;
+  },
+  SET_MESAS: function SET_MESAS(state, mesas) {
+    state.mesas = mesas;
+  },
+
+
+  // mutators de los modals
+  SET_MODAL_ACCIONES: function SET_MODAL_ACCIONES(state, value) {
+    state.showModalAcciones = value;
+  },
+  SET_MODAL_BORRAR: function SET_MODAL_BORRAR(state, value) {
+    state.showModalBorrar = value;
+  },
+  SET_MODAL_COBRAR: function SET_MODAL_COBRAR(state, value) {
+    state.showModalCobrar = value;
+  },
+  SET_MODAL_CREAR: function SET_MODAL_CREAR(state, value) {
+    state.showModalCrear = value;
+  },
+  SET_MODAL_EDITAR: function SET_MODAL_EDITAR(state, value) {
+    state.showModalEditar = value;
+  },
+
+
+  // mutators de las mesas
+  APPEND_MESA: function APPEND_MESA(state, mesa) {
+    state.mesas.push(mesa);
+  },
+  REPLACE_MESA: function REPLACE_MESA(state, mesa) {
+    state.mesas = state.mesas.map(function (elem) {
+      if (elem.id === mesa.id) {
+        return mesa;
+      } else {
+        return elem;
+      }
+    });
+  },
+  REMOVE_MESA: function REMOVE_MESA(state, mesa) {
+    state.mesa.splice(state.mesa.indexOf(mesa), 1);
+  },
+  QUITAR_PLATO_PEDIDO: function QUITAR_PLATO_PEDIDO(state, plato) {
+    state.mesa_seleccionada.platos_ids.splice(state.mesa_seleccionada.platos_ids.indexOf(plato), 1);
+  },
+  AGREGAR_PLATO_PEDIDO: function AGREGAR_PLATO_PEDIDO(state, plato) {
+    state.mesa_seleccionada.platos_ids.push(plato);
+    state.mesa_seleccionada.platos_ids.sort(function (a, b) {
+      return a - b;
+    });
+  }
+});
+
+/***/ }),
+/* 131 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  /*
+  * Vista del mozo
+  */
+  categorias_with_platos: [], // con platos habilidatos solamente
+  mesa_seleccionada: {},
+  mesas: [], //mesas de mozo en particular
+
+  showModalAcciones: false,
+  showModalBorrar: false,
+  showModalCobrar: false,
+  showModalCrear: false,
+  showModalEditar: false
+});
 
 /***/ })
 /******/ ]);

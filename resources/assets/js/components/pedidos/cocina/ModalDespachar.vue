@@ -14,7 +14,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button is-large is-fullwidth" @click="hideModal">Cerrar</button>
-        <button class="button is-info is-large is-fullwidth" :style="{ 'is-loading': buttonLoading }">Completar</button>
+        <button class="button is-info is-large is-fullwidth" :style="{ 'is-loading': buttonLoading }" @click="despacharPedido">Completar</button>
     </footer>
     </div>
   </div>

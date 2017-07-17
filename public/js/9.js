@@ -1,11 +1,11 @@
 webpackJsonp([9],{
 
-/***/ 107:
+/***/ 111:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "modal",
+    staticClass: "modal text-left",
     class: {
       'is-active': _vm.showModal
     }
@@ -20,59 +20,71 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-card-head"
   }, [_c('p', {
     staticClass: "modal-card-title"
-  }, [_vm._v("Cancelar pedido")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Cobrar pedido")]), _vm._v(" "), _c('button', {
     staticClass: "delete",
     on: {
       "click": _vm.hideModal
     }
-  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('footer', {
+  })]), _vm._v(" "), _c('section', {
+    staticClass: "modal-card-body"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, _vm._l((_vm.mesa.platos), function(plato) {
+    return _c('plato', {
+      key: plato.id,
+      attrs: {
+        "plato": plato,
+        "estilos": ['col-xs-12', 'col-md-6', 'pedido-item']
+      }
+    })
+  })), _vm._v(" "), _c('hr'), _vm._v(" "), _c('p', [_vm._v("Total:"), _c('strong', {
+    staticClass: "pull-right"
+  }, [_vm._v("$" + _vm._s(_vm.mesa.total_cobrar))])])]), _vm._v(" "), _c('footer', {
     staticClass: "modal-card-foot"
   }, [_c('button', {
     staticClass: "button is-large is-fullwidth",
     on: {
       "click": _vm.hideModal
     }
-  }, [_vm._v("No")]), _vm._v(" "), _c('button', {
-    staticClass: "button is-danger is-large is-fullwidth",
+  }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
+    staticClass: "button is-info is-large is-fullwidth",
     style: ({
       'is-loading': _vm.buttonLoading
     }),
     on: {
-      "click": _vm.borrarPedido
+      "click": _vm.cobrarPedido
     }
-  }, [_vm._v("Sí")])])])])
+  }, [_vm._v("Cobrar")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
-    staticClass: "modal-card-body"
-  }, [_c('p', [_vm._v("¿Esta seguro de desea cancelar el pedido completo?")])])
+  return _c('p', [_c('strong', [_vm._v("Platos")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4c9351c6", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7a6c1616", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 122:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(54)("1b2c05b2", content, false);
+var update = __webpack_require__(55)("080e847e", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4c9351c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalBorrar.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4c9351c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalBorrar.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7a6c1616\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalCobrar.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7a6c1616\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalCobrar.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -83,7 +95,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 70:
+/***/ 73:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -110,9 +122,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'plato': function plato() {
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 59));
+    }
+  },
   data: function data() {
     return {
       buttonLoading: false
@@ -120,22 +142,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: function showModal(state) {
-      return state.mozo.showModalBorrar;
+    'showModal': function showModal(state) {
+      return state.mozo.showModalCobrar;
     },
-    mesa: function mesa(state) {
+    'mesa': function mesa(state) {
       return state.mozo.mesa_seleccionada;
     }
   })),
   methods: {
     hideModal: function hideModal() {
-      this.$store.dispatch('HIDE_MODAL_BORRAR');
+      this.$store.dispatch('HIDE_MODAL_COBRAR');
     },
-    borrarPedido: function borrarPedido() {
+    cobrarPedido: function cobrarPedido() {
       var _this = this;
 
       this.buttonLoading = true;
-      this.$store.dispatch('BORRAR_PEDIDO', this.mesa).then(function (response) {
+      this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then(function () {
         _this.hideModal();
         _this.buttonLoading = false;
       });
@@ -145,34 +167,34 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 81:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(47)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports = module.exports = __webpack_require__(48)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 96:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(122)
+__webpack_require__(125)
 
-var Component = __webpack_require__(53)(
+var Component = __webpack_require__(54)(
   /* script */
-  __webpack_require__(70),
+  __webpack_require__(73),
   /* template */
-  __webpack_require__(107),
+  __webpack_require__(111),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ModalBorrar.vue"
+Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ModalCobrar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ModalBorrar.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ModalCobrar.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -181,9 +203,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c9351c6", Component.options)
+    hotAPI.createRecord("data-v-7a6c1616", Component.options)
   } else {
-    hotAPI.reload("data-v-4c9351c6", Component.options)
+    hotAPI.reload("data-v-7a6c1616", Component.options)
   }
 })()}
 

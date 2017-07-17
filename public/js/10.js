@@ -1,6 +1,6 @@
 webpackJsonp([10],{
 
-/***/ 104:
+/***/ 108:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20,65 +20,59 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-card-head"
   }, [_c('p', {
     staticClass: "modal-card-title"
-  }, [_vm._v("Acciones")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Cancelar pedido")]), _vm._v(" "), _c('button', {
     staticClass: "delete",
     on: {
       "click": _vm.hideModal
     }
-  })]), _vm._v(" "), _c('section', {
-    staticClass: "modal-card-body"
-  }, [_c('div', {
-    staticClass: "btn-group btn-block"
+  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('footer', {
+    staticClass: "modal-card-foot"
   }, [_c('button', {
-    staticClass: "btn btn-success btn-lg col-xs-4 acciones-btn",
+    staticClass: "button is-large is-fullwidth",
     on: {
-      "click": _vm.clickCobrar
+      "click": _vm.hideModal
     }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-usd"
-  }), _vm._v("Cobrar")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary btn-lg col-xs-4 acciones-btn",
+  }, [_vm._v("No")]), _vm._v(" "), _c('button', {
+    staticClass: "button is-danger is-large is-fullwidth",
+    style: ({
+      'is-loading': _vm.buttonLoading
+    }),
     on: {
-      "click": _vm.clickEditar
+      "click": _vm.borrarPedido
     }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-edit"
-  }), _vm._v("Editar")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-danger btn-lg col-xs-4 acciones-btn",
-    on: {
-      "click": _vm.clickBorrar
-    }
-  }, [_c('span', {
-    staticClass: "glyphicon glyphicon-trash"
-  }), _vm._v("Cancelar")])])])])])
-},staticRenderFns: []}
+  }, [_vm._v("Sí")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    staticClass: "modal-card-body"
+  }, [_c('p', [_vm._v("¿Esta seguro de desea cancelar el pedido completo?")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-242e3cdd", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-4c9351c6", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 119:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(78);
+var content = __webpack_require__(83);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(54)("ae9fd0c6", content, false);
+var update = __webpack_require__(55)("1b2c05b2", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-242e3cdd\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAcciones.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-242e3cdd\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAcciones.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4c9351c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalBorrar.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4c9351c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalBorrar.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -89,7 +83,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 69:
+/***/ 72:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -119,57 +113,66 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      buttonLoading: false
+    };
+  },
+
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
     showModal: function showModal(state) {
-      return state.mozo.showModalAcciones;
+      return state.mozo.showModalBorrar;
+    },
+    mesa: function mesa(state) {
+      return state.mozo.mesa_seleccionada;
     }
   })),
   methods: {
     hideModal: function hideModal() {
-      this.$store.dispatch('HIDE_MODAL_ACCIONES');
+      this.$store.dispatch('HIDE_MODAL_BORRAR');
     },
-    clickCobrar: function clickCobrar() {
-      this.$store.dispatch('SHOW_MODAL_COBRAR');
-    },
-    clickEditar: function clickEditar() {
-      this.$store.dispatch('SHOW_MODAL_EDITAR');
-    },
-    clickBorrar: function clickBorrar() {
-      this.$store.dispatch('SHOW_MODAL_BORRAR');
+    borrarPedido: function borrarPedido() {
+      var _this = this;
+
+      this.buttonLoading = true;
+      this.$store.dispatch('BORRAR_PEDIDO', this.mesa).then(function (response) {
+        _this.hideModal();
+        _this.buttonLoading = false;
+      });
     }
   }
 });
 
 /***/ }),
 
-/***/ 78:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(47)();
-exports.push([module.i, "\n.acciones-btn {\n  height: 15vh;\n}\n", ""]);
+exports = module.exports = __webpack_require__(48)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 95:
+/***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(119)
+__webpack_require__(123)
 
-var Component = __webpack_require__(53)(
+var Component = __webpack_require__(54)(
   /* script */
-  __webpack_require__(69),
+  __webpack_require__(72),
   /* template */
-  __webpack_require__(104),
+  __webpack_require__(108),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ModalAcciones.vue"
+Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ModalBorrar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ModalAcciones.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ModalBorrar.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -178,9 +181,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-242e3cdd", Component.options)
+    hotAPI.createRecord("data-v-4c9351c6", Component.options)
   } else {
-    hotAPI.reload("data-v-242e3cdd", Component.options)
+    hotAPI.reload("data-v-4c9351c6", Component.options)
   }
 })()}
 

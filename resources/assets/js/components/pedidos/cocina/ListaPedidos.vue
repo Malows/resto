@@ -1,17 +1,23 @@
 <template lang="html">
   <div v-cloak class="content">
+    <h2 class="text-center">Pedidos</h2>
+    <hr>
     <div class="row">
-      <label><input type="checkbox" value="" v-model="verDigest" @change="timerDigest"> Ver resumen</label>
+      <button class="btn btn-primary pull-left" v-show="!verDigest" @click="clickDigest">Ver resumen</button>
+      <button class="btn btn-primary pull-left" v-show="verDigest" @click="verDigest = false">Volver</button>
+      <button class="btn btn-primary pull-right" v-show="verDigest">Fijar resumen</button>
     </div>
 
     <modal-despachar />
-    <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left">
-      <transition name="slide-left-fade">
-
-        <pedido v-for="pedido in pedidos" v-if="!verDigest" :key="pedido.id" :data="pedido" />
+      <transition name="fade">
+        <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left" v-if="!verDigest">
+          <pedido v-for="pedido in pedidos" :key="pedido.id" :data="pedido" />
+        </div>
       </transition>
-      <transition name="slide-left-fade">
-        <digest v-show="verDigest" v-for="categoria in digest_pedidos" :key="categoria.id" :data="categoria" />
+      <transition name="fade">
+        <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left" v-if="verDigest" >
+          <digest v-for="categoria in digest_pedidos" :key="categoria.id" :data="categoria" />
+        </div>
       </transition>
     </div>
   </div>
@@ -38,6 +44,10 @@ export default {
     })
   },
   methods: {
+    clickDigest () {
+      this.verDigest = ! this.verDigest
+      this.timerDigest()
+    },
     timerDigest() {
       if ( this.verDigest ) {
         setTimeout(() => {
@@ -57,14 +67,14 @@ export default {
   [v-cloak] {
   display: none
 }
-  .slide-left-fade-enter-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  .fade-enter-active {
+  transition: all .3s ease
 }
-.slide-left-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+.fade-leave-active {
+  transition: all .3s ease
 }
-.slide-left-fade-enter, .slide-left-fade-leave-to {
-  transform: translateX(10px);
+.fade-enter, .fade-leave-to {
+  /*transform: translateX(10px);*/
   opacity: 0;
 }
 </style>

@@ -21,7 +21,7 @@ import store from './store/index.js'
 Vue.component('menu-resto', () => System.import('./components/Menu.vue'));
 Vue.component('mesas', () => System.import('./components/pedidos/mesa/ListaMesas.vue'));
 Vue.component('lista-pedidos', () => System.import('./components/pedidos/cocina/ListaPedidos.vue'));
-Vue.component('lista-pedidos-categoria', () => System.import('./components/pedidos/cocina_digest/ListaPedidosDigest.vue'));
+Vue.component('lista-pedidos-categorias', () => System.import('./components/pedidos/cocina_digest/ListaPedidosDigest.vue'));
 // Vue.component('menu-platos', require('./components/MenuPlatos.vue'));
 // Vue.component('plato', require('./components/Plato.vue'));
 

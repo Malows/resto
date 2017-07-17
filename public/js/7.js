@@ -1,6 +1,45 @@
 webpackJsonp([7],{
 
-/***/ 103:
+/***/ 100:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(128)
+
+var Component = __webpack_require__(54)(
+  /* script */
+  __webpack_require__(75),
+  /* template */
+  __webpack_require__(114),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ModalEditar.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ModalEditar.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e53e7a7a", Component.options)
+  } else {
+    hotAPI.reload("data-v-e53e7a7a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20,7 +59,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-card-head"
   }, [_c('p', {
     staticClass: "modal-card-title"
-  }, [_vm._v("Crear pedido")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Editar pedido")]), _vm._v(" "), _c('button', {
     staticClass: "delete",
     on: {
       "click": _vm.hideModal
@@ -36,12 +75,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Mesa")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
-      rawName: "v-model.number",
+      rawName: "v-model",
       value: (_vm.mesa),
-      expression: "mesa",
-      modifiers: {
-        "number": true
-      }
+      expression: "mesa"
     }],
     staticClass: "form-control",
     attrs: {
@@ -54,10 +90,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.mesa = _vm._n($event.target.value)
-      },
-      "blur": function($event) {
-        _vm.$forceUpdate()
+        _vm.mesa = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -73,21 +106,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Platos")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
-      rawName: "v-model.number",
+      rawName: "v-model",
       value: (_vm.model_plato),
-      expression: "model_plato",
-      modifiers: {
-        "number": true
-      }
+      expression: "model_plato"
     }],
     staticClass: "form-control",
     on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.agregarPlato($event)
+      },
       "change": function($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
-          return _vm._n(val)
+          return val
         });
         _vm.model_plato = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
@@ -113,12 +147,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Código")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
-      rawName: "v-model.number",
+      rawName: "v-model",
       value: (_vm.model_plato),
-      expression: "model_plato",
-      modifiers: {
-        "number": true
-      }
+      expression: "model_plato"
     }],
     staticClass: "form-control",
     attrs: {
@@ -129,13 +160,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.model_plato)
     },
     on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.agregarPlato($event)
+      },
       "keyup": function($event) {
         if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
         _vm.agregarPlato($event)
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.model_plato = _vm._n($event.target.value)
+        _vm.model_plato = $event.target.value
       },
       "blur": function($event) {
         _vm.$forceUpdate()
@@ -150,7 +185,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Añadir")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('ul', {
     staticClass: "text-left"
-  }, _vm._l((_vm.pusher_platos), function(pusher) {
+  }, _vm._l((_vm.mesa_seleccionada.platos_ids), function(pusher) {
     return _c('li', {
       staticClass: "pedido-item",
       on: {
@@ -158,7 +193,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.quitarPlato(pusher)
         }
       }
-    }, [_vm._v(_vm._s(_vm.platos[pusher]))])
+    }, [_vm._v(_vm._s(_vm.nombreDePlatos[pusher]))])
   }))]), _vm._v(" "), _c('footer', {
     staticClass: "modal-card-foot"
   }, [_c('button', {
@@ -169,10 +204,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
     staticClass: "button is-info is-large is-fullwidth",
     style: ({
-      'is-loading': _vm.botonLoader
+      'is-loading': _vm.buttonLoader
     }),
     on: {
-      "click": _vm.enviarNuevoPedido
+      "click": _vm.editarPedido
     }
   }, [_vm._v("Enviar")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -182,29 +217,29 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1302c3af", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-e53e7a7a", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 118:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(77);
+var content = __webpack_require__(88);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(54)("cfcd1832", content, false);
+var update = __webpack_require__(55)("d620d8f0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-1302c3af\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalCrear.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-1302c3af\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalCrear.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-e53e7a7a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalEditar.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-e53e7a7a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalEditar.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -215,7 +250,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 72:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -279,102 +314,73 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      mesa: '',
       model_plato: '',
-      pusher_platos: [],
-      botonLoader: false
+      buttonLoader: false
     };
   },
 
-  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
-    showModal: function showModal(state) {
-      return state.mozo.showModalCrear;
-    },
-    categorias: function categorias(state) {
-      return state.mozo.categorias_with_platos;
-    }
-  }), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
-    platos: 'nombreDePlatos'
-  })),
   methods: {
     hideModal: function hideModal() {
-      this.mesa = '';
-      this.model_plato = '';
-      this.pusher_platos = [];
-      this.$store.dispatch('HIDE_MODAL_CREAR');
+      var _this = this;
+
+      this.$store.dispatch('ROLLBACK_MESA_SELECCIONADA').then(function () {
+        _this.$store.dispatch('HIDE_MODAL_EDITAR');
+      });
     },
     quitarPlato: function quitarPlato(plato) {
-      this.pusher_platos.splice(this.pusher_platos.indexOf(plato), 1);
+      this.$store.dispatch('QUITAR_PLATO_PEDIDO', plato);
     },
     agregarPlato: function agregarPlato() {
       if (this.model_plato) {
-        this.pusher_platos.push(this.model_plato);
-        this.pusher_platos = this.pusher_platos.sort();
+        this.$store.dispatch('AGREGAR_PLATO_PEDIDO', this.model_plato);
         this.model_plato = '';
       }
     },
-    enviarNuevoPedido: function enviarNuevoPedido() {
-      var _this = this;
+    editarPedido: function editarPedido() {
+      var _this2 = this;
 
-      this.boton_loader = true;
+      this.buttonLoader = true;
       var payload = {
         mesa: this.mesa,
-        platos: this.pusher_platos
+        platos: this.mesa_seleccionada.platos_ids
       };
-      this.$store.dispatch('NUEVO_PEDIDO', payload).then(function (response) {
-        _this.boton_loader = false;
-        _this.hideModal();
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then(function () {
+        _this2.buttonLoader = false;
+        _this2.$store.dispatch('HIDE_MODAL_EDITAR');
       });
     }
-  }
+  },
+  computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['platos', 'nombreDePlatos']), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
+    'showModal': function showModal(state) {
+      return state.mozo.showModalEditar;
+    },
+    'categorias': function categorias(state) {
+      return state.mozo.categorias_with_platos;
+    },
+    'mesa_seleccionada': function mesa_seleccionada(state) {
+      return state.mozo.mesa_seleccionada;
+    }
+  }), {
+
+    mesa: {
+      get: function get() {
+        return this.mesa_seleccionada.mesa;
+      },
+      set: function set(value) {
+        var aux_mesa = Object.assign({}, this.mesa_seleccionada, { mesa: value ? parseInt(value) : '' });
+        this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa);
+      }
+    }
+  })
 });
 
 /***/ }),
 
-/***/ 77:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(47)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-/***/ }),
-
-/***/ 98:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(118)
-
-var Component = __webpack_require__(53)(
-  /* script */
-  __webpack_require__(72),
-  /* template */
-  __webpack_require__(103),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/juan/Programacion/php/resto/resources/assets/js/components/pedidos/mesa/ModalCrear.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ModalCrear.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1302c3af", Component.options)
-  } else {
-    hotAPI.reload("data-v-1302c3af", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
+exports = module.exports = __webpack_require__(48)();
+exports.push([module.i, "\n.pedido-item {\n  margin: 0.25em 0;\n}\n", ""]);
 
 /***/ })
 

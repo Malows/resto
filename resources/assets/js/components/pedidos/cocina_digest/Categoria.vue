@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="box" v-show="data.total">
     <h2 class="title">{{data.nombre.toUpperCase()}}</h2>
-    <h4 class="subtitle">{{`${data.total} cosa${data.total>2 ? 's': ''}`}}</h4>
+    <h4 class="subtitle">{{data.total}} {{data.total>2 ? 'cosas': 'cosa'}}</h4>
     <hr>
     <div class="row">
       <plato v-for="plato in data.platos" :key="plato.id" :plato="plato"></plato>

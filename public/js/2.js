@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 100:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51,17 +51,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(77);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(54)("c9458216", content, false);
+var update = __webpack_require__(55)("c9458216", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -78,7 +78,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 47:
+/***/ 48:
 /***/ (function(module, exports) {
 
 /*
@@ -135,18 +135,18 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 52:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(116)
+__webpack_require__(117)
 
-var Component = __webpack_require__(53)(
+var Component = __webpack_require__(54)(
   /* script */
-  __webpack_require__(67),
+  __webpack_require__(69),
   /* template */
-  __webpack_require__(100),
+  __webpack_require__(101),
   /* scopeId */
   null,
   /* cssModules */
@@ -174,7 +174,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 53:
+/***/ 54:
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -232,7 +232,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 54:
+/***/ 55:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -251,7 +251,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(55)
+var listToStyles = __webpack_require__(56)
 
 /*
 type StyleObject = {
@@ -454,7 +454,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 56:
 /***/ (function(module, exports) {
 
 /**
@@ -488,7 +488,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 69:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -523,22 +523,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'mesa': function mesa() {
-      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 94));
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 95));
     },
     'modal-acciones': function modalAcciones() {
-      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 95));
+      return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 96));
     },
     'modal-crear': function modalCrear() {
-      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 98));
+      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 99));
     },
     'modal-cobrar': function modalCobrar() {
-      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 97));
+      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 98));
     },
     'modal-borrar': function modalBorrar() {
-      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 96));
+      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 97));
     },
     'modal-editar': function modalEditar() {
-      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 99));
+      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 100));
     }
   },
 
@@ -566,10 +566,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 75:
+/***/ 77:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(47)();
+exports = module.exports = __webpack_require__(48)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ })

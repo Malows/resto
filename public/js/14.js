@@ -1,6 +1,6 @@
 webpackJsonp([14],{
 
-/***/ 101:
+/***/ 105:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -36,17 +36,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 116:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(79);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(50)("6f7f08dc", content, false);
+var update = __webpack_require__(54)("6f7f08dc", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -63,7 +63,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 56:
+/***/ 60:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82,7 +82,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 86));
+      return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, 90));
     }
   },
   props: ['categoria'],
@@ -166,26 +166,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 75:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)();
+exports = module.exports = __webpack_require__(47)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 85:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(116)
+__webpack_require__(120)
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(56),
+  __webpack_require__(60),
   /* template */
-  __webpack_require__(101),
+  __webpack_require__(105),
   /* scopeId */
   null,
   /* cssModules */

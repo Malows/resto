@@ -1,6 +1,6 @@
 webpackJsonp([12],{
 
-/***/ 110:
+/***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20,7 +20,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-card-head"
   }, [_c('p', {
     staticClass: "modal-card-title"
-  }, [_vm._v("Despachar pedido")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Despachar pedido completo")]), _vm._v(" "), _c('button', {
     staticClass: "delete",
     on: {
       "click": _vm.hideModal
@@ -39,12 +39,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   }))]), _vm._v(" "), _c('footer', {
     staticClass: "modal-card-foot"
-  }, [_c('a', {
+  }, [_c('button', {
     staticClass: "button is-large is-fullwidth",
     on: {
       "click": _vm.hideModal
     }
-  }, [_vm._v("Cerrar")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Cerrar")]), _vm._v(" "), _c('button', {
     staticClass: "button is-info is-large is-fullwidth",
     style: ({
       'is-loading': _vm.buttonLoading
@@ -61,17 +61,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 124:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(83);
+var content = __webpack_require__(87);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(50)("3ed40ab0", content, false);
+var update = __webpack_require__(54)("3ed40ab0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -88,7 +88,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 59:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -123,7 +123,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 54));
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 58));
     }
   },
   data: function data() {
@@ -135,6 +135,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   methods: {
     hideModal: function hideModal() {
       this.$store.dispatch('HIDE_MODAL_DESPACHAR');
+    },
+    despacharPedido: function despacharPedido() {
+      var _this = this;
+
+      this.buttonLoading = true;
+      this.$store.dispatch('DESPACHAR_PEDIDO', this.pedido).then(function () {
+        _this.buttonLoading = false;
+        _this.$store.dispatch('HIDE_MODAL_DESPACHAR');
+      });
     }
   },
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* mapState */])({
@@ -149,26 +158,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 83:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports = module.exports = __webpack_require__(47)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 87:
+/***/ 91:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(124)
+__webpack_require__(128)
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(59),
+  __webpack_require__(63),
   /* template */
-  __webpack_require__(110),
+  __webpack_require__(114),
   /* scopeId */
   null,
   /* cssModules */

@@ -1,6 +1,6 @@
 webpackJsonp([10],{
 
-/***/ 100:
+/***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -62,17 +62,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 115:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(74);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(50)("ae9fd0c6", content, false);
+var update = __webpack_require__(54)("ae9fd0c6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -89,7 +89,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 65:
+/***/ 69:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -142,26 +142,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 74:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)();
+exports = module.exports = __webpack_require__(47)();
 exports.push([module.i, "\n.acciones-btn {\n  height: 15vh;\n}\n", ""]);
 
 /***/ }),
 
-/***/ 91:
+/***/ 95:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(115)
+__webpack_require__(119)
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(65),
+  __webpack_require__(69),
   /* template */
-  __webpack_require__(100),
+  __webpack_require__(104),
   /* scopeId */
   null,
   /* cssModules */

@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    <mesas></mesas>
+    <lista-pedidos></lista-pedidos>
 @endsection

@@ -2,7 +2,7 @@
   <div class="box" @click="clickEnMesa">
       <p><strong>Mesa {{data.mesa}}</strong> - {{data.total_cosas}} {{ data.total_cosas > 1 ? 'cosas' : ' cosa'}}</p>
       <div class="row">
-        <plato v-for="plato in data.platos" :plato="plato" :key="plato.id"></plato>
+        <plato v-for="plato in data.platos" :plato="plato" :key="plato.id" />
       </div>
   </div>
 </template>

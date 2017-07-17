@@ -1,15 +1,15 @@
 webpackJsonp([11],{
 
-/***/ 108:
+/***/ 112:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "box",
     on: {
-      "click": _vm.clickOnPedido
+      "click": _vm.clickEnPedido
     }
-  }, [_c('p', [_vm._v("Mozo: "), _c('strong', [_vm._v(_vm._s(_vm.data.mozo.name))]), _vm._v(" - " + _vm._s(_vm.totalDeCosas) + " " + _vm._s(_vm.totalDeCosas > 1 ? 'cosas' : 'cosa'))]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("Mozo: "), _c('strong', [_vm._v(_vm._s(_vm.data.mozo.name))]), _vm._v(" - " + _vm._s(_vm.data.total_cosas) + " " + _vm._s(_vm.data.total_cosas > 1 ? 'cosas' : 'cosa'))]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.data.platos), function(plato) {
     return _c('plato', {
@@ -30,17 +30,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 122:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(50)("62c00d59", content, false);
+var update = __webpack_require__(54)("62c00d59", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -57,7 +57,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 60:
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76,66 +76,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 54));
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 58));
     }
   },
-  props: ['pedido'],
-  data: function data() {
-    return {
-      data: {
-        mozo: {
-          name: ''
-        },
-        platos: []
-      }
-    };
-  },
-
+  props: ['data'],
   methods: {
-    clickOnPedido: function clickOnPedido() {
-      this.$emit('clickEnPedido', this.data);
+    clickEnPedido: function clickEnPedido(pedido) {
+      this.$store.dispatch('SET_PEDIDO_SELECCIONADO', this.data);
+      this.$store.dispatch('SHOW_MODAL_DESPACHAR');
     }
   },
-  computed: {
-    totalDeCosas: function totalDeCosas() {
-      return this.data.platos.reduce(function (carry, current) {
-        return carry + current.cantidad;
-      }, 0);
-    }
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get(this.pedido.url).then(function (_ref) {
-      var data = _ref.data;
-
-      _this.data = data;
-    });
-  }
+  computed: {}
 });
 
 /***/ }),
 
-/***/ 81:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports = module.exports = __webpack_require__(47)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ 88:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(122)
+__webpack_require__(126)
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(60),
+  __webpack_require__(64),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(112),
   /* scopeId */
   null,
   /* cssModules */

@@ -13,7 +13,7 @@ class PedidoController extends Controller
 {
     private function hidratar( $pedido )
     {
-        $platos = Plato::select('id', 'nombre', 'precio')->whereIn('id',$pedido->platos)->get();
+        $platos = Plato::select('id', 'nombre', 'precio', 'categoria_plato_id')->whereIn('id',$pedido->platos)->get();
 
 
         $platos->each( function ($plato) use ($pedido) {
@@ -42,7 +42,7 @@ class PedidoController extends Controller
     }
 
     private function hidratar_muchos ($pedidos) {
-        $platos = Plato::select('id', 'nombre', 'precio')->get();
+        $platos = Plato::select('id', 'nombre', 'precio', 'categoria_plato_id')->get();
         $pedidos->each( function( $pedido ) use( $platos ) {
             unset($pedido->user_id);
 

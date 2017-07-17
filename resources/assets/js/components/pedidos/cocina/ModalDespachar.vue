@@ -3,7 +3,7 @@
     <div class="modal-background" @click="hideModal"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Despachar pedido</p>
+        <p class="modal-card-title">Despachar pedido completo</p>
         <button class="delete" @click="hideModal"></button>
       </header>
       <section class="modal-card-body">
@@ -13,8 +13,8 @@
         </div>
       </section>
       <footer class="modal-card-foot">
-        <a class="button is-large is-fullwidth" @click="hideModal">Cerrar</a>
-        <a class="button is-info is-large is-fullwidth" :style="{ 'is-loading': buttonLoading }">Completar</a>
+        <button class="button is-large is-fullwidth" @click="hideModal">Cerrar</button>
+        <button class="button is-info is-large is-fullwidth" :style="{ 'is-loading': buttonLoading }">Completar</button>
     </footer>
     </div>
   </div>
@@ -34,6 +34,13 @@ export default {
   methods: {
     hideModal () {
       this.$store.dispatch('HIDE_MODAL_DESPACHAR')
+    },
+    despacharPedido () {
+      this.buttonLoading = true
+      this.$store.dispatch('DESPACHAR_PEDIDO', this.pedido).then( () => {
+        this.buttonLoading = false
+        this.$store.dispatch('HIDE_MODAL_DESPACHAR')
+      })
     }
   },
   computed: {

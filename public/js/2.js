@@ -1,16 +1,67 @@
 webpackJsonp([2],{
 
-/***/ 112:
+/***/ 100:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "text-center"
+  }, [_c('modal-crear'), _vm._v(" "), _c('modal-acciones'), _vm._v(" "), _c('modal-cobrar'), _vm._v(" "), _c('modal-borrar'), _vm._v(" "), _c('modal-editar', {
+    attrs: {
+      "datos": _vm.mesa_seleccionada
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "container-fluid"
+  }, [_c('div', {
+    staticClass: "row col-md-4 col-md-offset-4"
+  }, [_c('button', {
+    staticClass: "btn btn-primary btn-block btn-lg",
+    on: {
+      "click": _vm.modalCrear
+    }
+  }, [_vm._v("Agregar pedido")])])]), _vm._v(" "), _c('hr', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.mesas.length),
+      expression: "mesas.length"
+    }]
+  }), _vm._v(" "), (_vm.mesas.length) ? _c('div', {
+    staticClass: "col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left"
+  }, _vm._l((_vm.mesas), function(mesa) {
+    return _c('mesa', {
+      key: mesa.id,
+      attrs: {
+        "data": mesa
+      }
+    })
+  })) : _c('div', {
+    staticStyle: {
+      "padding": "20vh"
+    }
+  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-042f4f5f", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(71);
+var content = __webpack_require__(75);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(50)("c9458216", content, false);
+var update = __webpack_require__(54)("c9458216", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -27,7 +78,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 43:
+/***/ 47:
 /***/ (function(module, exports) {
 
 /*
@@ -84,18 +135,18 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 48:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(112)
+__webpack_require__(116)
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(63),
+  __webpack_require__(67),
   /* template */
-  __webpack_require__(96),
+  __webpack_require__(100),
   /* scopeId */
   null,
   /* cssModules */
@@ -123,7 +174,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 49:
+/***/ 53:
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -181,7 +232,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 50:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -200,7 +251,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(51)
+var listToStyles = __webpack_require__(55)
 
 /*
 type StyleObject = {
@@ -403,7 +454,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 51:
+/***/ 55:
 /***/ (function(module, exports) {
 
 /**
@@ -437,7 +488,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 63:
+/***/ 67:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,22 +523,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'mesa': function mesa() {
-      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 90));
+      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 94));
     },
     'modal-acciones': function modalAcciones() {
-      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 91));
+      return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 95));
     },
     'modal-crear': function modalCrear() {
-      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 94));
+      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 98));
     },
     'modal-cobrar': function modalCobrar() {
-      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 93));
+      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 97));
     },
     'modal-borrar': function modalBorrar() {
-      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 92));
+      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 96));
     },
     'modal-editar': function modalEditar() {
-      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 95));
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 99));
     }
   },
 
@@ -515,62 +566,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
-/***/ 71:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)();
+exports = module.exports = __webpack_require__(47)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-/***/ }),
-
-/***/ 96:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "text-center"
-  }, [_c('modal-crear'), _vm._v(" "), _c('modal-acciones'), _vm._v(" "), _c('modal-cobrar'), _vm._v(" "), _c('modal-borrar'), _vm._v(" "), _c('modal-editar', {
-    attrs: {
-      "datos": _vm.mesa_seleccionada
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "container-fluid"
-  }, [_c('div', {
-    staticClass: "row col-md-4 col-md-offset-4"
-  }, [_c('button', {
-    staticClass: "btn btn-primary btn-block btn-lg",
-    on: {
-      "click": _vm.modalCrear
-    }
-  }, [_vm._v("Agregar pedido")])])]), _vm._v(" "), _c('hr', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.mesas.length),
-      expression: "mesas.length"
-    }]
-  }), _vm._v(" "), (_vm.mesas.length) ? _c('div', {
-    staticClass: "col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 text-left"
-  }, _vm._l((_vm.mesas), function(mesa) {
-    return _c('mesa', {
-      key: mesa.id,
-      attrs: {
-        "data": mesa
-      }
-    })
-  })) : _c('div', {
-    staticStyle: {
-      "padding": "20vh"
-    }
-  }, [_c('p', [_vm._v("No quedan pedidos pendientes.")])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-042f4f5f", module.exports)
-  }
-}
 
 /***/ })
 

@@ -139,7 +139,7 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 42);
+/******/ 	return __webpack_require__(__webpack_require__.s = 46);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -547,7 +547,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(40)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ }),
 /* 2 */
@@ -10545,7 +10545,7 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_index_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_index_js__ = __webpack_require__(35);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -10566,16 +10566,16 @@ window.EventBus = new window.Vue();
  */
 
 Vue.component('menu-resto', function () {
-  return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 45));
+  return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, 49));
 });
 Vue.component('mesas', function () {
-  return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 48));
+  return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 52));
 });
 Vue.component('lista-pedidos', function () {
-  return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 46));
+  return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 50));
 });
 Vue.component('lista-pedidos-categoria', function () {
-  return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 47));
+  return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 51));
 });
 // Vue.component('menu-platos', require('./components/MenuPlatos.vue'));
 // Vue.component('plato', require('./components/Plato.vue'));
@@ -12250,7 +12250,7 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(39);
+window._ = __webpack_require__(43);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12259,9 +12259,9 @@ window._ = __webpack_require__(39);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(38);
+  window.$ = window.jQuery = __webpack_require__(42);
 
-  __webpack_require__(37);
+  __webpack_require__(41);
 } catch (e) {}
 
 /**
@@ -12311,11 +12311,138 @@ if (token) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  // Initial and refreshing Actions
+  REFRESH_PEDIDOS_PENDIENTES: function REFRESH_PEDIDOS_PENDIENTES(_ref) {
+    var commit = _ref.commit;
+
+    axios.get('http://localhost:8000/api/pedidos').then(function (response) {
+      commit('SET_PEDIDOS', response.data);
+    });
+    axios.get('http://localhost:8000/api/digest/pedidos').then(function (response) {
+      commit('SET_DIGEST', response.data);
+    });
+  },
+  SET_PEDIDO_SELECCIONADO: function SET_PEDIDO_SELECCIONADO(_ref2, pedido) {
+    var commit = _ref2.commit;
+
+    commit('SET_PEDIDO_SELECCIONADO', pedido);
+  },
+
+
+  // Actions
+  DESPACHAR_PEDIDO: function DESPACHAR_PEDIDO(_ref3, pedido) {
+    var commit = _ref3.commit;
+
+    new Promise(function (resolve, reject) {
+      axios.put(pedido.url_completar).then(function (response) {
+        if (response.status === 200) {
+          commit('REMOVE_PEDIDO', response.data);
+          commit('SET_PEDIDO_SELECCIONADO', undefined);
+          resolve(response);
+        }
+      });
+    });
+  },
+
+
+  // Actions over the modal
+  HIDE_MODAL_DESPACHAR: function HIDE_MODAL_DESPACHAR(_ref4) {
+    var commit = _ref4.commit;
+
+    commit('SET_MODAL_DESPACHAR', false);
+  },
+  SHOW_MODAL_DESPACHAR: function SHOW_MODAL_DESPACHAR(_ref5) {
+    var commit = _ref5.commit;
+
+    commit('SET_MODAL_DESPACHAR', true);
+  }
+});
+
+/***/ }),
+/* 32 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getters__ = __webpack_require__(136);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  state: __WEBPACK_IMPORTED_MODULE_0__state__["a" /* default */],
+  actions: __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* default */],
+  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* default */],
+  getters: __WEBPACK_IMPORTED_MODULE_3__getters__["a" /* default */]
+});
+
+/***/ }),
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  SET_PEDIDOS: function SET_PEDIDOS(state, pedidos) {
+    state.pedidos = pedidos;
+  },
+  SET_PEDIDO_SELECCIONADO: function SET_PEDIDO_SELECCIONADO(state, pedido) {
+    state.pedido_seleccionado = pedido;
+  },
+  SET_DIGEST: function SET_DIGEST(state, digest) {
+    state.digest_pedidos = digest;
+  },
+  SET_DIGEST_SELECCIONADO: function SET_DIGEST_SELECCIONADO(state, digest) {
+    state.digest_seleccionado = digest;
+  },
+  APPEND_PEDIDO: function APPEND_PEDIDO(state, pedido) {
+    state.pedidos.push(pedido);
+  },
+  REMOVE_PEDIDO: function REMOVE_PEDIDO(state, pedido) {
+    state.pedidos = state.pedidos.filter(function (el) {
+      return pedido.id !== el.id;
+    });
+  },
+  REPLACE_PEDIDO: function REPLACE_PEDIDO(state, pedido) {
+    state.pedidos = state.pedidos.map(function (el) {
+      if (el.id === pedido.id) {
+        return pedido;
+      } else {
+        return el;
+      }
+    });
+  },
+  SET_MODAL_DESPACHAR: function SET_MODAL_DESPACHAR(state, value) {
+    state.showModalDespachar = value;
+  }
+});
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  pedidos: [],
+  pedido_seleccionado: { mozo: { name: '' } }, // Hacemos trampa con el reactivity
+  digest_pedidos: [],
+  digest_seleccionado: {},
+  showModalDespachar: false
+});
+
+/***/ }),
+/* 35 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mozo__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cocina__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mozo__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cocina__ = __webpack_require__(32);
 
 
 // import state from './state'
@@ -12339,7 +12466,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 }));
 
 /***/ }),
-/* 32 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12514,7 +12641,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 });
 
 /***/ }),
-/* 33 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12543,14 +12670,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 });
 
 /***/ }),
-/* 34 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__state__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__state__ = __webpack_require__(40);
 
 
 
@@ -12565,7 +12692,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 });
 
 /***/ }),
-/* 35 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12614,10 +12741,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     });
   },
   REMOVE_MESA: function REMOVE_MESA(state, mesa) {
-    var elem = state.mesas.filter(function (el) {
-      return el.id === mesa.id;
-    })[0];
-    state.mesas.splice(state.mesas.indexOf(elem), 1);
+    state.mesas = state.mesas.filter(function (el) {
+      return el.id !== mesa.id;
+    });
   },
   QUITAR_PLATO_PEDIDO: function QUITAR_PLATO_PEDIDO(state, plato) {
     state.mesa_seleccionada.platos_ids.splice(state.mesa_seleccionada.platos_ids.indexOf(plato), 1);
@@ -12631,7 +12757,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 });
 
 /***/ }),
-/* 36 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12651,7 +12777,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 });
 
 /***/ }),
-/* 37 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /*!
@@ -15034,7 +15160,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25294,7 +25420,7 @@ return jQuery;
 
 
 /***/ }),
-/* 39 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -42383,10 +42509,10 @@ return jQuery;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(41)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(45)(module)))
 
 /***/ }),
-/* 40 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -42576,7 +42702,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 41 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -42604,7 +42730,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 42 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(9);
@@ -42612,10 +42738,6 @@ module.exports = __webpack_require__(10);
 
 
 /***/ }),
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
 /* 47 */,
 /* 48 */,
 /* 49 */,
@@ -42701,102 +42823,15 @@ module.exports = __webpack_require__(10);
 /* 129 */,
 /* 130 */,
 /* 131 */,
-/* 132 */
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  // Initial and refreshing Actions
-  REFRESH_PEDIDOS_PENDIENTES: function REFRESH_PEDIDOS_PENDIENTES(_ref) {
-    var commit = _ref.commit;
-
-    axios.get('http://localhost:8000/api/pedidos').then(function (response) {
-      commit('SET_PEDIDOS', response.data);
-    });
-  },
-  SET_PEDIDO_SELECCIONADO: function SET_PEDIDO_SELECCIONADO(_ref2, pedido) {
-    var commit = _ref2.commit;
-
-    commit('SET_PEDIDO_SELECCIONADO', pedido);
-  },
-
-
-  // Actions over the modal
-  HIDE_MODAL_DESPACHAR: function HIDE_MODAL_DESPACHAR(_ref3) {
-    var commit = _ref3.commit;
-
-    commit('SET_MODAL_DESPACHAR', false);
-  },
-  SHOW_MODAL_DESPACHAR: function SHOW_MODAL_DESPACHAR(_ref4) {
-    var commit = _ref4.commit;
-
-    commit('SET_MODAL_DESPACHAR', true);
-  }
-});
-
-/***/ }),
-/* 133 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(134);
-
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  state: __WEBPACK_IMPORTED_MODULE_0__state__["a" /* default */],
-  actions: __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* default */],
-  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* default */]
-});
-
-/***/ }),
-/* 134 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  SET_PEDIDOS: function SET_PEDIDOS(state, pedidos) {
-    state.pedidos = pedidos;
-  },
-  SET_PEDIDO_SELECCIONADO: function SET_PEDIDO_SELECCIONADO(state, pedido) {
-    state.pedido_seleccionado = pedido;
-  },
-  APPEND_PEDIDO: function APPEND_PEDIDO(state, pedido) {
-    state.pedidos.push(pedido);
-  },
-  REMOVE_PEDIDO: function REMOVE_PEDIDO(state, pedido) {
-    var aux = state.pedidos.filter(function (el) {
-      return pedido.id === el.id;
-    })[0];
-    state.pedidos.splice(state.pedidos.indexOf(aux), 1);
-  },
-  REPLACE_PEDIDO: function REPLACE_PEDIDO(state, pedido) {
-    state.pedidos = state.pedidos.map(function (el) {
-      if (el.id === pedido.id) {
-        return pedido;
-      } else {
-        return el;
-      }
-    });
-  },
-  SET_MODAL_DESPACHAR: function SET_MODAL_DESPACHAR(state, value) {
-    state.showModalDespachar = value;
-  }
-});
-
-/***/ }),
-/* 135 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  pedidos: [],
-  pedido_seleccionado: {},
-  showModalDespachar: false
-});
+/* harmony default export */ __webpack_exports__["a"] = ({});
 
 /***/ })
 /******/ ]);

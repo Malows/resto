@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 102:
+/***/ 106:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -23,17 +23,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 117:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(76);
+var content = __webpack_require__(80);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(50)("4a5a483f", content, false);
+var update = __webpack_require__(54)("4a5a483f", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -50,7 +50,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 43:
+/***/ 47:
 /***/ (function(module, exports) {
 
 /*
@@ -107,18 +107,18 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 45:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(117)
+__webpack_require__(121)
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(55),
+  __webpack_require__(59),
   /* template */
-  __webpack_require__(102),
+  __webpack_require__(106),
   /* scopeId */
   null,
   /* cssModules */
@@ -146,7 +146,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 49:
+/***/ 53:
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -204,7 +204,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 50:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -223,7 +223,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(51)
+var listToStyles = __webpack_require__(55)
 
 /*
 type StyleObject = {
@@ -426,7 +426,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 51:
+/***/ 55:
 /***/ (function(module, exports) {
 
 /**
@@ -460,7 +460,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -475,7 +475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'menu-platos': function menuPlatos() {
-      return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 85));
+      return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, 89));
     }
   },
   props: ['url'],
@@ -495,10 +495,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 76:
+/***/ 80:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)();
+exports = module.exports = __webpack_require__(47)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ })

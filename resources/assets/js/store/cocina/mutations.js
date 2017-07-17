@@ -5,12 +5,17 @@ export default {
   SET_PEDIDO_SELECCIONADO (state, pedido) {
     state.pedido_seleccionado = pedido
   },
+  SET_DIGEST (state, digest) {
+    state.digest_pedidos = digest
+  },
+  SET_DIGEST_SELECCIONADO (state, digest) {
+    state.digest_seleccionado = digest
+  },
   APPEND_PEDIDO (state, pedido) {
     state.pedidos.push(pedido)
   },
   REMOVE_PEDIDO (state, pedido) {
-    let aux = state.pedidos.filter( el => pedido.id === el.id)[0]
-    state.pedidos.splice( state.pedidos.indexOf(aux), 1)
+    state.pedidos = state.pedidos.filter( el => pedido.id !== el.id )
   },
   REPLACE_PEDIDO (state, pedido) {
     state.pedidos = state.pedidos.map( el => {

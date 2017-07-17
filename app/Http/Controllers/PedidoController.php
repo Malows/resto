@@ -245,12 +245,12 @@ class PedidoController extends Controller
      */
     public function despachar( $id ) {
         $pedido = Pedido::findOrFail($id);
-        $pedido->listo_at = \Carbon\Carbon::now();
+        $pedido->listo_at = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
         $pedido->save();
 
 //        avisar al mozo del pedido listo
 
 
-        return Response()->json(['mensaje' => 'Pedido despachado'], 200);
+        return $this->hidratar($pedido);
     }
 }

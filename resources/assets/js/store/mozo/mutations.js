@@ -41,8 +41,7 @@ export default {
     })
   },
   REMOVE_MESA (state, mesa) {
-    let elem = state.mesas.filter(el => el.id === mesa.id)[0]
-    state.mesas.splice( state.mesas.indexOf( elem ), 1 )
+    state.mesas = state.mesas.filter( el => el.id !== mesa.id )
   },
   QUITAR_PLATO_PEDIDO (state, plato) {
     state.mesa_seleccionada.platos_ids.splice( state.mesa_seleccionada.platos_ids.indexOf(plato), 1)

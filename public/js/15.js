@@ -1,6 +1,43 @@
 webpackJsonp([15],{
 
-/***/ 61:
+/***/ 102:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.data.total),
+      expression: "data.total"
+    }],
+    staticClass: "box"
+  }, [_c('h2', {
+    staticClass: "title"
+  }, [_vm._v(_vm._s(_vm.data.nombre.toUpperCase()))]), _vm._v(" "), _c('h4', {
+    staticClass: "subtitle"
+  }, [_vm._v(_vm._s(((_vm.data.total) + " cosa" + (_vm.data.total>2 ? 's': ''))))]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, _vm._l((_vm.data.platos), function(plato) {
+    return _c('plato', {
+      key: plato.id,
+      attrs: {
+        "plato": plato
+      }
+    })
+  }))])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0d9fc224", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 65:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20,22 +57,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'plato': function plato() {
-      return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 54));
+      return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 58));
     }
   },
-  props: ['categoria']
+  props: ['data']
 });
 
 /***/ }),
 
-/***/ 89:
+/***/ 93:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(49)(
+var Component = __webpack_require__(53)(
   /* script */
-  __webpack_require__(61),
+  __webpack_require__(65),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(102),
   /* scopeId */
   null,
   /* cssModules */
@@ -60,43 +97,6 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
-
-/***/ }),
-
-/***/ 98:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.categoria.total),
-      expression: "categoria.total"
-    }],
-    staticClass: "box"
-  }, [_c('h2', {
-    staticClass: "title"
-  }, [_vm._v(_vm._s(_vm.categoria.nombre.toUpperCase()))]), _vm._v(" "), _c('h4', {
-    staticClass: "subtitle"
-  }, [_vm._v(_vm._s(((_vm.categoria.total) + " cosa" + (_vm.categoria.total>2 ? 's': ''))))]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, _vm._l((_vm.categoria.platos), function(plato) {
-    return _c('plato', {
-      key: plato.id,
-      attrs: {
-        "plato": plato
-      }
-    })
-  }))])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0d9fc224", module.exports)
-  }
-}
 
 /***/ })
 

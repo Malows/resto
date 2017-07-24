@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Route::get('/redirect', function () {
+//    $query = http_build_query([
+//        'client_id' => '3',
+//        'redirect_uri' => 'http://192.168.1.236:8000/api/callback',
+//        'response_type' => 'token',
+//        'scope' => '',
+//    ]);
+//
+//    return redirect('http://192.168.1.236:8000/oauth/authorize?'.$query);
+//});
+
 Route::get('/platos', ['uses' => 'api\PlatoController@index', 'as' => 'api.platos.index']);
 Route::get('/platos/{id}', ['uses' => 'api\PlatoController@show', 'as' => 'api.platos.show']);
 Route::get('/platos/categoria/{id}', ['uses' => 'api\PlatoController@category', 'as' => 'api.platos.category']);

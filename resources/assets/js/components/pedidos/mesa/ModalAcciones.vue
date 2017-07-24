@@ -27,17 +27,17 @@ export default {
   },
   methods: {
     hideModal () {
-      this.$store.dispatch('HIDE_MODAL_ACCIONES');
+      this.$store.dispatch('HIDE_MODAL_ACCIONES')
     },
     clickCobrar () {
-      this.$store.dispatch('SHOW_MODAL_COBRAR');
+      this.$store.dispatch('SHOW_MODAL_COBRAR')
     },
     clickEditar () {
-      this.$store.dispatch('SHOW_MODAL_EDITAR');
+      this.$store.dispatch('SHOW_MODAL_EDITAR')
     },
     clickBorrar () {
-      this.$store.dispatch('SHOW_MODAL_BORRAR');
-    },
+      this.$store.dispatch('SHOW_MODAL_BORRAR')
+    }
   }
 }
 </script>

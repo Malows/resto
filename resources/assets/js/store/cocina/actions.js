@@ -1,10 +1,11 @@
+import axios from 'axios'
 export default {
 // Initial and refreshing Actions
   REFRESH_PEDIDOS_PENDIENTES ({ commit }) {
-    axios.get(`http://localhost:8000/api/pedidos`).then( response => {
+    axios.get(`http://localhost:8000/api/pedidos`).then(response => {
       commit('SET_PEDIDOS', response.data)
     })
-    axios.get(`http://localhost:8000/api/digest/pedidos`).then( response => {
+    axios.get(`http://localhost:8000/api/digest/pedidos`).then(response => {
       commit('SET_DIGEST', response.data)
     })
   },
@@ -14,15 +15,15 @@ export default {
 
 // Actions
   DESPACHAR_PEDIDO ({ commit }, pedido) {
-    new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       axios.put(pedido.url_completar).then(response => {
-        if ( response.status === 200 ) {
+        if (response.status === 200) {
           commit('REMOVE_PEDIDO', response.data)
           commit('SET_PEDIDO_SELECCIONADO', undefined)
           resolve(response)
         }
       })
-    });
+    })
   },
 
 // Actions over the modal

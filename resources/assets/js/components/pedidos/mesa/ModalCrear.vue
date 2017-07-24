@@ -57,13 +57,13 @@ export default {
       mesa: '',
       model_plato: '',
       pusher_platos: [],
-      botonLoader: false,
+      botonLoader: false
     }
   },
   computed: {
     ...mapState({
       showModal: state => state.mozo.showModalCrear,
-      categorias: state => state.mozo.categorias_with_platos,
+      categorias: state => state.mozo.categorias_with_platos
     }),
     ...mapGetters({
       platos: 'nombreDePlatos'
@@ -77,7 +77,7 @@ export default {
       this.$store.dispatch('HIDE_MODAL_CREAR')
     },
     quitarPlato (plato) {
-      this.pusher_platos.splice( this.pusher_platos.indexOf(plato), 1 )
+      this.pusher_platos.splice(this.pusher_platos.indexOf(plato), 1)
     },
     agregarPlato () {
       if (this.model_plato) {
@@ -92,9 +92,9 @@ export default {
         mesa: this.mesa,
         platos: this.pusher_platos
       }
-      this.$store.dispatch('NUEVO_PEDIDO', payload).then( response => {
+      this.$store.dispatch('NUEVO_PEDIDO', payload).then(response => {
         this.boton_loader = false
-        this.hideModal();
+        this.hideModal()
       })
     }
   }

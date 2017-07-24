@@ -55,21 +55,21 @@ export default {
   data () {
     return {
       model_plato: '',
-      buttonLoader: false,
+      buttonLoader: false
     }
   },
   methods: {
     hideModal () {
-      this.$store.dispatch('ROLLBACK_MESA_SELECCIONADA').then( () => {
+      this.$store.dispatch('ROLLBACK_MESA_SELECCIONADA').then(() => {
         this.$store.dispatch('HIDE_MODAL_EDITAR')
       })
     },
     quitarPlato (plato) {
-      this.$store.dispatch('QUITAR_PLATO_PEDIDO',plato)
+      this.$store.dispatch('QUITAR_PLATO_PEDIDO', plato)
     },
     agregarPlato () {
-      if ( this.model_plato ) {
-        this.$store.dispatch('AGREGAR_PLATO_PEDIDO',this.model_plato)
+      if (this.model_plato) {
+        this.$store.dispatch('AGREGAR_PLATO_PEDIDO', this.model_plato)
         this.model_plato = ''
       }
     },
@@ -79,7 +79,7 @@ export default {
         mesa: this.mesa,
         platos: this.mesa_seleccionada.platos_ids
       }
-      this.$store.dispatch('EDITAR_PEDIDO', payload).then( () => {
+      this.$store.dispatch('EDITAR_PEDIDO', payload).then(() => {
         this.buttonLoader = false
         this.$store.dispatch('HIDE_MODAL_EDITAR')
       })
@@ -90,7 +90,7 @@ export default {
     ...mapState({
       'showModal': state => state.mozo.showModalEditar,
       'categorias': state => state.mozo.categorias_with_platos,
-      'mesa_seleccionada': state => state.mozo.mesa_seleccionada,
+      'mesa_seleccionada': state => state.mozo.mesa_seleccionada
     }),
 
     mesa: {
@@ -98,8 +98,10 @@ export default {
         return this.mesa_seleccionada.mesa
       },
       set (value) {
-        let aux_mesa = Object.assign({}, this.mesa_seleccionada, {mesa: value ? parseInt(value) : ''} )
-        this.$store.dispatch('SET_MESA_SELECCIONADA', aux_mesa)
+        this.$store.dispatch(
+          'SET_MESA_SELECCIONADA',
+          Object.assign({}, this.mesa_seleccionada, {mesa: value ? parseInt(value) : ''})
+        )
       }
     }
   }

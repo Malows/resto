@@ -10,11 +10,11 @@ export default {
   props: {
     plato: {
       type: Object,
-      required: true,
+      required: true
     },
     estilos: {
       type: Array,
-      required: false,
+      required: false
     }
   }
 }

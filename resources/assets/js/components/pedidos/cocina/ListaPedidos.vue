@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      verDigest: false,
+      verDigest: false
     }
   },
   computed: {
@@ -45,11 +45,11 @@ export default {
   },
   methods: {
     clickDigest () {
-      this.verDigest = ! this.verDigest
+      this.verDigest = !this.verDigest
       this.timerDigest()
     },
-    timerDigest() {
-      if ( this.verDigest ) {
+    timerDigest () {
+      if (this.verDigest) {
         setTimeout(() => {
           this.verDigest = false
         }, 10000)

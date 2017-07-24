@@ -13,7 +13,7 @@ export default new Vuex.Store({
   modules: {
     mozo,
     cocina
-  },
+  }
   // state,
   // actions,
   // mutations,

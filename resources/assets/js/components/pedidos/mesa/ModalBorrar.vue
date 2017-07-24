@@ -22,13 +22,13 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      buttonLoading: false,
+      buttonLoading: false
     }
   },
   computed: {
     ...mapState({
       showModal: state => state.mozo.showModalBorrar,
-      mesa: state => state.mozo.mesa_seleccionada,
+      mesa: state => state.mozo.mesa_seleccionada
     })
   },
   methods: {
@@ -37,12 +37,12 @@ export default {
     },
     borrarPedido () {
       this.buttonLoading = true
-      this.$store.dispatch('BORRAR_PEDIDO', this.mesa).then( response => {
+      this.$store.dispatch('BORRAR_PEDIDO', this.mesa).then(response => {
         this.hideModal()
         this.buttonLoading = false
       })
     }
-  },
+  }
 }
 </script>
 

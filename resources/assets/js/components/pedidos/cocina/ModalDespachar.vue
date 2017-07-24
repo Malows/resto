@@ -37,7 +37,7 @@ export default {
     },
     despacharPedido () {
       this.buttonLoading = true
-      this.$store.dispatch('DESPACHAR_PEDIDO', this.pedido).then( () => {
+      this.$store.dispatch('DESPACHAR_PEDIDO', this.pedido).then(() => {
         this.buttonLoading = false
         this.$store.dispatch('HIDE_MODAL_DESPACHAR')
       })
@@ -47,8 +47,8 @@ export default {
     ...mapState({
       'pedido': (state) => state.cocina.pedido_seleccionado,
       'showModal': (state) => state.cocina.showModalDespachar
-    }),
-  },
+    })
+  }
 }
 </script>
 

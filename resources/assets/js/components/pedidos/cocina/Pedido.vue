@@ -19,9 +19,6 @@ export default {
       this.$store.dispatch('SET_PEDIDO_SELECCIONADO', this.data)
       this.$store.dispatch('SHOW_MODAL_DESPACHAR')
     }
-  },
-  computed: {
-    
   }
 }
 </script>

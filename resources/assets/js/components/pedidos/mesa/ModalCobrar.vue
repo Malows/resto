@@ -36,18 +36,18 @@ export default {
   computed: {
     ...mapState({
       'showModal': state => state.mozo.showModalCobrar,
-      'mesa': state => state.mozo.mesa_seleccionada,
+      'mesa': state => state.mozo.mesa_seleccionada
     })
   },
   methods: {
     hideModal () {
-      this.$store.dispatch('HIDE_MODAL_COBRAR');
+      this.$store.dispatch('HIDE_MODAL_COBRAR')
     },
     cobrarPedido () {
-      this.buttonLoading = true;
-      this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then( () => {
-        this.hideModal();
-        this.buttonLoading = false;
+      this.buttonLoading = true
+      this.$store.dispatch('COBRAR_PEDIDO', this.mesa).then(() => {
+        this.hideModal()
+        this.buttonLoading = false
       })
     }
   }

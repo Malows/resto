@@ -16,10 +16,10 @@ export default {
   props: ['data'],
   methods: {
     clickEnMesa () {
-      this.$store.dispatch('SET_MESA_SELECCIONADA', this.data )
+      this.$store.dispatch('SET_MESA_SELECCIONADA', this.data)
       this.$store.dispatch('SHOW_MODAL_ACCIONES')
     }
-  },
+  }
 }
 </script>
 

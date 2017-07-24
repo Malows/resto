@@ -44,7 +44,6 @@ export default {
     }
   },
   mounted () {
-
     let ancho = window.innerWidth
     let chico = ancho < 768 // punto de quiebre a xs en bootstrap
     this.divisor = (chico) ? 3 : 4
@@ -76,7 +75,6 @@ export default {
         })
       }
     })
-
   }
 }
 </script>

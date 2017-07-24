@@ -15,11 +15,11 @@ export default {
     state.pedidos.push(pedido)
   },
   REMOVE_PEDIDO (state, pedido) {
-    state.pedidos = state.pedidos.filter( el => pedido.id !== el.id )
+    state.pedidos = state.pedidos.filter(el => pedido.id !== el.id)
   },
   REPLACE_PEDIDO (state, pedido) {
-    state.pedidos = state.pedidos.map( el => {
-      if ( el.id === pedido.id ) {
+    state.pedidos = state.pedidos.map(el => {
+      if (el.id === pedido.id) {
         return pedido
       } else {
         return el

@@ -29,7 +29,7 @@ export default {
     'modal-crear': () => System.import('./ModalCrear.vue'),
     'modal-cobrar': () => System.import('./ModalCobrar.vue'),
     'modal-borrar': () => System.import('./ModalBorrar.vue'),
-    'modal-editar': () => System.import('./ModalEditar.vue'),
+    'modal-editar': () => System.import('./ModalEditar.vue')
   },
 
   computed: {
@@ -41,12 +41,11 @@ export default {
   },
 
   methods: {
-    modalCrear () { this.$store.dispatch('SHOW_MODAL_CREAR') },
+    modalCrear () { this.$store.dispatch('SHOW_MODAL_CREAR') }
   },
   mounted () {
     this.$store.dispatch('REFRESH_CATEGORIAS_WITH_PLATOS')
     this.$store.dispatch('REFRESH_MESAS')
-
   }
 }
 </script>

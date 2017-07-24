@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
 
 
         $datos = array_map( function ($usuario) {
-            $usuario['QRpassword'] = bcrypt( $usuario['email'].$usuario['password']);
+            $usuario['QRpassword'] = json_encode(['username' => $usuario['email'], 'password' => 'pertennesco']);
             return $usuario;
         }, $datos );
 

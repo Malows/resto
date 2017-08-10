@@ -16,6 +16,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['middleware' => ['web','guest']], function () {
+    Route::get('/qr_login', ['uses' => 'Auth\QrLoginController@index', 'as' => 'view_qr_login']);
+    Route::get('/qr_login_2', ['uses' => 'Auth\QrLoginController@indexoption2', 'as' => 'view_qr_login_2']);
+
+    Route::post('/qr_login', ['uses' => 'Auth\QrLoginController@checkUser', 'as' => 'attempt_qr_login']);
+});
+
 
 Route::get('/inicio', 'HomeController@index')->name('home');
 Route::get('/home', function() {

@@ -23,6 +23,7 @@
                         <td>{{$persona->name}}</td>
                         <td>{{$tipos_de_usuarios[$persona->tipo_usuario_id]}}</td>
                         <td class="text-center">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-qr-{{$persona->id}}"><span class="glyphicon glyphicon-qrcode"></span></button>
                             <div class="btn-group">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar" data-id="{{$persona->id}}" data-action="{{route('personal.update', $persona->id)}}"><span class="glyphicon glyphicon-edit"></span></button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-borrar" data-action="{{route('personal.destroy', $persona->id)}}" data-nombre="{{$persona->name}}"><span class="glyphicon glyphicon-trash"></span></button>
@@ -36,6 +37,7 @@
     @include('administrador.personal.crear', ['tipos_de_usuarios' => $tipos_de_usuarios])
     @include('administrador.personal.editar', ['tipos_de_usuarios' => $tipos_de_usuarios])
     @include('administrador.personal.borrar')
+    @each('administrador.personal.view_qrcode', $personal, 'persona')
 @endsection
 
 @section('extra-scripts')

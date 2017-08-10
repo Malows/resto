@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CategoriaPlato;
+use App\Events\cancelarPedido;
+use App\Events\despacharPedido;
+use App\Events\editarPedido;
+use App\Events\nuevoPedido;
 use App\Pedido;
 use App\User;
 use Auth;
@@ -22,8 +26,10 @@ class PedidoController extends Controller
             $query->select('nombre', 'categoria_plato_id', 'id')->where('habilitado', TRUE)->orderBy('categoria_plato_id');
         }])->select('nombre', 'id')->get();
         $pedidos_pendientes = Auth::user()->pedidos()->orderBy('created_at')->get();
-        $platos_disponibles = Plato::where('habilitado', TRUE)->pluck('nombre', 'id')->toArray();
-        return view('pedidos.index', ['pedidos' => $pedidos_pendientes, 'categorias' => $categorias, 'platos' => $platos_disponibles]);
+
+        // si traigo solo los disponibles, lanza un error, porque no encuentra los datos de un plato previamente registrado
+        $platos = Plato::pluck('nombre', 'id')->toArray();
+        return view('pedidos.index', ['pedidos' => $pedidos_pendientes, 'categorias' => $categorias, 'platos' => $platos]);
     }
 
     /**
@@ -93,6 +99,7 @@ class PedidoController extends Controller
         unset($arreglo_aux);
 
         // avisar a la cocina
+        event(new nuevoPedido($pedido));
 
         flash('Pedido registrado')->success();
         return redirect()->route('mesas.index');
@@ -137,9 +144,10 @@ class PedidoController extends Controller
         sort( $array_intval );
         $array_ordenado = $array_intval;
 
-//        if ( $array_ordenado != $pedido->platos) {
-//            avisar a la cocina
-//        }
+        if ( $array_ordenado != $pedido->platos) {
+            // avisar a la cocina
+            event(new editarPedido($pedido, $array_ordenado));
+        }
 
         $pedido->platos = $array_ordenado;
 
@@ -160,6 +168,7 @@ class PedidoController extends Controller
         Pedido::findOrFail($id)->delete();
 
 //        avisar en la cocina
+        event(new cancelarPedido($id));
 
         flash('Pedido cancelado')->success();
         return redirect()->route('mesas.index');
@@ -193,7 +202,7 @@ class PedidoController extends Controller
         $pedido->save();
 
 //        avisar al mozo del pedido listo
-
+        event(new despacharPedido($pedido));
 
         return Response()->json(['mensaje' => 'Pedido despachado'], 200);
     }

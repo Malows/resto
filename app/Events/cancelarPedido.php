@@ -44,6 +44,6 @@ class cancelarPedido implements ShouldBroadcast
     public function broadcastWith()
     {
         // retorna un solo id y necesita un array para mergear
-        return [$this->pedido];
+        return ['id' => $this->pedido];
     }
 }

@@ -1405,6 +1405,7 @@
                 "uuid"
             ],
             "time": "2017-08-04T13:39:04+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "simplesoftwareio/simple-qrcode",
@@ -1456,6 +1457,8 @@
                 "wrapper"
             ],
             "time": "2016-12-06T01:39:52+00:00"
+=======
+>>>>>>> f9758aabbf0c8e8f6f4c90b5b83c1363a9e34143
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2544,7 +2547,7 @@
             ],
             "authors": [
                 {
-                    "name": "Pádraic Brady",
+                    "name": "Padraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },

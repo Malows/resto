@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CategoriaPlato;
-use App\Events\DeshabilitarPlatosEvent;
-use App\Events\HabilitarPlatosEvent;
+use App\Events\deshabilitarPlatos;
+use App\Events\habilitarPlatos;
 use App\Http\Requests\PlatoRequest;
 use App\Plato;
 use Illuminate\Http\Request;
@@ -146,8 +146,8 @@ class PlatoController extends Controller
 
 //        return ['deshabilitar' => $deshabilitar, 'habilitar' => $habilitar];
 
-        event(new HabilitarPlatosEvent($habilitar) );
-        event(new DeshabilitarPlatosEvent($deshabilitar) );
+        broadcast(new habilitarPlatos($habilitar) )->toOthers();
+        broadcast(new deshabilitarPlatos($deshabilitar) )->toOthers();
 
         flash('Platos disponibles actualizados')->success();
         return redirect()->route('disponibilidad');

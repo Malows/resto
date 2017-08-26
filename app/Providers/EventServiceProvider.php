@@ -13,11 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-//        'App\Events\DeshabilitarPlatosEvent' => [
+//        'App\Events\deshabilitarPlatos' => [
 //            'App\Listeners\DeshabilitarPlatosListener',
 //        ],
 //
-//        'App\Events\HabilitarPlatosEvent' => [
+//        'App\Events\habilitarPlatos' => [
 //            'App\Listeners\HabilitarPlatosListener',
 //        ],
     ];

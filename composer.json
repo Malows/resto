@@ -9,11 +9,11 @@
         "barryvdh/laravel-cors": "^0.9.2",
         "barryvdh/laravel-debugbar": "^2.4",
         "laracasts/flash": "^3.0",
-        "laravel/framework": "5.4.*",
+        "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "predis/predis": "^1.1",
-        "pusher/pusher-php-server": "^2.6",
+        "pusher/pusher-php-server": "^3",
         "simplesoftwareio/simple-qrcode": "^1.5"
     },
     "require-dev": {

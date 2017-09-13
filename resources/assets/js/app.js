@@ -17,8 +17,6 @@ window.EventBus = new window.Vue();
  */
 
 Vue.component('menu-resto', () => System.import('./components/Menu.vue'));
-// Vue.component('menu-platos', require('./components/MenuPlatos.vue'));
-// Vue.component('plato', require('./components/Plato.vue'));
 
 window.app = new Vue({
     el: '#app'

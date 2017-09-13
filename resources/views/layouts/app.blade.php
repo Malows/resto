@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('extra-styles')
     {{--<script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>--}}
 </head>
 <body>
@@ -62,6 +63,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
+                            <li><a href="{{ route('view_qr_login') }}">QR</a></li>
                             <li><a href="{{ route('login') }}">Ingresar</a></li>
                             {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
                         @else

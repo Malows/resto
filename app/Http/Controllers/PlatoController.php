@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CategoriaPlato;
+use App\Events\deshabilitarPlatos;
+use App\Events\habilitarPlatos;
 use App\Http\Requests\PlatoRequest;
 use App\Plato;
 use Illuminate\Http\Request;
@@ -143,6 +145,10 @@ class PlatoController extends Controller
         Plato::whereIn('id', $deshabilitar)->update(['habilitado' => false]);
 
 //        return ['deshabilitar' => $deshabilitar, 'habilitar' => $habilitar];
+
+        broadcast(new habilitarPlatos($habilitar) )->toOthers();
+        broadcast(new deshabilitarPlatos($deshabilitar) )->toOthers();
+
         flash('Platos disponibles actualizados')->success();
         return redirect()->route('disponibilidad');
     }

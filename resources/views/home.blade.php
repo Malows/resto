@@ -9,7 +9,7 @@
                         <a href="{{route('platos.index')}}" class="btn btn-primary btn-lg btn-block">Administrar platos</a>
                     </div>
                     <div class="col-xs-12 col-md-6 padding-all-1em">
-                        <a href="{{route('disponibilidad')}}" class="btn btn-primary btn-lg btn-block">Habilitar/Deshabilitar platos</a>
+                        <a href="{{route('disponibilidad')}}" class="btn btn-primary btn-lg btn-block">Platos disponibles</a>
                     </div>
                 </div>
                 <div class="row">
@@ -33,10 +33,10 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6 padding-all-1em">
-                        <a href="{{route('disponibilidad')}}" class="btn btn-primary btn-lg btn-block">Habilitar/Deshabilitar platos</a>
+                        <a href="{{route('disponibilidad')}}" class="btn btn-primary btn-lg btn-block">Platos disponibles</a>
                     </div>
                     <div class="col-xs-12 col-md-6 padding-all-1em">
-                        <a href="#" class="btn btn-default btn-lg btn-block">Habilitar/Deshabilitar ingredientes</a>
+                        <a href="#" class="btn btn-default btn-lg btn-block">Ingredientes disponibles</a>
                     </div>
                 </div>
             </div>

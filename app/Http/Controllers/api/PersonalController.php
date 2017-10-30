@@ -15,7 +15,7 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        return User::select('id', 'name', 'tipo_usuario_id', 'email')->orderBy('id')->get()->toArray();
+        return User::select('id', 'name', 'tipo_usuario_id', 'email')->orderBy('id')->get();
     }
 
     /**

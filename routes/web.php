@@ -28,8 +28,8 @@ Route::redirect('/home', '/inicio');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'pedidos', 'middleware' => 'role:3'], function () {
-        Route::resource('/mesas', 'PedidoController',  ['except' => [ 'create', 'edit', 'show'] ] );
-        Route::put('/mesas/{id}/cobrar', ['uses' => 'PedidoController@cobrar', 'as' => 'mesas.cobrar']);
+//        Route::resource('/mesas', 'PedidoController',  ['except' => [ 'create', 'edit', 'show'] ] );
+//        Route::put('/mesas/{id}/cobrar', ['uses' => 'PedidoController@cobrar', 'as' => 'mesas.cobrar']);
 
         Route::group(['middleware' => 'role:2'], function () {
             Route::get('/', ['uses' => 'PedidoController@index_cocina', 'as' => 'pedidos.index']);

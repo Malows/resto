@@ -37,6 +37,24 @@ Route::get('/personal/{id}', ['uses' => 'api\PersonalController@show', 'as' => '
 Route::get('/pedidos', ['uses' => 'api\PedidoController@index', 'as' => 'api.pedidos.index']);
 Route::get('/pedidos/{id}', ['uses' => 'api\PedidoController@show', 'as' => 'api.pedidos.show']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/user', ['uses' => 'api\UserController@me', 'as' => 'api.user.me']);
+
+
+    Route::resource('/mesas', 'api\MesaController', ['except' => [ 'create', 'edit']]);
+    Route::put('/mesas/{id}', ['uses' => 'api\MesaController@cobrar', 'as' => 'mesas.cobrar']);
+
+
+
+    Route::group(['middleware' => 'role:2'], function () {
+        Route::put('/platos/disponibilidad', ['uses' =>  'api\PlatoController@actualizar_disponibilidad',  'as' => 'api.platos.disponibilidad'] );
+    });
+
+
+    Route::group(['middleware' => 'role:1'], function () {
+        Route::resource('/personal', 'api\PersonalController', ['only' => ['store', 'update', 'destroy']] );
+        Route::resource('/platos', 'api\PlatoController',  ['only' => ['store', 'update', 'destroy']] );
+    });
 });
+
+

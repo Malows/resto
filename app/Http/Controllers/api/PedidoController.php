@@ -99,4 +99,8 @@ class PedidoController extends Controller
     {
         //
     }
+
+    public function mesasAbiertas (Request $request) {
+
+    }
 }

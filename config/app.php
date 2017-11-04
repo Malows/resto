@@ -177,13 +177,13 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
 
         // Laravel Debug Bar
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
 	
-	// Passport OAuth2
-	Laravel\Passport\PassportServiceProvider::class,
+	    // Passport OAuth2
+        Laravel\Passport\PassportServiceProvider::class,
 
-	// CORS configurations
-	Barryvdh\Cors\ServiceProvider::class,
+        // CORS configurations
+        Barryvdh\Cors\ServiceProvider::class,
 
         // QR Code
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,

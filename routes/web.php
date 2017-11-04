@@ -32,20 +32,20 @@ Route::group(['middleware' => 'auth'], function () {
 //        Route::put('/mesas/{id}/cobrar', ['uses' => 'PedidoController@cobrar', 'as' => 'mesas.cobrar']);
 
         Route::group(['middleware' => 'role:2'], function () {
-            Route::get('/', ['uses' => 'PedidoController@index_cocina', 'as' => 'pedidos.index']);
-            Route::put('/despachar/{id}', ['uses' => 'PedidoController@despachar', 'as' => 'pedidos.dispatch']);
-            Route::get('/lista', ['uses' => 'PedidoController@index_digest', 'as' => 'pedidos.digest']);
-            Route::get('/lista/{categoria}', ['uses' => 'PedidoController@index_target_digest', 'as' => 'pedidos.target_digest']);
+//            Route::get('/', ['uses' => 'PedidoController@index_cocina', 'as' => 'pedidos.index']);
+//            Route::put('/despachar/{id}', ['uses' => 'PedidoController@despachar', 'as' => 'pedidos.dispatch']);
+//            Route::get('/lista', ['uses' => 'PedidoController@index_digest', 'as' => 'pedidos.digest']);
+//            Route::get('/lista/{categoria}', ['uses' => 'PedidoController@index_target_digest', 'as' => 'pedidos.target_digest']);
         });
     });
     Route::group(['prefix' => 'disponibilidad', 'middleware' => 'role:2'], function () {
-        Route::get('/platos', ['uses' => 'PlatoController@disponibilidad', 'as' => 'disponibilidad']);
-        Route::put('/platos/guardar', ['uses' => 'PlatoController@actualizar_disponibilidad', 'as' => 'guardar_disponibilidad']);
+//        Route::get('/platos', ['uses' => 'PlatoController@disponibilidad', 'as' => 'disponibilidad']);
+//        Route::put('/platos/guardar', ['uses' => 'PlatoController@actualizar_disponibilidad', 'as' => 'guardar_disponibilidad']);
     });
 
     Route:: group(['prefix' => 'administracion', 'middleware' => 'role:1'], function () {
-        Route::resource('platos', 'PlatoController',  ['except' => [ 'create', 'edit', 'show'] ] );
-        Route::resource('personal', 'UserController', ['except' => [ 'create', 'edit', 'show'] ] );
+//        Route::resource('platos', 'PlatoController',  ['except' => [ 'create', 'edit', 'show'] ] );
+//        Route::resource('personal', 'UserController', ['except' => [ 'create', 'edit', 'show'] ] );
     });
 
 });

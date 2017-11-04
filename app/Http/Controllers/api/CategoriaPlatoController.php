@@ -27,16 +27,6 @@ class CategoriaPlatoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,7 +34,9 @@ class CategoriaPlatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new CategoriaPlato($request->all());
+        $categoria->save();
+        return $categoria;
     }
 
     /**
@@ -55,22 +47,11 @@ class CategoriaPlatoController extends Controller
      */
     public function show($id)
     {
-        $categoria = CategoriaPlato::with('platos')->where('id', $id)->select('id', 'nombre')->first();
+        $categoria = CategoriaPlato::with('platos')->select('id', 'nombre')->find($id);
         $categoria->platos->each(function ($plato) {
             $plato->foto = asset(Storage::url($plato->foto));
         });
         return $categoria;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -82,7 +63,10 @@ class CategoriaPlatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = CategoriaPlato::find($id);
+        $categoria->fill($request->all());
+        $categoria->save();
+        return $categoria;
     }
 
     /**
@@ -93,6 +77,6 @@ class CategoriaPlatoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return CategoriaPlato::find($id)->delete();
     }
 }

@@ -177,7 +177,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
 
         // Laravel Debug Bar
-        Barryvdh\Debugbar\ServiceProvider::class,
+//        Barryvdh\Debugbar\ServiceProvider::class,
 	
 	// Passport OAuth2
 	Laravel\Passport\PassportServiceProvider::class,

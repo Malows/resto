@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,48 +10,32 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//Route::get('/redirect', function () {
-//    $query = http_build_query([
-//        'client_id' => '3',
-//        'redirect_uri' => 'http://192.168.1.236:8000/api/callback',
-//        'response_type' => 'token',
-//        'scope' => '',
-//    ]);
-//
-//    return redirect('http://192.168.1.236:8000/oauth/authorize?'.$query);
-//});
 
-Route::get('/platos', ['uses' => 'api\PlatoController@index', 'as' => 'api.platos.index']);
-Route::get('/platos/{id}', ['uses' => 'api\PlatoController@show', 'as' => 'api.platos.show']);
-Route::get('/platos/categoria/{id}', ['uses' => 'api\PlatoController@category', 'as' => 'api.platos.category']);
+Route::resource('/platos', 'api\PlatoController', ['only' => ['index', 'show']] );
+Route::get('/platos/categoria/{categoria}', ['uses' => 'api\PlatoController@category', 'as' => 'platos.category']);
+Route::resource('/categorias', 'api\CategoriaPlatoController', ['only' => ['index', 'show']] );
 
-Route::get('/categorias', ['uses' => 'api\CategoriaPlatoController@index', 'as' => 'api.categorias.index']);
-Route::get('/categorias/{id}', ['uses' => 'api\CategoriaPlatoController@show', 'as' => 'api.categorias.show']);
-
-
-Route::get('/personal', ['uses' => 'api\PersonalController@index', 'as' => 'api.personal.index']);
-Route::get('/personal/{id}', ['uses' => 'api\PersonalController@show', 'as' => 'api.personal.show']);
-
-Route::get('/pedidos', ['uses' => 'api\PedidoController@index', 'as' => 'api.pedidos.index']);
-Route::get('/pedidos/{id}', ['uses' => 'api\PedidoController@show', 'as' => 'api.pedidos.show']);
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/user', ['uses' => 'api\UserController@me', 'as' => 'api.user.me']);
+    Route::get('/user', ['uses' => 'api\UserController@index', 'as' => 'user.me']);
 
-
-    Route::resource('/mesas', 'api\MesaController', ['except' => [ 'create', 'edit']]);
-    Route::put('/mesas/{id}', ['uses' => 'api\MesaController@cobrar', 'as' => 'mesas.cobrar']);
-
+    Route::resource('/personal', 'api\PersonalController', ['only' => ['index', 'show']] );
+    Route::resource('/pedidos', 'api\PedidoController', ['except' => ['create', 'edit', 'despachar']] );
+    Route::put('/pedidos/{pedido}/cobrar', ['uses' => 'api\PedidoController@cobrar', 'as' => 'pedidos.cobrar']);
 
 
     Route::group(['middleware' => 'role:2'], function () {
-        Route::put('/platos/disponibilidad', ['uses' =>  'api\PlatoController@actualizar_disponibilidad',  'as' => 'api.platos.disponibilidad'] );
+        Route::put('/pedidos/{pedido}/despachar', ['uses' => 'api\PedidoController@despachar', 'as' => 'pedidos.despachar']);
+
+        Route::put('/disponibilidad/platos', ['uses' =>  'api\PlatoController@disponibilidad',  'as' => 'platos.disponibilidad'] );
+        Route::get('/digest/pedidos/{categoria?}', ['uses' => 'api\PedidoController@digest', 'as' => 'pedidos.digest']);
     });
 
 
     Route::group(['middleware' => 'role:1'], function () {
         Route::resource('/personal', 'api\PersonalController', ['only' => ['store', 'update', 'destroy']] );
         Route::resource('/platos', 'api\PlatoController',  ['only' => ['store', 'update', 'destroy']] );
+        Route::resource('/categorias', 'api\CategoriaPlatoController', ['only' => ['store', 'update']]);
     });
 });
 

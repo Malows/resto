@@ -6,7 +6,10 @@ use App\Plato;
 use App\CategoriaPlato;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use App\Events\habilitarPlatos;
+use App\Events\deshabilitarPlatos;
 
 class PlatoController extends Controller
 {
@@ -26,14 +29,19 @@ class PlatoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \App\Plato;
+     * @return mixed
      */
     public function store(Request $request)
     {
         $plato = new Plato( $request->all() );
         $categoria = CategoriaPlato::find($request->categoria_plato_id);
 
-        if (!$request->hasFile('foto')) return ['message' => 'No se incluyó ninguna imagen asociada al plato que desea crear', 'success' => false];
+
+        if (!$request->hasFile('foto'))
+            return Response()->json(
+                ['message' => 'No se incluyó ninguna imagen asociada al plato que desea crear', 'success' => false],
+                Response::HTTP_FAILED_DEPENDENCY
+            );
 
         $file = $request->file('foto');
         $nombre_imagen = str_replace(' ', '_', $categoria->nombre) . '__';
@@ -55,7 +63,7 @@ class PlatoController extends Controller
      */
     public function show($id)
     {
-        $plato = Plato::findOrFail($id);
+        $plato = Plato::find($id);
         $plato = $this->hidratar($plato);
 
         return $plato;
@@ -71,7 +79,12 @@ class PlatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $plato = Plato::find($id);
+        $plato->fill( $request->all() );
+        if ($request->hasFile('imagen')) $request->foto->storeAs('platos', $plato->foto, 'public');
+
+        $plato->save();
+        return $this->hidratar($plato);
     }
 
     /**
@@ -82,7 +95,10 @@ class PlatoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plato = Plato::find($id);
+        $plato->delete();
+
+        return $this->hidratar($plato);
     }
 
     /**
@@ -99,8 +115,28 @@ class PlatoController extends Controller
         return $platos;
     }
 
+    public function disponibilidad(Request $request)
+    {
+        $platos = Plato::pluck('habilitado', 'id')->toArray();
+
+        $payload = $request->all();
+        if (array_key_exists('_method', $payload)) unset($payload['_method']);
+        if (array_key_exists('_token', $payload)) unset($payload['_token']);
+
+        $separados = $this->separarDiferencias($payload, $platos);
+
+        Plato::whereIn('id', $separados['habilitar'])->update(['habilitado' => true]);
+        Plato::whereIn('id', $separados['deshabilitar'])->update(['habilitado' => false]);
+
+        broadcast(new habilitarPlatos($separados['habilitar']) )->toOthers();
+        broadcast(new deshabilitarPlatos($separados['deshabilitar']) )->toOthers();
+
+        return Response()->json($separados);
+    }
+
     private function hidratar ($platos)
     {
+        if (!$platos) return null;
         if ($platos->count() === 1) {
             $platos->foto = asset(Storage::url($platos->foto));
         } else {
@@ -111,4 +147,20 @@ class PlatoController extends Controller
 
         return $platos;
     }
+
+    private function separarDiferencias($payload, $platos)
+    {
+        $habilitar = [];
+        $deshabilitar = [];
+
+        foreach ($platos as $key => $value) {
+            $fromDB = $value;
+            $fromPayload = array_key_exists($key, $payload) and $payload[$key] == "1";
+            if ($fromDB and !$fromPayload) $deshabilitar[] = $key;
+            else if (!$fromDB and $fromPayload) $habilitar[] = $key;
+        };
+
+        return ['habilitar' => $habilitar, 'deshabilitar' => $deshabilitar];
+    }
+
 }

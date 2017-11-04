@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['middleware' => 'role:2'], function () {
         Route::put('/pedidos/{pedido}/despachar', ['uses' => 'api\PedidoController@despachar', 'as' => 'pedidos.despachar']);
 
+        Route::put('/platos/{plato}/permutar_disponibilidad', ['uses' => 'api\PlatoController@permutarDisponibildad', 'as' => 'platos.permutar']);
         Route::put('/disponibilidad/platos', ['uses' =>  'api\PlatoController@disponibilidad',  'as' => 'platos.disponibilidad'] );
         Route::get('/digest/pedidos/{categoria?}', ['uses' => 'api\PedidoController@digest', 'as' => 'pedidos.digest']);
     });

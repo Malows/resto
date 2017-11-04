@@ -134,6 +134,14 @@ class PlatoController extends Controller
         return Response()->json($separados);
     }
 
+    public function permutarDisponibildad($id)
+    {
+        $plato = Plato::find($id);
+        $plato->habilitado = !$plato->habilitado;
+        $plato->save();
+        return $plato;
+    }
+
     private function hidratar ($platos)
     {
         if (!$platos) return null;

@@ -79,7 +79,7 @@ class PedidoController extends Controller
         $pedido->mesa = $request->mesa;
 
         $array_ordenado = $this->filtrar_tranformar_ordernar($request->platos);
-        $platos_indexados = $this->unparsePlatos($pedido->platos);
+        $platos_indexados = $this->unparsePlatos($pedido);
 
         if ($array_ordenado != $platos_indexados)
             event(new editarPedido($pedido, $array_ordenado));
@@ -215,6 +215,8 @@ class PedidoController extends Controller
      */
     private function unparsePlatos ($pedido)
     {
+        if ($this->esArrayDeEnteros($pedido->platos)) return $pedido;
+
         $indexPlatos = array_reduce($pedido->platos, function($c, $x) {
             for ($i = 0; $i < $x->cantidad; $i++) $c[] = $x->id;
             return $c;
@@ -247,5 +249,10 @@ class PedidoController extends Controller
         $pedidos = $pedidos->map( function ($item) { return $this->hidratar($item); });
 
         return $pedidos;
+    }
+
+    private function esArrayDeEnteros ($arreglo)
+    {
+        return array_reduce($arreglo, function ($c, $x) { return $c && is_int($x); }, true);
     }
 }

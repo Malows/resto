@@ -28,7 +28,7 @@ class PersonalController extends Controller
     {
         $personal = new User( $request->all() );
         $personal->password = bcrypt($request->password);
-        $personal->QRpassword = json_encode([ 'username' => $personal->email, 'password' => $personal->password ]);
+        $personal->QRpassword = strrev(base64_encode(json_encode([ 'username' => $personal->email, 'password' => $personal->password ])));
         $personal->save();
 
         return $personal;
@@ -61,7 +61,7 @@ class PersonalController extends Controller
 
         if ( $request->has('password') and $request->password != null ) {
             $personal->password = bcrypt($request->password);
-            $personal->QRpassword = json_encode([ 'username' => $personal->email, 'password' => $personal->password ]);
+            $personal->QRpassword = strrev(base64_encode(json_encode([ 'username' => $personal->email, 'password' => $personal->password ])));
         }
 
         $personal->save();

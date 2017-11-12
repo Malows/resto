@@ -81,8 +81,10 @@ class PedidoController extends Controller
         $array_ordenado = $this->filtrar_tranformar_ordernar($request->platos);
         $platos_indexados = $this->unparsePlatos($pedido);
 
-        if ($array_ordenado != $platos_indexados)
+        if ($array_ordenado != $platos_indexados) {
             event(new editarPedido($pedido, $array_ordenado));
+            $pedido->listo_at = null;
+        }
 
         $pedido->platos = $array_ordenado;
         $pedido->save();

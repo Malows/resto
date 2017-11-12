@@ -48,7 +48,8 @@ class despacharPedido implements ShouldBroadcast
             'id' => $this->pedido->id,
             'mesa' => $this->pedido->mesa,
             'mozo' => $this->pedido->user_id,
-            'platos' => $this->pedido->platos
+            'platos' => $this->pedido->platos,
+            'listo_at' => \Carbon\Carbon::now()
         ];
     }
 }
